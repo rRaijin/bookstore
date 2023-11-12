@@ -7,7 +7,7 @@ const app = express();
 const jsonParser = express.json();
 
 
-const CONNECTION_STRING = 'mongodb://localhost:27017';
+const CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
 const DATABASE_NAME = 'bookstore';
 const LISTEN_PORT = 3001;
 
@@ -16,7 +16,10 @@ app.use(express.static(__dirname + '/public'));
 
 async function main() {
     try{
-        await mongoose.connect(`${CONNECTION_STRING}/${DATABASE_NAME}`);
+        await mongoose.connect(`${CONNECTION_STRING}/${DATABASE_NAME}`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         app.listen(LISTEN_PORT);
         console.log('Connection to DB...');
     }
