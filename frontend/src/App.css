@@ -1,0 +1,11 @@
+.container {
+  margin: 0 auto;
+  width: 1200px;
+  /* background: #d3e7d1; */
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  color: white;
+}

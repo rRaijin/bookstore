@@ -1,0 +1,23 @@
+.self-slider {
+    display: flex;
+    overflow: hidden;
+}
+
+.self-slider>img{
+    width: 50%;
+    opacity: 0;
+    animation: fadeIn 3s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+/* .self-slider-1 > img:hover {
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+} */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

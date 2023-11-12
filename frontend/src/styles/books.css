@@ -1,0 +1,157 @@
+.books-page-main {
+    margin-top: 20px;
+}
+
+.books-pre-text {
+    position: relative;
+}
+
+.books-pre-text > img {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 350px;
+}
+
+.books-pre-text > p {
+    margin: 0;
+    background-color: black;
+    opacity: 50%;
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    bottom: 0;
+    padding: 10px;
+}
+
+.books-page-filters {
+    
+}
+
+.books-page-list {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-preview-wrapper {
+    width: 25%;
+}
+
+.book-preview {
+    margin: 5px;
+    box-shadow: 2px 2px 5px #d4cdcd;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.book-preview:hover {
+    z-index: 10;
+    /* scale: 1.15; */
+    transform: scale(1.15);
+    -moz-transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+    -o-transform: scale(1.15);
+    -ms-transform: scale(1.15);
+
+    transition: transform 1.15s ease-in-out;
+    -moz-transition: transform 1.15s ease-in-out;
+    -o-transition: transform 1.15s ease-in-out;
+    -ms-transition: transform 1.15s ease-in-out;
+    -webkit-transition: transform 1.15s ease-in-out;
+}
+
+.book-preview-title {
+    color: #E27D60;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-size: 20px;
+    background-color: #faebd7;
+    padding-bottom: 2px;
+}
+
+.book-preview-genres {
+    position: absolute;
+    top: 0;
+    margin: 5px 0 0 5px;
+}
+
+.book-preview-genres > div {
+    background-color: #c06de2;
+    width: fit-content;
+    padding: 1px 7px;
+    border-radius: 10px;
+    color: white;
+    margin: 2px 0;
+    text-transform: uppercase;
+}
+
+.book-preview-author {
+    position: absolute;
+    bottom: 0;
+    background-color: #f2eeee;
+    color: #414143;
+    right: 0;
+    margin-bottom: 5px;
+    border-radius: 15px 0;
+    margin-right: 2px;
+    padding: 1px 10px;
+}
+
+.book-preview-img-wrapper {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    background-color: #faebd7;
+    position: relative;
+}
+
+.book-preview-img-wrapper > img {
+    width: 100%;
+    height: auto;
+}
+
+.book-preview-stars {
+    margin-left: 10px;
+}
+
+.book-preview-stars > img {
+    width: 25px;
+}
+
+.book-preview-buy {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 5px;
+    background-color: white;
+}
+
+.book-preview-buy > p {
+    color: #847985;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50%;
+    display: block;
+    text-align: center;
+    margin: 5px;
+}
+
+.book-preview-buy > button {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f7f7f4;
+    background-color: #3db716;
+    border: 0;
+    border-radius: 10px;
+    padding: 7px 13px;
+}
+
+.book-preview-buy > button:hover {
+    cursor: pointer;
+    background-color: #4d7a3e;
+}

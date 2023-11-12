@@ -1,0 +1,13 @@
+.author-preview-wrapper {
+    background-color: blueviolet;
+}
+
+.author-flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.w-29p {
+    width: 29%;
+}
