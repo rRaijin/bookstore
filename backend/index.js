@@ -16,7 +16,10 @@ app.use(express.static(__dirname + '/public'));
 
 async function main() {
     try{
-        await mongoose.connect(`${CONNECTION_STRING}/${DATABASE_NAME}`);
+        await mongoose.connect(`${CONNECTION_STRING}/${DATABASE_NAME}`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         app.listen(LISTEN_PORT);
         console.log('Connection to DB...');
     }
@@ -29,6 +32,7 @@ async function main() {
 const userSchema = new Schema({firstName: String, lastName: String, age: Number}, {versionKey: false});
 const User = mongoose.model('User', userSchema);
 app.get('/api/users', async (req, res) => {
+    console.log('Пришел запрос от бразуера')
     // получаем всех пользователей
     const users = await User.find({});
     res.send(users);

@@ -124,7 +124,7 @@ export default () => {
 
     const strings = ['хлеб', 'молоко', 'крупа', 'рыба'];
     const results = strings.map(str => capitalizeFirstAndLast(str));
-    console.log('strings: ',results);
+    // console.log('strings: ',results);
 
     const getPost = (postId) => {
         // Если использовать filter() Фильтруем по критерию(id), если в массиве не будет объекта - вернется пустой массив, 
@@ -167,7 +167,7 @@ export default () => {
         const exists = comments.find(comm => comm.postId === postId);
         // console.log('exists: ', exists, 'comments: ', comments); 
         if (exists) {
-            console.log('Comments for this post already fetched!');
+            // console.log('Comments for this post already fetched!');
         } else {
             fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`, {
                 method: 'GET',
@@ -221,7 +221,7 @@ export default () => {
         if (selectedId !== 0) {
             getCommentsForPost(selectedId);
         } else {
-            console.log('No comments for post id=0')
+            // console.log('No comments for post id=0')
         }
     }, [selectedId]);
 
@@ -234,7 +234,6 @@ export default () => {
     // GET IN START
     useEffect(() => {
         fetch('http://localhost:3001/api/users', {
-        // fetch('api/users', {
             method: 'GET',
             headers: { 'Accept': 'application/json' }
         })
@@ -243,22 +242,22 @@ export default () => {
             const results = await response.json();
             console.log('response: ', results);
         })
-    });
+    }, []);
 
+    const addNewUser = () => {
+        // CREATE !!!
+        fetch('http://localhost:3001/api/users', {
+            method: 'POST',
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: 'Nevazno',
+                age: parseInt('1234', 10)
+            })
+        }).then(response => {
+            console.log('resp: ', response);
+        })
+    }
 
-    // CREATE !!!
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/api/users', {
-    //         method: 'POST',
-    //         headers: { "Accept": "application/json", "Content-Type": "application/json" },
-    //         body: JSON.stringify({
-    //             name: 'Nevazno',
-    //             age: parseInt('1234', 10)
-    //         })
-    //     }).then(response => {
-    //         console.log('resp: ', response);
-    //     })
-    // });
 
     const currentPost = posts.find(p => p.id === selectedId);
     const commentsList = comments.filter(comm => comm.postId === selectedId);
@@ -282,6 +281,12 @@ export default () => {
 
     return (
         <div className=''>
+            <button className='button-next-prev' onClick={addNewUser}>
+                ADD USER
+            </button>
+
+
+
             <div className=''>
                 {hasPrevPost && (
                     <button className='button-next-prev' onClick={() => getPost(selectedId - 1)}>
