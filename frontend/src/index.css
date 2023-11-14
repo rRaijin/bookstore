@@ -122,16 +122,3 @@ code {
 .pl-2p {
   padding-left: 2%;
 }
-
-/* TODO REMOVE */
-.self-slider {
-  display: flex;
-  flex-direction: column;
-}
-
-.items-test {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    color: black;
-}

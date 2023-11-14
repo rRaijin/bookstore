@@ -9,34 +9,46 @@ const menuItems = [
         icon: ''
     },
     {
-        name: 'books',
+        name: 'Новинки',
         src: '/books',
         icon: ''
     },
     {
-        name: 'authors',
+        name: 'Автори',
         src: '/authors',
         icon: ''
     },
     {
-        name: 'genres',
-        src: '/genres',
+        name: 'Видавництва',
+        src: '/publishings',
         icon: ''
     },
     {
-        name: 'About Us',
-        src: '/about',
+        name: 'ТОП',
+        src: '/top',
         icon: ''
-    }
+    },
+    {
+        name: 'Акції',
+        src: '/shares',
+        icon: ''
+    },
+    {
+        name: 'Книги',
+        src: '/books',
+        icon: ''
+    },
+    {
+        name: 'Клуб',
+        src: '/club',
+        icon: ''
+    },
 ];
 
 
 const Header = () => {
     return (
         <div className='flex'>
-            <div className='logo'>
-                <img src='https://via.placeholder.com/50x50' alt='' />
-            </div>
             <ul className='main-navigation'>
                 {
                     menuItems.map((el, i) => {

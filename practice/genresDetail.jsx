@@ -1,8 +1,8 @@
-import { withRouter } from '../hocs/withRouter';
-import authors from '../mock/authors.json';
-import books from '../mock/books.json';
-import genres from '../mock/genres.json';
-import BookPreview from '../components/books/BookPreview';
+import { withRouter } from '../frontend/src/hocs/withRouter';
+import authors from '../frontend/src/mock/authors.json';
+import books from '../frontend/src/mock/books.json';
+import genres from '../frontend/src/mock/genres.json';
+import BookPreview from '../frontend/src/components/books/BookPreview';
 
 const GenreDetail = (props) => {
     console.log('render: ', props);

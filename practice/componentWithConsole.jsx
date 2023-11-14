@@ -1,5 +1,5 @@
-import { withConsole } from "../../hocs/withConsoleLog";
-import { withReklamaForUsers } from "../../hocs/withMyReklamaForUsers";
+import { withConsole } from "../frontend/src/hocs/withConsoleLog";
+import { withReklamaForUsers } from "../frontend/src/hocs/withMyReklamaForUsers";
 
 const ComponentWithConsole = (props) => {
     console.log('props in comp: ', props)

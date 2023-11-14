@@ -1,5 +1,5 @@
 import ComponentWithConsole, { WithmyReklamaComponent } from '../components/books/componentWithConsole';
-import MyWrappedComponent from '../components/books/wrappedComponent';
+import MyWrappedComponent from '../frontend/src/components/books/wrappedComponent';
 
 export default () => {
     const users = ['vasya', 'petya'];
@@ -16,9 +16,9 @@ export default () => {
             }
             {/* <WithmyReklamaComponent user={users[0]}/>
             <WithmyReklamaComponent user={users[1]}/> */}
-            <WithmyReklamaComponent myuser={myusers[0]}/>
+            {/* <WithmyReklamaComponent myuser={myusers[0]}/>
             <WithmyReklamaComponent myuser={myusers[1]}/>
-            <WithmyReklamaComponent myuser={myusers[2]}/>
+            <WithmyReklamaComponent myuser={myusers[2]}/> */}
         </div>
     )
 }

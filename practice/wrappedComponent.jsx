@@ -1,4 +1,4 @@
-import { withXValue } from "../../hocs/withXValue";
+import { withXValue } from "../frontend/src/hocs/withXValue";
 
 const MyWrappedComponent = (props) => {
     console.log('props children wrapped component: ', props);

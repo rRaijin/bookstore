@@ -1,5 +1,5 @@
-import GenresPage from '../components/genres/GenrePreview';
-import genres from '../mock/genres.json';
+import GenresPage from '../frontend/src/components/genres/GenrePreview';
+import genres from '../frontend/src/mock/genres.json';
 const GenresPagee = () => {
     return (
         <div>

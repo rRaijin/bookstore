@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { trimText } from '../../utils';
+import { trimText } from '../frontend/src/utils';
 
 
 const CommentItem = (props) => { 
