@@ -28,9 +28,28 @@ async function main() {
     }
 }
 
-
-const userSchema = new Schema({firstName: String, lastName: String, age: Number}, {versionKey: false});
+// USER
+const userSchema = new Schema({
+    firstName: String,
+    lastName: String,
+    age: Number
+}, {
+    versionKey: false
+});
 const User = mongoose.model('User', userSchema);
+
+// BOOK
+const bookSchema = new Schema({
+    bookName: String,
+    description: String,
+    year: Number,
+    // genres:
+    price: Number,
+    picture: String,
+    pages: Number
+});
+const Book = mongoose.model('Book', bookSchema);
+
 app.get('/api/users', async (req, res) => {
     console.log('Пришел запрос от бразуера')
     // получаем всех пользователей
@@ -78,6 +97,21 @@ app.put('/api/users', jsonParser, async (req, res) => {
     const user = await User.findOneAndUpdate({_id: id}, newUser, {new: true}); 
     if(user) res.send(user);
     else res.sendStatus(404);
+});
+
+// Дефолтная отправка формы с клиента и прием ее тут
+app.put('/api/books', jsonParser, async (req, res) => {
+    console.log('form body: ', req.body);
+    const { bookName, description, year } = req.body;
+    const book = new Book({
+        bookName: bookName,
+        description: description,
+        year: year
+    });
+    console.log('DEBUG: ', bookName, year, book);
+    const result = await book.save();
+    console.log('Результат создания нового документа в БД: ', result);
+    res.send({msg: 'OK'});
 });
 
 

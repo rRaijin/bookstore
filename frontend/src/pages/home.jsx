@@ -1,7 +1,32 @@
 import React, { useState, useEffect } from 'react';
 
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 const HomePage = () => {
+    const [bookName, updateBookName] = useState('');
+    const [description, updateDescription] = useState('');
+    const [year, updateYear] = useState(null);
+
+    const submitForm = (event) => {
+        event.preventDefault();
+        console.log('state: ', bookName, description, year);
+        fetch('http://localhost:3001/api/books', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                bookName: bookName,
+                description,
+                year
+            })
+        });
+    }
+
+
     return (
         <div className=''>
             <div className=''>
@@ -20,6 +45,34 @@ const HomePage = () => {
                 <h2>
                     Новинки
                 </h2>
+                <form action="" onSubmit={submitForm}>
+                    <TextField
+                        id="standard-basic"
+                        label="bookName"
+                        variant="standard"
+                        value={bookName}
+                        onChange={(e) => updateBookName(e.target.value)}/>
+
+                    <TextField
+                        id="standard-basic"
+                        label="description"
+                        variant="standard"
+                        value={description}
+                        onChange={(e) => updateDescription(e.target.value)}/>
+
+                    <TextField
+                        id="standard-basic"
+                        label="year"
+                        variant="standard"
+                        value={year}
+                        onChange={(e) => updateYear(e.target.value)}/>
+
+                    <Button variant="contained" type="submit">
+                        Submit
+                    </Button>
+                </form>
+
+
             </div>
             <div className=''>
                 <h2>
