@@ -9,6 +9,9 @@ const HomePage = () => {
     const [description, updateDescription] = useState('');
     const [year, updateYear] = useState(null);
 
+    const [books, updateBooks] = useState([]);
+    // console.log('books: ', books)
+
     const submitForm = (event) => {
         event.preventDefault();
         console.log('state: ', bookName, description, year);
@@ -23,9 +26,28 @@ const HomePage = () => {
                 description,
                 year
             })
-        });
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            console.log('Response when add book: ', results.item);
+            updateBooks([...books, results.item]);
+        })
     }
 
+    useEffect(() => {
+        fetch('http://localhost:3001/api/books', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            console.log('Response when first load page and get books list: ', results);
+            updateBooks(results.items);
+        })
+    }, []);
 
     return (
         <div className=''>
@@ -45,6 +67,20 @@ const HomePage = () => {
                 <h2>
                     Новинки
                 </h2>
+                <div className=''>
+                    {
+                        books && Array.isArray(books) &&
+                        books.map((book) => {
+                            return (
+                                <div className='text-red'>
+                                    {book.bookName}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+
                 <form action="" onSubmit={submitForm}>
                     <TextField
                         id="standard-basic"
