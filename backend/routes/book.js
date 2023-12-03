@@ -1,6 +1,7 @@
 import express from 'express';
 
 import Book from '../models/book.js';
+import User from '../models/user.js';
 
 
 const jsonParser = express.json();
@@ -21,11 +22,18 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', jsonParser, async (req, res, next) => {
     console.log('form body: ', req.body);
-    const { bookName, description, year } = req.body;
+    // '6550bdc797369edcb3740601'
+    const { bookName, description, year, authorId, price, pages, picture, genresIdsList } = req.body;
+    const author = await User.findById(authorId);
     const book = new Book({
-        bookName: bookName,
-        description: description,
-        year: year
+        bookName,
+        description,
+        year,
+        price,
+        pages,
+        picture,
+        authorId: author._id,
+        genre: genresIdsList
     });
     await book.save();
     res.status(200).json({message: 'OK', item: book});

@@ -1,16 +1,20 @@
+import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
-import cors from 'cors';
 
-import routerUser from './routes/user.js';
+import routerAuthor from './routes/author.js';
 import routerBook from './routes/book.js';
+import routerGenre from './routes/genre.js';
+import routerUser from './routes/user.js';
 
 
 const app = express();
 app.use(cors());
 // app.use(express.static(__dirname + '/public'));
-app.use('/api/users', routerUser);
+app.use('/api/authors', routerAuthor);
 app.use('/api/books', routerBook);
+app.use('/api/genres', routerGenre);
+app.use('/api/users', routerUser);
 
 
 const CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
@@ -28,6 +32,7 @@ process.on('SIGINT', async() => {
     process.exit();
 });
 
+// TODO REMOVE
 // app.get('/api/users', async (req, res) => {
 //     console.log('Пришел запрос от бразуера')
 //     // получаем всех пользователей

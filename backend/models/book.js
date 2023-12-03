@@ -8,7 +8,15 @@ const bookSchema = new Schema({
     year: Number,
     price: Number,
     picture: String,
-    pages: Number
+    pages: Number,
+    authorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Author'
+    },
+    genres: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Genre'
+    }]
 });
 
 export default mongoose.model('Book', bookSchema);
