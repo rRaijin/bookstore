@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
+import BookForm from '../components/books/BookForm';
 
 const HomePage = () => {
     const [bookName, updateBookName] = useState('');
@@ -10,29 +11,7 @@ const HomePage = () => {
     const [year, updateYear] = useState(null);
 
     const [books, updateBooks] = useState([]);
-    // console.log('books: ', books)
-
-    const submitForm = (event) => {
-        event.preventDefault();
-        console.log('state: ', bookName, description, year);
-        fetch('http://localhost:3001/api/books', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                bookName: bookName,
-                description,
-                year
-            })
-        }).then(async (response) => {
-            if (response.ok === true);
-            const results = await response.json();
-            console.log('Response when add book: ', results.item);
-            updateBooks([...books, results.item]);
-        })
-    }
+    console.log('books: ', books)
 
     useEffect(() => {
         fetch('http://localhost:3001/api/books', {
@@ -80,34 +59,7 @@ const HomePage = () => {
                     }
                 </div>
 
-
-                <form action="" onSubmit={submitForm}>
-                    <TextField
-                        id="standard-basic"
-                        label="bookName"
-                        variant="standard"
-                        value={bookName}
-                        onChange={(e) => updateBookName(e.target.value)}/>
-
-                    <TextField
-                        id="standard-basic"
-                        label="description"
-                        variant="standard"
-                        value={description}
-                        onChange={(e) => updateDescription(e.target.value)}/>
-
-                    <TextField
-                        id="standard-basic"
-                        label="year"
-                        variant="standard"
-                        value={year}
-                        onChange={(e) => updateYear(e.target.value)}/>
-
-                    <Button variant="contained" type="submit">
-                        Submit
-                    </Button>
-                </form>
-
+                <BookForm />
 
             </div>
             <div className=''>
