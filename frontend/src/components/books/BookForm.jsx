@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const BookForm = () => {
+const BookForm = (props) => {
+    console.log('props: ', props);
+    const { upDataToParent } = props;
+
     const [bookName, updateBookName] = useState('');
     const [description, updateDescription] = useState('');
     const [year, updateYear] = useState('');
-
-    const [books, updateBooks] = useState([]);
 
     const submitForm = (event) => {
         event.preventDefault();
@@ -29,7 +30,7 @@ const BookForm = () => {
             if (response.ok === true) {
                 const results = await response.json();
                 console.log('Response when add book: ', results.item);
-                updateBooks([...books, results.item]);
+                upDataToParent(results.item);
             }
         })
     }

@@ -1,7 +1,7 @@
 import express from 'express';
 
 import Book from '../models/book.js';
-import User from '../models/user.js';
+import Author from '../models/author.js';
 
 
 const jsonParser = express.json();
@@ -24,7 +24,7 @@ router.put('/', jsonParser, async (req, res, next) => {
     console.log('form body: ', req.body);
     // '6550bdc797369edcb3740601'
     const { bookName, description, year, authorId, price, pages, picture, genresIdsList } = req.body;
-    const author = await User.findById(authorId);
+    const author = await Author.findById('656c5721a638e3d6ea11708a');
     const book = new Book({
         bookName,
         description,

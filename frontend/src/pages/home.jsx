@@ -6,12 +6,8 @@ import TextField from '@mui/material/TextField';
 import BookForm from '../components/books/BookForm';
 
 const HomePage = () => {
-    const [bookName, updateBookName] = useState('');
-    const [description, updateDescription] = useState('');
-    const [year, updateYear] = useState(null);
-
     const [books, updateBooks] = useState([]);
-    console.log('books: ', books)
+    // console.log('books: ', books);
 
     useEffect(() => {
         fetch('http://localhost:3001/api/books', {
@@ -27,6 +23,12 @@ const HomePage = () => {
             updateBooks(results.items);
         })
     }, []);
+
+    // handlers
+    const upDataToParent = (item) => {
+        console.log('Item: ', item);
+        updateBooks([...books, item]);
+    }
 
     return (
         <div className=''>
@@ -59,7 +61,8 @@ const HomePage = () => {
                     }
                 </div>
 
-                <BookForm />
+                <BookForm
+                    upDataToParent={upDataToParent}/>
 
             </div>
             <div className=''>
