@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import BookForm from '../components/books/BookForm';
-import ComponentWithBooks from './componentWithBooks';
+import FilteredBooksList from '../components/books/FilteredBooksList';
 
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
@@ -31,6 +31,8 @@ const HomePage = () => {
         updateBooks([...books, item]);
     }
 
+    // Сделай кнопку "Роман" - по нажатию на кнопку вывести только романы
+
     return (
         <div className=''>
             <div className=''>
@@ -45,13 +47,13 @@ const HomePage = () => {
                 В слайд ставим по одной книги из каждого раздела ниже + информацию про книжный клуб + 1 анонс мероприятия
             </div>
 
-                <ComponentWithBooks/>
 
             <div className=''>
                 <h2>
                     Новинки
                 </h2>
-                <div className=''>
+                <FilteredBooksList books={books}/>
+                {/* <div className=''>
                     {
                         books && Array.isArray(books) &&
                         books.map((book) => {
@@ -62,7 +64,7 @@ const HomePage = () => {
                             )
                         })
                     }
-                </div>
+                </div> */}
 
                 <BookForm
                     upDataToParent={upDataToParent}/>
