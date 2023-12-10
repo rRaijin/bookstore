@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import BookForm from '../components/books/BookForm';
+import ComponentWithBooks from './componentWithBooks';
 
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
@@ -43,6 +44,8 @@ const HomePage = () => {
                 Первым слайдом необходимо пользователя завлечь - предложить купон(как его получить), какая-нибудь программа лояльности, баллы иди др.
                 В слайд ставим по одной книги из каждого раздела ниже + информацию про книжный клуб + 1 анонс мероприятия
             </div>
+
+                <ComponentWithBooks/>
 
             <div className=''>
                 <h2>
