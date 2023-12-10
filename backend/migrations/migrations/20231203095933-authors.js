@@ -1,39 +1,43 @@
 import { ObjectId } from "mongodb";
 
+
 export const up = async (db, client) => {
+    const users = await db.collection('users').find({}).toArray();
+    const uId = (email) => users.find(u => u.userEmail === email)._id;
+
     const items = [
         {
-            userId: new ObjectId('656c517916ba200f059c09ff'),
+            userId: new ObjectId(uId('marktwen@gmail.com')),
             "picture": "Mark_Twain.jpg",
             "bio": "американский писатель, журналист и общественный деятель. Его творчество охватывает множество жанров: юмор, сатиру, философскую фантастику, публицистику."
         },
         {
-            userId: new ObjectId('656c517916ba200f059c0a00'),
+            userId: new ObjectId(uId('djordjoruell@gmail.com')),
             "picture": "George_Orwell.jpg",
             "bio": "британский писатель, журналист и литературный критик, радиоведущий, автор мемуаров, публицист. Его работы отличаются простым стилем изложения, критикой тоталитаризма и поддержкой демократического социализма."
         },
         {
-            userId: new ObjectId('656c517916ba200f059c0a01'),
+            userId: new ObjectId(uId('konandoil@gmail.com')),
             "picture": "Arthur_Conan_Doyle.png",
             "bio": "английский писатель (по образованию врач) ирландского происхождения, автор многочисленных приключенческих, исторических, публицистических, фантастических и юмористических произведений."
         },
         {
-            userId: new ObjectId('656c517916ba200f059c0a02'),
+            userId: new ObjectId(uId('elionorporter@gmail.com')),
             "picture": "EleanorH.Porter.jpg",
             "bio": "американская писательница, специализирующаяся на детской литературе и романах."
         },
         {
-            userId: new ObjectId('656c517916ba200f059c0a03'),
+            userId: new ObjectId(uId('luisstiwenson@gmail.com')),
             "picture": "Robert_Louis_Stevenson.jpg",
             "bio": "британский писатель, поэт, автор приключенческих романов и повестей, крупнейший представитель английского неоромантизма."
         },
         {
-            userId: new ObjectId('656c517916ba200f059c0a04'),
+            userId: new ObjectId(uId('juliewern@gmail.com')),
             "picture": "Jules_verne.jpg",
             "bio": "французский писатель, автор романов «Дети капитана Гранта», «Капитан Немо» и других приключенческих историй, многие из которых были экранизированы."
         },
         {
-            userId: new ObjectId('656c517916ba200f059c0a05'),
+            userId: new ObjectId(uId('sentexuperi@gmail.com')),
             "picture": "Sent-Ekzyuperi.jpg",
             "bio": "французский писатель, журналист, поэт, сценарист и профессиональный лётчик."
         }
