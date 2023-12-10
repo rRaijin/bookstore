@@ -20,12 +20,15 @@ app.use('/api/users', routerUser);
 const CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
 const DATABASE_NAME = 'bookstore';
 const LISTEN_PORT = 3001;
-mongoose
-    .connect(`${CONNECTION_STRING}/${DATABASE_NAME}`)
-    .then(() => app.listen(LISTEN_PORT))
-    .then(() => console.log('Connection to DB...'))
-    .catch((error) => console.log('error with conn to DB: ', error));
+const mongooseConnect = async () => {
+    await mongoose
+        .connect(`${CONNECTION_STRING}/${DATABASE_NAME}`)
+        .then(() => app.listen(LISTEN_PORT))
+        .then(() => console.log('Connection to DB...'))
+        .catch((error) => console.log('error with conn to DB: ', error));
 
+}
+await mongooseConnect();
 process.on('SIGINT', async() => {
     await mongoose.disconnect();
     console.log('Application ended work.');
