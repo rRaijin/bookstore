@@ -10,7 +10,7 @@ const router = new express.Router();
 router.get('/', async (req, res, next) => {
     let items;
     try {
-        items = await Book.find();
+        items = await Book.find().populate('authorId').populate('genres');
     } catch (error) {
         console.log('Error: ', error);
     }

@@ -35,7 +35,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('marktwen@gmail.com')),
             "picture": "tom_soyer.jpg",
             "pages": 191,
-            "genre": getGenresIds([1, 2, 3])
+            "genres": getGenresIds([1, 2, 3])
         },
         {
             "bookName": "Приключения Шерлока Холмса",
@@ -45,7 +45,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('konandoil@gmail.com')),
             "picture": "Adventures_of_sherlock_holmes.jpg",
             "pages": 160,
-            "genre": getGenresIds([4])
+            "genres": getGenresIds([4])
         },
         {
             "bookName": "Поллианна",
@@ -55,7 +55,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('elionorporter@gmail.com')),
             "picture": "poliana.jpg",
             "pages": 160,
-            "genre": getGenresIds([1, 2])
+            "genres": getGenresIds([1, 2])
         },
         {
             "bookName": "Остров Сокровищ",
@@ -65,7 +65,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('luisstiwenson@gmail.com')),
             "picture": "treasureIsland.jpg",
             "pages": 260,
-            "genre": getGenresIds([1, 2])
+            "genres": getGenresIds([1, 2])
         },
         {
             "bookName": "Пять недель на воздушном шаре",
@@ -75,7 +75,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('juliewern@gmail.com')),
             "picture": "Five_weeks_in_a_hot_air_balloon.jpg",
             "pages": 360,
-            "genre": getGenresIds([1, 5])
+            "genres": getGenresIds([1, 5])
         },
         {
             "bookName": "Двадцать тысяч льё под водой",
@@ -85,7 +85,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('juliewern@gmail.com')),
             "picture": "twenty_thousand_leagues_under_the_sea.jpg",
             "pages": 360,
-            "genre": getGenresIds([1, 6])
+            "genres": getGenresIds([1, 6])
         },
         {
             "bookName": "Маленький принц",
@@ -95,7 +95,7 @@ export const up = async (db, client) => {
             "authorId": new ObjectId(getAuthorId('sentexuperi@gmail.com')),
             "picture": "a_little_prince.jpg",
             "pages": 60,
-            "genre": getGenresIds([2, 7])
+            "genres": getGenresIds([2, 7])
         },
     ];
 
