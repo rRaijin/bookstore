@@ -14,7 +14,7 @@ const BookDetail = (props) => {
     if (item && item.authorId && item.authorId.userId) {
         bookAuthor = item.authorId.userId;
     }
-    console.log('item: ', item)
+    // console.log('item: ', item)
 
     return (
         <div className='book-preview-wrapper'>

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-
 import BookForm from '../components/books/BookForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
 
@@ -20,18 +17,39 @@ const HomePage = () => {
         }).then(async (response) => {
             if (response.ok === true);
             const results = await response.json();
-            console.log('Response when first load page and get books list: ', results);
+            // console.log('Response when first load page and get books list: ', results);
             updateBooks(results.items);
         })
     }, []);
 
     // handlers
     const upDataToParent = (item) => {
-        console.log('Item: ', item);
         updateBooks([...books, item]);
     }
 
-    // Сделай кнопку "Роман" - по нажатию на кнопку вывести только романы
+    // GET FILTERED BOOKS, GENRE = ROMAN
+    // const showRoman = () => {
+    //     // console.log('books: ', books);
+    //     const romans = books.filter(book => book.genres.some(bookGenre => bookGenre.title === 'Роман'));
+    //     // console.log('romans: ', romans);
+    //     updateBooks(romans);
+    // }
+
+    // ALTERNATIVE
+    // const showRoman = () => {
+    //     const results = [];
+    //     for (let index = 0; index < books.length; index++) {
+    //         const book = books[index];
+    //         for (let j = 0; j < book.genres.length; j++) {
+    //             const genre = book.genres[j];
+    //             if (genre.title === 'Роман') {
+    //                 results.push(book);
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     updateBooks(results);
+    // }
 
     return (
         <div className=''>
@@ -52,19 +70,10 @@ const HomePage = () => {
                 <h2>
                     Новинки
                 </h2>
+                {/* <button className='' onClick={showRoman}>
+                    Show romans
+                </button> */}
                 <FilteredBooksList books={books}/>
-                {/* <div className=''>
-                    {
-                        books && Array.isArray(books) &&
-                        books.map((book) => {
-                            return (
-                                <div className='text-red'>
-                                    {book.bookName}
-                                </div>
-                            )
-                        })
-                    }
-                </div> */}
 
                 <BookForm
                     upDataToParent={upDataToParent}/>
@@ -112,6 +121,7 @@ const HomePage = () => {
                 <h2>
                     Автори
                 </h2>
+                {/* Вывести список авторов, также ввиде карточек, т.е. picture, bio, firstName, lastName */}
             </div>
         </div>
     );

@@ -36,72 +36,61 @@ class BookDetail extends Component {
         }).then(async (response) => {
             if (response.ok === true);
             const results = await response.json();
-            console.log('Response when first load page and get books list: ', results);
-            this.setState({ book: results.find(book => Number(book._id) === Number(this.props.router.params.id)) });
-        })
-        
-
-
-        // const books = []
-        // const item = books.find(book => Number(book._id) === Number(this.props.router.params.id));
-        // console.log('MY BOOK: ', item);
+            console.log('Response when first load page and get books list: ', results.items);
+            this.setState({book: results.items.find(book => book._id === this.props.router.params.id)});
+        });
     }
 
     render() {
-        const { router } = this.props
         const { book } = this.state;
-        // console.log(router)
-
-        // Тут из списка полыченных книг выбрать книгу у которой id будет равен "router.params.id"
-        const books = []
-        const item = books.find(book => Number(book._id) === Number(router.params.id));
-        // const author = authors.find(author => author.id === item.author);
-        // const filteredGenres = genres.filter(g => item.genre.indexOf(g.id) !== -1);
-        // const genreTitles = getGenreTitles(item.genre);
 
         return (
             <div>
                 {
                     book && (
                     <div className="with-60p flex">
-                        <img className='w-50p' src={`/books/${item.picture}`} alt={item.bookName}/>
+                        <img className='w-50p' src={`/books/${book.picture}`} alt={book.bookName}/>
                         <div className='flex-col pl-5p'>
                             <div className='pt-4p text-orange flex'>
                                 Назва: 
                                 <div className='text-turquoise pl-2p'>
-                                    {item.bookName}
+                                    {book.bookName}
                                 </div>
                             </div>
                             <div className='brd-t-black-1px pt-4p text-orange flex'>
                                 Рік: 
                                 <div className='text-turquoise pl-2p'>
-                                    {item.year}
+                                    {book.year}
                                 </div>
                             </div>
-                            {/* <div className='brd-t-black-1px pt-4p text-orange flex'>
+                            <div className='brd-t-black-1px pt-4p text-orange flex'>
                                 Автор: 
                                 <div className='text-turquoise pl-2p'>
-                                    {author.firstName}{author.lastName}
+                                    {book.authorId.userId.firstName} {book.authorId.userId.lastName}
                                 </div>
                             </div>
                             <div className='brd-t-black-1px pt-4p text-orange flex'>
                                 Жанри: 
                                 <div className='text-turquoise pl-2p'>
-                                    {genreTitles.map((title, index) => (
-                                        <div key={index}>{title}</div>
-                                    ))}
+                                    {book.genres.map((genre, i) => {
+                                        return (
+                                            <div className=''>
+                                                {genre.title}
+                                            </div>
+                                        )
+                                    })}
                                 </div>
-                            </div> */}
+                            </div>
                             <div className='brd-t-black-1px pt-4p text-orange flex'>
                                 Сторінки: 
                                 <div className='text-turquoise pl-2p'>
-                                    {item.pages}
+                                    {book.pages}
                                 </div>
                             </div>
                             <div className='brd-t-black-1px pt-4p text-orange flex'>
                                 Опис: 
                                 <div className='text-turquoise pl-2p brd-b-black-2px'>
-                                    {item.description}
+                                    {book.description}
                                 </div>
                             </div>
                         </div>

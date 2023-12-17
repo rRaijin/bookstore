@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 const BookForm = (props) => {
-    console.log('props: ', props);
+    // console.log('props: ', props);
     const { upDataToParent } = props;
 
     const [bookName, updateBookName] = useState('');
@@ -13,7 +13,7 @@ const BookForm = (props) => {
 
     const submitForm = (event) => {
         event.preventDefault();
-        console.log('state: ', bookName, description, year);
+        // console.log('state: ', bookName, description, year);
         fetch('http://localhost:3001/api/books', {
             method: 'PUT',
             headers: {
@@ -29,7 +29,7 @@ const BookForm = (props) => {
         .then(async (response) => {
             if (response.ok === true) {
                 const results = await response.json();
-                console.log('Response when add book: ', results.item);
+                // console.log('Response when add book: ', results.item);
                 upDataToParent(results.item);
             }
         })
