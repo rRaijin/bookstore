@@ -19,6 +19,13 @@ import { withRouter } from '../hocs/withRouter';
 // TASK 1 Вывести жанры, автора  остальную информацию.
 
 class BookDetail extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            book: null
+        }
+    }
+
     componentDidMount() {
         fetch('http://localhost:3001/api/books', {
             method: 'GET',
@@ -30,7 +37,9 @@ class BookDetail extends Component {
             if (response.ok === true);
             const results = await response.json();
             console.log('Response when first load page and get books list: ', results);
+            this.setState({ book: results.find(book => Number(book._id) === Number(this.props.router.params.id)) });
         })
+        
 
 
         // const books = []
@@ -40,6 +49,7 @@ class BookDetail extends Component {
 
     render() {
         const { router } = this.props
+        const { book } = this.state;
         // console.log(router)
 
         // Тут из списка полыченных книг выбрать книгу у которой id будет равен "router.params.id"
@@ -52,7 +62,7 @@ class BookDetail extends Component {
         return (
             <div>
                 {
-                    item &&
+                    book && (
                     <div className="with-60p flex">
                         <img className='w-50p' src={`/books/${item.picture}`} alt={item.bookName}/>
                         <div className='flex-col pl-5p'>
@@ -96,7 +106,7 @@ class BookDetail extends Component {
                             </div>
                         </div>
                     </div>
-                }
+                )}
             </div> 
         )
     }
