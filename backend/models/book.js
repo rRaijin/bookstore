@@ -17,6 +17,8 @@ const bookSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Genre'
     }]
+}, {
+    timestamps: true
 });
 
 export default mongoose.model('Book', bookSchema);

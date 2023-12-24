@@ -7,6 +7,8 @@ const genreSchema = new Schema({
     description: String,
     picture: String,
     booksCnt: Number
+}, {
+    timestamps: true
 });
 
 export default mongoose.model('Genre', genreSchema);

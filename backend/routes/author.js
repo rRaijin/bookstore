@@ -9,7 +9,9 @@ const router = new express.Router();
 router.get('/', async (req, res, next) => {
     let items;
     try {
-        items = await Author.find();
+        items = await Author.find().populate({
+            path: 'userId'
+        });
     } catch (error) {
         console.log('Error: ', error);
     }

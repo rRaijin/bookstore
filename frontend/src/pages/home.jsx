@@ -21,7 +21,7 @@ const HomePage = () => {
             const results = await response.json();
             // console.log('Response when first load page and get books list: ', results);
             updateBooks(results.items);
-        })
+        });
         fetch('http://localhost:3001/api/authors', {
             method: 'GET',
             headers: {
@@ -32,9 +32,8 @@ const HomePage = () => {
             if (response.ok === true);
             const results = await response.json();
             updateAuthors(results.items);
-        })
+        });
     }, []);
-    console.log('authors:   ', authors)
     // handlers
     const upDataToParent = (item) => {
         updateBooks([...books, item]);
@@ -65,6 +64,10 @@ const HomePage = () => {
     //     updateBooks(results);
     // }
 
+    const getItemsByDate = (item) => {
+        return (new Date().getDate() - new Date(item.createdAt).getDate()) <= 3
+    }
+
     return (
         <div className=''>
             <div className=''>
@@ -87,7 +90,9 @@ const HomePage = () => {
                 {/* <button className='' onClick={showRoman}>
                     Show romans
                 </button> */}
-                <FilteredBooksList books={books}/>
+                <FilteredBooksList
+                    condition={getItemsByDate}
+                    books={books}/>
 
                 <BookForm
                     upDataToParent={upDataToParent}/>
@@ -97,6 +102,8 @@ const HomePage = () => {
                 <h2>
                     Топ
                 </h2>
+                <FilteredBooksList
+                    books={books}/>
             </div>
 
             {/* special block */}
@@ -135,8 +142,21 @@ const HomePage = () => {
                 <h2>
                     Авторы
                 </h2>
-                
                 {/* Вывести список авторов, также ввиде карточек, т.е. picture, bio, firstName, lastName */}
+                {
+                    authors.map((author, i) => {
+                        console.log('author: ', author);
+                        // console.log('time: ', new Date(author.createdAt).getTime());
+                        // console.log('day: ', new Date(author.createdAt).getDate());
+                        return (
+                            <div key={`author-${i}`}>
+                                <h2 className=''>
+                                    {author.userId.firstName}
+                                </h2>
+                            </div>
+                        )
+                    })
+                }
             </div>
         </div>
     );

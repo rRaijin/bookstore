@@ -10,7 +10,8 @@ const authorSchema = new Schema({
     picture: String,
     bio: String
 }, {
-    versionKey: false
+    versionKey: false,
+    timestamps: true
 });
 
 export default mongoose.model('Author', authorSchema);

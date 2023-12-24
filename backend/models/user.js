@@ -22,7 +22,8 @@ const userSchema = new Schema({
         minlength: 8
     }
 }, {
-    versionKey: false
+    versionKey: false,
+    timestamps: true
 });
 
 export default mongoose.model('User', userSchema);
