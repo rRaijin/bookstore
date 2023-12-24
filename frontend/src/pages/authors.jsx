@@ -3,7 +3,6 @@ import { Component } from 'react';
 import authors from '../mock/authors.json';
 import books from '../mock/books.json';
 import AuthorPreview from '../components/authors/AuthorPreview';
-import React, { useState } from 'react';
 
 
 

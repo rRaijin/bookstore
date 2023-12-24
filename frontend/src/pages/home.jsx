@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import BookForm from '../components/books/BookForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
 
+
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
+    const [authors, updateAuthors] = useState([]);
     // console.log('books: ', books);
 
     useEffect(() => {
@@ -20,12 +22,24 @@ const HomePage = () => {
             // console.log('Response when first load page and get books list: ', results);
             updateBooks(results.items);
         })
+        fetch('http://localhost:3001/api/authors', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            updateAuthors(results.items);
+        })
     }, []);
-
+    console.log('authors:   ', authors)
     // handlers
     const upDataToParent = (item) => {
         updateBooks([...books, item]);
     }
+    
 
     // GET FILTERED BOOKS, GENRE = ROMAN
     // const showRoman = () => {
@@ -119,8 +133,9 @@ const HomePage = () => {
             {/* special block */}
             <div className=''>
                 <h2>
-                    Автори
+                    Авторы
                 </h2>
+                
                 {/* Вывести список авторов, также ввиде карточек, т.е. picture, bio, firstName, lastName */}
             </div>
         </div>
