@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 
 import BookForm from '../components/books/BookForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
@@ -63,8 +64,15 @@ const HomePage = () => {
     // }
 
     const getItemsByDate = (item) => {
-        return (new Date().getDate() - new Date(item.createdAt).getDate()) <= 3
+        return moment().diff(moment(item.createdAt), 'days') <= 3;
     }
+
+    // console.log('moment now: ', moment());
+
+    // task 1 По нажатию на био автора открывается textarea поле для редактирования био, 
+    // в которое передается изначальное значение, возле поля кнопка сохранения, которая просто выведет результат
+    // ввода в консоль и вернет обратно прежний вид
+
 
     return (
         <div className=''>
@@ -141,6 +149,7 @@ const HomePage = () => {
                     Авторы
                 </h2>
                 {/* Вывести список авторов, также ввиде карточек, т.е. picture, bio, firstName, lastName */}
+                {/* // css переделать */}
                 <div className='author-flex-wrap author-card'>
                     {
                         authors.map((author, i) => {
