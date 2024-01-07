@@ -1,0 +1,37 @@
+.book-section {
+    margin-bottom: 30px;
+}
+
+.book-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.author-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.authors-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.author-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.author-bio {
+    font-size: 14px;
+    color: #555;
+}
+
+.pdl-1p {
+    padding-left: 1%;
+}

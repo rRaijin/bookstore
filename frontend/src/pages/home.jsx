@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import BookForm from '../components/books/BookForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
 
-
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
     const [authors, updateAuthors] = useState([]);
@@ -38,7 +37,6 @@ const HomePage = () => {
     const upDataToParent = (item) => {
         updateBooks([...books, item]);
     }
-    
 
     // GET FILTERED BOOKS, GENRE = ROMAN
     // const showRoman = () => {
@@ -143,20 +141,24 @@ const HomePage = () => {
                     Авторы
                 </h2>
                 {/* Вывести список авторов, также ввиде карточек, т.е. picture, bio, firstName, lastName */}
-                {
-                    authors.map((author, i) => {
-                        console.log('author: ', author);
-                        // console.log('time: ', new Date(author.createdAt).getTime());
-                        // console.log('day: ', new Date(author.createdAt).getDate());
-                        return (
-                            <div key={`author-${i}`}>
-                                <h2 className=''>
-                                    {author.userId.firstName}
-                                </h2>
-                            </div>
-                        )
-                    })
-                }
+                <div className='author-flex-wrap author-card'>
+                    {
+                        authors.map((author, i) => {
+                            return (
+                                <div key={`author-${i}`} className='w-29p pdl-1p'>
+                                    <div className='text-black author-name'>
+                                        {author.userId.firstName} {author.userId.lastName} 
+                                    </div>
+                                    <img className='authors-img' src={`/books/${author.picture}`} alt={`${author.userId.firstName} ${author.userId.lastName}`} />
+                                    <div className='text-black author-bio'>
+                                        {author.bio}
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
             </div>
         </div>
     );
