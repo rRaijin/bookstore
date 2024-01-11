@@ -7,6 +7,8 @@ import FilteredBooksList from '../components/books/FilteredBooksList';
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
     const [authors, updateAuthors] = useState([]);
+    const [editingAuthorId, setEditingAuthorId] = useState(null);
+    const [editedBio, setEditedBio] = useState('');
     // console.log('books: ', books);
 
     useEffect(() => {
@@ -39,7 +41,20 @@ const HomePage = () => {
         updateBooks([...books, item]);
     }
 
-    // GET FILTERED BOOKS, GENRE = ROMAN
+    const handleEditBioClick = (authorId, currentBio) => {
+        setEditingAuthorId(authorId);
+        setEditedBio(currentBio);
+      };
+
+      const handleSaveBioClick = () => {
+        console.log('Сохранено:', editedBio);
+        setEditingAuthorId(null);
+      };
+    
+      const handleCancelEditClick = () => {
+        setEditingAuthorId(null);
+      };
+        // GET FILTERED BOOKS, GENRE = ROMAN
     // const showRoman = () => {
     //     // console.log('books: ', books);
     //     const romans = books.filter(book => book.genres.some(bookGenre => bookGenre.title === 'Роман'));
@@ -150,22 +165,34 @@ const HomePage = () => {
                 </h2>
                 {/* Вывести список авторов, также ввиде карточек, т.е. picture, bio, firstName, lastName */}
                 {/* // css переделать */}
-                <div className='author-flex-wrap author-card'>
-                    {
-                        authors.map((author, i) => {
-                            return (
-                                <div key={`author-${i}`} className='w-29p pdl-1p'>
-                                    <div className='text-black author-name'>
-                                        {author.userId.firstName} {author.userId.lastName} 
-                                    </div>
-                                    <img className='authors-img' src={`/books/${author.picture}`} alt={`${author.userId.firstName} ${author.userId.lastName}`} />
-                                    <div className='text-black author-bio'>
-                                        {author.bio}
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
+                <div className='author-card'>
+                {
+                    authors.map((author, i) => (
+                        <div key={`author-${i}`} className=''>
+                            <div className='author-name'>
+                            {author.userId.firstName} {author.userId.lastName}
+                            </div>
+                            <img className='authors-img' src={`/books/${author.picture}`} alt={`${author.userId.firstName} ${author.userId.lastName}`} />
+
+                            {editingAuthorId === author.userId._id ? (
+                            <div>
+                                <textarea
+                                className='author-bio'
+                                value={editedBio}
+                                onChange={(e) => setEditedBio(e.target.value)}
+                                />
+                                <button onClick={handleSaveBioClick}>Сохранить</button>
+                                <button onClick={handleCancelEditClick}>Отмена</button>
+                            </div>
+                            ) : (
+                            <div>
+                                <div className='author-bio'>{author.bio}</div>
+                                <button onClick={() => handleEditBioClick(author.userId._id, author.bio)}>Редактировать</button>
+                            </div>
+                            )}
+                        </div>
+                    ))
+                }
                 </div>
 
             </div>
