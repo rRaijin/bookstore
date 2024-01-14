@@ -1,37 +1,69 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .container {
-  margin: 0 auto;
-  width: 1200px;
+    margin: 0 auto;
+    width: 1200px;
 }
 
 /* HEADER */
 .main-navigation {
-  width: 80%;
-  background-color: burlywood;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    width: 100%;
+    background-color: #dddfed;
+    margin: 0;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.main-navigation li {
-  font-size: 25px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
+.main-navigation li a {
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #8d7e0f;
+}
+
+.second-navigation {
+    width: 100%;
+    background-color: #4d5fe2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.second-navigation li {
+    background-color: #4d5fe2;
+    padding: 1px 10px;
+    border: 1px solid white;
+}
+
+.second-navigation li:hover {
+    background-color: #606bc2;
+}
+
+.second-navigation li a {
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #edebde;
+}
+
+.second-navigation li a:hover {
+    color: #e3e3a3;
 }
 
 /* FOOTER */
@@ -40,86 +72,45 @@ code {
 /***********HOT SHORT STYLES LIKE A TILEWIND**********/
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
 .flex-col {
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .flex-row {
-  flex-direction: row;
+    flex-direction: row;
 }
 
 .flex-wrap {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .text-white {
-  color: white;
+    color: white;
 }
 
 .text-blue {
-  color:#4a4fdd;
+    color:#4a4fdd;
 }
 
 .text-red {
-  color: #e60505;
+    color: #e60505;
 }
 
 .text-turquoise {
-  color: #41B3A3;
+    color: #41B3A3;
 }
 
-.text-light-pink {  
-  color: #ca889d;
+.text-light-pink {    
+    color: #ca889d;
 }
 
 .text-black {
-  color: black;
+    color: black;
 }
 
 .text-orange {
-  color: #ee6d49;
+    color: #ee6d49;
 }
-
-.with-60p {
-  width: 60%;
-}
-
-.w-80p {
-  width: 80%;
-}
-
-.w-23p {
-  width: 23%;
-}
-
-.w-50p {
-  width: 50%;
-}
-
-.w-41p {
-  width: 41%;
-}
-
-.pl-5p {
-  padding-left: 5%;
-}
-
-.brd-t-black-1px {
-  border-top: 2px solid rgb(213, 213, 213);
-}
-
-.brd-b-black-2px {
-  border-bottom: 2px solid rgb(213, 213, 213);
-}
-
-.pt-4p {
-  padding-top: 4%;
-}
-
-.pl-2p {
-  padding-left: 2%;
-}
-

@@ -1,22 +1,7 @@
 import { Component } from 'react';
 
-import { withRouter } from '../hocs/withRouter';
-// import books from '../mock/books.json';
-// import genres from '../mock/genres.json';
-// import authors from '../mock/authors.json';
+import { withRouter } from '../../hocs/withRouter';
 
-
-// function getGenreTitles(genreIds) {
-//     return genreIds.map((genreId) => {
-//         const genre = genres.find((genre) => genre.id === genreId);
-//         return genre ? genre.title : 'Unknown Genre';
-//     });
-// }
-
-
-// TASK 0 В этом компоненте на основе класса, создать стейт по умолчанию, и при получении результатов в didMount() сохранить их туда
-
-// TASK 1 Вывести жанры, автора  остальную информацию.
 
 class BookDetail extends Component {
     constructor(props) {
@@ -36,7 +21,6 @@ class BookDetail extends Component {
         }).then(async (response) => {
             if (response.ok === true);
             const results = await response.json();
-            console.log('Response when first load page and get books list: ', results.items);
             this.setState({book: results.items.find(book => book._id === this.props.router.params.id)});
         });
     }

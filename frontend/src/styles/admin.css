@@ -1,0 +1,37 @@
+.admin-books-list-wrapper {
+    width: 50%;
+}
+
+.admin-books-form-wrapper {
+    width: 50%;
+}
+
+.admin-books-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0;
+}
+
+.admin-books-list > li {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+}
+
+.admin-books-form-wrapper > form {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.admin-books-form-wrapper > form > button {
+    margin-top: 20px;
+    width: 25%;
+}
+
+/* TEMP CSS FOR FORM FIELDS */
+.text-input {
+    width: 50%;
+}

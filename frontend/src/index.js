@@ -12,6 +12,7 @@ import './index.css';
 import './styles/home.css';
 import './styles/books.css';
 import './styles/authors.css';
+import './styles/admin.css';
 // import './styles/slider.css';
 
 import App from './App';

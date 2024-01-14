@@ -1,3 +1,5 @@
+import { SERVER_URL } from './constants';
+
 export function capitalizeFirstAndLast(str) {
     if (str.length === 0) {
       return str;
@@ -31,7 +33,26 @@ export function checkNumber(param) {
 
 export const trimText = (text, maxLength) => {
     if (text.length > maxLength) {
-        return text.slice(0, maxLength) + "...";
+        return text.slice(0, maxLength) + '...';
     }
     return text;
+};
+
+export const fetchData = (url, callback) => {
+    fetch(`${SERVER_URL}/api/${url}`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(async (response) => {
+        if (response.ok === true) {
+            const results = await response.json();
+            if (callback) {
+                callback(results.items);
+            }
+        }
+    }).catch((e) => {
+        console.log('error: ', e);
+    });
 };

@@ -4,17 +4,14 @@ import { Link } from 'react-router-dom';
 const BookDetail = (props) => {
     const { showAuthorName, item } = props;
 
-    // const bookAuthor = authors.find(k => k.id === item.author);
-
     const getShortText = (text, slice) => {
         return text.length > slice ? text.substring(0, slice) + '...' : text;
     }
-    // console.log('item genres: ', item.genres);
+
     let bookAuthor;
     if (item && item.authorId && item.authorId.userId) {
         bookAuthor = item.authorId.userId;
     }
-    // console.log('item: ', item)
 
     return (
         <div className='book-preview-wrapper'>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import authors from '../mock/authors.json';
-import books from '../mock/books.json';
-import genres from '../mock/genres.json';
-import BookPreview from '../components/books/BookPreview';
-import BooksPagePreText from '../components/books/BooksPagePreText';
+import authors from '../../mock/authors.json';
+import books from '../../mock/books.json';
+import genres from '../../mock/genres.json';
+import BookPreview from '../../components/books/BookPreview';
+import BooksPagePreText from '../../components/books/BooksPagePreText';
 
 
 const BookPage = () => {

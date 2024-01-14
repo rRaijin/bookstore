@@ -45,23 +45,48 @@ const menuItems = [
     },
 ];
 
+const subMenuItems = [
+    {
+        name: 'books',
+        src: '/admin/books',
+        icon: ''
+    }
+];
+
 
 const Header = () => {
     return (
-        <div className='flex'>
-            <ul className='main-navigation'>
-                {
-                    menuItems.map((el, i) => {
-                        return (
-                            <li key={`nav-el-${i}`} className='text-blue'>
-                                <Link to={el.src}>
-                                    {el.name}
-                                </Link>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+        <div className='flex flex-col'>
+            <div className='flex'>
+                <ul className='main-navigation'>
+                    {
+                        menuItems.map((el, i) => {
+                            return (
+                                <li key={`nav-el-${i}`}>
+                                    <Link to={el.src}>
+                                        {el.name}
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+            <div className='flex'>
+                <ul className='second-navigation'>
+                    {
+                        subMenuItems.map((el, i) => {
+                            return (
+                                <li key={`sub-nav-el-${i}`}>
+                                    <Link to={el.src}>
+                                        {el.name}
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
         </div> 
     );
 };
