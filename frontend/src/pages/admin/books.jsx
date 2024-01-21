@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { fetchData } from '../../utils';
+import { fetchData, saveData } from '../../utils';
 import Input from '../../components/fields/Input';
+import FileField from '../../components/fields/FileField';
 
 
 const AdminBooks = (props) => {
@@ -34,9 +35,15 @@ const AdminBooks = (props) => {
 
     const formSubmit = () => {
         console.log('submit: ', tempData);
+        saveData(tempData);
     }
     console.log(books)
     // console.log('selectedBook: ', selectedBook);
+
+    // 1. Для поля description написать компнент для Textarea тега, он должен принимать className,
+    // initialValue, fieldName, changeBookHandler и устанавливаемое значение строк.
+    // 2. сделать форму симпатичней
+    // 3. кроме имени книги в навигации слева выводить цену и год книги.
 
     return (
         <div className='flex'>
@@ -76,13 +83,18 @@ const AdminBooks = (props) => {
                     <Input
                         className='text-input'
                         fieldName='price'
+                        inputType='number'
+                        minValue={-100}
+                        // maxValue={1000}
                         initialValue={(selectedBook && selectedBook.price) ? selectedBook.price : ''}
                         changeBookHandler={changeBookHandler}/>
                     <Input
                         className='text-input'
                         fieldName='year'
+                        maxValue={10000}
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
                         changeBookHandler={changeBookHandler}/>
+                    <FileField/>
                     <button
                         type='button'
                         className=''
@@ -94,5 +106,7 @@ const AdminBooks = (props) => {
         </div>
     )
 }
+
+
 
 export default AdminBooks;

@@ -56,3 +56,23 @@ export const fetchData = (url, callback) => {
         console.log('error: ', e);
     });
 };
+
+export const saveData = (url, data, callback) => {
+    fetch(`${SERVER_URL}/api/${url}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(async (response) => {
+        if (response.ok === true) {
+            const results = await response.json();
+            if (callback) {
+                callback(results.items);
+            }
+        }
+    }).catch((e) => {
+        console.log('error: ', e);
+    });
+};
