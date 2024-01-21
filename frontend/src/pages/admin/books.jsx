@@ -35,7 +35,7 @@ const AdminBooks = (props) => {
     const formSubmit = () => {
         console.log('submit: ', tempData);
     }
-
+    console.log(books)
     // console.log('selectedBook: ', selectedBook);
 
     return (
@@ -67,6 +67,21 @@ const AdminBooks = (props) => {
                         className='text-input'
                         fieldName='description'
                         initialValue={(selectedBook && selectedBook.description) ? selectedBook.description : ''}
+                        changeBookHandler={changeBookHandler}/>
+                    <Input
+                        className='text-input'
+                        fieldName='pages'
+                        initialValue={(selectedBook && selectedBook.pages) ? selectedBook.pages : ''}
+                        changeBookHandler={changeBookHandler}/>
+                    <Input
+                        className='text-input'
+                        fieldName='price'
+                        initialValue={(selectedBook && selectedBook.price) ? selectedBook.price : ''}
+                        changeBookHandler={changeBookHandler}/>
+                    <Input
+                        className='text-input'
+                        fieldName='year'
+                        initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
                         changeBookHandler={changeBookHandler}/>
                     <button
                         type='button'
