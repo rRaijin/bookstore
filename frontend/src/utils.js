@@ -76,3 +76,14 @@ export const saveData = (url, data, callback) => {
         console.log('error: ', e);
     });
 };
+
+// Задача функции возвращать полный путь к изображению
+// Изображение может отображаться из 2х разных мест:
+// из временного места и из конкретной папки
+export const getFilePath = (folder, fileName, isTemp = false) => {
+    let result = SERVER_URL + '/uploads/' + folder + '/' + fileName;
+    if (isTemp) {
+        result = SERVER_URL + '/uploads/' + fileName;
+    }
+    return result;
+};

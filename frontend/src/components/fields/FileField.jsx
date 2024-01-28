@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
 import FormData from 'form-data';
 
+import { getFilePath } from '../../utils';
 import { SERVER_URL } from '../../constants';
 
 
 const FileField = (props) => {
     const { initialValue, folder, fieldName, onFileChoosed, className, childClassName } = props;
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFilePath, setSelectedFilePath] = useState(null);
+
     useEffect(() => {
         if (initialValue) {
-            setSelectedFile(SERVER_URL + 'uploads/' + folder + '/' + initialValue);
+            const filePath = getFilePath(folder, initialValue);
+            setSelectedFilePath(filePath);
         }
     }, [initialValue]);
 
     const uploadFileHandler = async (event) => {
-        event.preventDefault();
         const formData = new FormData();
         formData.append('file', event.target.files[0]);
         fetch(`${SERVER_URL}/api/images/file`, {
@@ -23,7 +25,8 @@ const FileField = (props) => {
         }).then(async (response) => {
             if (response.ok === true) {
                 const results = await response.json();
-                setSelectedFile(SERVER_IMAGE_PATH + results.file);
+                const filePath = getFilePath(folder, results.file, true);
+                setSelectedFilePath(filePath);
                 onFileChoosed(fieldName, results.file);
             }
         }).catch((e) => {
@@ -31,13 +34,13 @@ const FileField = (props) => {
         });
     }
 
-    // console.log('sel: ', selectedFile);
+    // console.log('sel: ', selectedFilePath);
 
     return (
         <div className={className}>
             {
-                selectedFile &&
-                <img src={selectedFile} alt='book-image'/>
+                selectedFilePath &&
+                <img src={selectedFilePath} alt='book-image'/>
             }
             <input
                 className={childClassName}

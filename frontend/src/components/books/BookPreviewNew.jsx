@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { getFilePath } from '../../utils';
 
 
 const BookDetail = (props) => {
@@ -20,7 +21,10 @@ const BookDetail = (props) => {
                     {item.bookName && getShortText(item.bookName, 18)}
                 </div>
                 <div className="book-preview-img-wrapper">
-                    <img className='' src={`/books/${item.picture}`} alt={item.bookName}/>
+                    <img
+                        className=''
+                        src={getFilePath('books', item.picture)}
+                        alt={item.bookName}/>
                     <div className='book-preview-genres'>
                         {
                             item.genres.map((genre, index) => {
