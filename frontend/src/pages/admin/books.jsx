@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 
+
 import { fetchData, saveData } from '../../utils';
 import Input from '../../components/fields/Input';
 import FileField from '../../components/fields/FileField';
+import TextareaField from '../../components/fields/textareaField';
 
 
 const AdminBooks = (props) => {
@@ -56,7 +58,19 @@ const AdminBooks = (props) => {
                                     className=''
                                     key={`book-${i}`}
                                     onClick={() => setSelectedBook(book)}>
-                                    {book.bookName}
+
+                                    <div>
+                                        <strong>
+                                            {book.bookName}
+                                        </strong>
+                                    </div>
+                                    <div>
+                                        Price: {book.price}
+                                    </div>
+                                    <div>
+                                        Year: {book.year}
+                                    </div>
+
                                 </li>
                             )
                         })
@@ -64,17 +78,18 @@ const AdminBooks = (props) => {
                 </ul>
             </div>
             <div className='admin-books-form-wrapper'>
-                <form className='flex flex-col'>
+                <form className='admin-books-form'>
                     <Input
                         className='text-input'
                         fieldName='bookName'
                         initialValue={(selectedBook && selectedBook.bookName) ? selectedBook.bookName : ''}
                         changeBookHandler={changeBookHandler}/>
-                    <Input
+                    <TextareaField
                         className='text-input'
                         fieldName='description'
                         initialValue={(selectedBook && selectedBook.description) ? selectedBook.description : ''}
-                        changeBookHandler={changeBookHandler}/>
+                        changeBookHandler={changeBookHandler}
+                        rows={8}/>
                     <Input
                         className='text-input'
                         fieldName='pages'
