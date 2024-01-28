@@ -1,58 +1,49 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import FormData from 'form-data';
+
+import { SERVER_URL } from '../../constants';
 
 
 const FileField = (props) => {
-    const { className, childClassName, btnClassName } = props;
+    const { initialValue, folder, fieldName, onFileChoosed, className, childClassName } = props;
     const [selectedFile, setSelectedFile] = useState(null);
-
-    const fileSelectedHandler = (event) => {
-        console.log(event.target.files[0])
-        setSelectedFile(event.target.files[0]);
-    }
+    useEffect(() => {
+        if (initialValue) {
+            setSelectedFile(SERVER_URL + 'uploads/' + folder + '/' + initialValue);
+        }
+    }, [initialValue]);
 
     const uploadFileHandler = async (event) => {
-        event.preventDefault()
-
+        event.preventDefault();
         const formData = new FormData();
-        formData.append("file", selectedFile)
-        formData.append("description", 'aaa')
-        console.log('fd: ', formData);
-        // AXIOS example
-        // const result = await axios.post(
-        //     'http://localhost:3001/api/images', 
-        //     formData, 
-        //     { headers: {'Content-Type': 'multipart/form-data'} }
-        // );
-
-        fetch('http://localhost:3001/api/images', {
+        formData.append('file', event.target.files[0]);
+        fetch(`${SERVER_URL}/api/images/file`, {
             method: 'POST',
-            // headers: {
-            //     'Content-Type': 'multipart/form-data'
-            // },
             body: formData
         }).then(async (response) => {
             if (response.ok === true) {
-                
+                const results = await response.json();
+                setSelectedFile(SERVER_IMAGE_PATH + results.file);
+                onFileChoosed(fieldName, results.file);
             }
         }).catch((e) => {
             console.log('error: ', e);
         });
     }
 
+    // console.log('sel: ', selectedFile);
+
     return (
         <div className={className}>
+            {
+                selectedFile &&
+                <img src={selectedFile} alt='book-image'/>
+            }
             <input
                 className={childClassName}
                 name='file'
                 type='file'
-                onChange={fileSelectedHandler}/>
-            <button
-                className={btnClassName}
-                onClick={uploadFileHandler}>
-                Upload
-            </button>
+                onChange={uploadFileHandler}/>
         </div>
     )
 }

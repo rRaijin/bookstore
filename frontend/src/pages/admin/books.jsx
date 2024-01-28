@@ -21,24 +21,14 @@ const AdminBooks = (props) => {
     }, [selectedBook]);
 
     const changeBookHandler = (field, val) => {
-        // console.log('f: ', field, 'v: ', val);
         tempData[field] = val;
-        // fetch('http://localhost:3001/api/books', {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(tempData)
-        // });
     }
 
     const formSubmit = () => {
-        console.log('submit: ', tempData);
-        saveData(tempData);
+        tempData['imageFolder'] = 'books';
+        // console.log('submit: ', tempData);
+        saveData('books', tempData, () => alert('OK!!!'));
     }
-    console.log(books)
-    // console.log('selectedBook: ', selectedBook);
 
     // 1. Для поля description написать компнент для Textarea тега, он должен принимать className,
     // initialValue, fieldName, changeBookHandler и устанавливаемое значение строк.
@@ -94,7 +84,11 @@ const AdminBooks = (props) => {
                         maxValue={10000}
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
                         changeBookHandler={changeBookHandler}/>
-                    <FileField/>
+                    <FileField
+                        initialValue={selectedBook && selectedBook.picture}
+                        fieldName='picture'
+                        onFileChoosed={changeBookHandler}
+                        folder='books'/>
                     <button
                         type='button'
                         className=''

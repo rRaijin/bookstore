@@ -6,28 +6,19 @@ import routerAuthor from './routes/author.js';
 import routerBook from './routes/book.js';
 import routerGenre from './routes/genre.js';
 import routerUser from './routes/user.js';
-import routerImages from './routes/upload.js';
-
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import routerImages from './routes/files.js';
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(__dirname + './frontend/public'));
-// app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('uploads'));
 app.use('/api/authors', routerAuthor);
 app.use('/api/books', routerBook);
 app.use('/api/genres', routerGenre);
 app.use('/api/users', routerUser);
 app.use('/api/images', routerImages);
-// app.use('/fileupload', fileuploadRouter);
-// app.use('/uploads', express.static('uploads'));
 
 
 const CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
@@ -47,53 +38,3 @@ process.on('SIGINT', async() => {
     console.log('Application ended work.');
     process.exit();
 });
-
-// TODO REMOVE
-// app.get('/api/users', async (req, res) => {
-//     console.log('Пришел запрос от бразуера')
-//     // получаем всех пользователей
-//     const users = await User.find({});
-//     res.send(users);
-// });
-
-// app.get('/api/users/:id', async(req, res) => {
-//     const id = req.params.id;
-//     // получаем одного пользователя по id
-//     const user = await User.findById(id);
-//     if(user) res.send(user);
-//     else res.sendStatus(404);
-// });
-     
-// app.post('/api/users', jsonParser, async (req, res) => {
-//     if(!req.body) return res.sendStatus(400); 
-//     // const firstName = req.body.name;
-//     // const lastName = req.body.name;
-//     // const age = req.body.age;
-//     const firstName = 'Vasya';
-//     const lastName = 'Pupkin';
-//     const age = 20;
-//     const user = new User({firstName: firstName, lastName: lastName, age: age});
-//     // сохраняем в бд
-//     await user.save();
-//     res.send({msg: 'New user will be created!'});
-// });
-      
-// app.delete('/api/users/:id', async(req, res) => {
-//     const id = req.params.id;
-//     // удаляем по id 
-//     const user = await User.findByIdAndDelete(id);
-//     if(user) res.send(user);
-//     else res.sendStatus(404);
-// });
-     
-// app.put('/api/users', jsonParser, async (req, res) => {   
-//     if(!req.body) return res.sendStatus(400);
-//     const id = req.body.id;
-//     const userName = req.body.name;
-//     const userAge = req.body.age;
-//     const newUser = {age: userAge, name: userName};
-//      // обновляем данные пользователя по id
-//     const user = await User.findOneAndUpdate({_id: id}, newUser, {new: true}); 
-//     if(user) res.send(user);
-//     else res.sendStatus(404);
-// });
