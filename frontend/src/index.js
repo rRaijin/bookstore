@@ -14,6 +14,7 @@ import './styles/books.css';
 import './styles/authors.css';
 import './styles/admin.css';
 // import './styles/slider.css';
+import './tasks.js';
 
 import App from './App';
 
