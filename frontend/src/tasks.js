@@ -210,3 +210,65 @@ var myModule = function() {
 
 // console.log(myModule().getMemes()); // массив мемов
 // console.log(myModule().memes); // undefined
+
+class Car {
+    constructor(name, year, type, color = "черный") {
+        this.name = name;
+        this.color = color;
+        this.year = year;
+        this.type = type;
+        this.carryingCapacityValue = null; 
+    }
+
+    description() {
+        return `Автомобиль ${this.name}, цвет: ${this.color}, год выпуска: ${this.year}, тип: ${this.type}`;
+    }
+
+    setCarryingCapacity(carryingCapacity) {
+        if (this.type === "грузовая") {
+            this.carryingCapacityValue = carryingCapacity;
+        } else {
+            console.log("Грузовая машина не имеет грузоподъемности");
+        }
+    }
+
+    carryingCapacity() {
+        if (this.type === "грузовая") {
+            return this.carryingCapacityValue ? this.carryingCapacityValue : "Грузоподъемность не установлена";
+        } else {
+            return "Грузовая машина не имеет грузоподъемности";
+        }
+    }
+
+    speed() {
+        return 180; 
+    }
+
+    passengerCapacity() {
+        if (this.type === "пассажирское") {
+            return 5; 
+        } else {
+            return "Пассажирское авто не имеет пассажирских мест";
+        }
+    }
+}
+
+let car1 = new Car("Toyota Camry", 2020, "легковая", "серебристый");
+console.log(car1.description());
+console.log("Скорость:", car1.speed());
+car1.setCarryingCapacity(1000);
+console.log("Грузоподъемность:", car1.carryingCapacity());
+
+let car2 = new Car("Газель", 2015, "грузовая", "белый");
+console.log(car2.description());
+console.log("Скорость:", car2.speed());
+car2.setCarryingCapacity(2000); 
+console.log("Грузоподъемность:", car2.carryingCapacity());
+
+let car3 = new Car("Ford Transit", 2018, "пассажирское", "синий");
+console.log(car3.description());
+console.log("Количество пассажирских мест:", car3.passengerCapacity());
+console.log("Скорость:", car3.speed());
+car3.setCarryingCapacity(1500); 
+console.log("Грузоподъемность:", car3.carryingCapacity());
+
