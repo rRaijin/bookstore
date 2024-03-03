@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 
 import { fetchData } from '../utils';
+import { MyContext } from '../MyContext';
 import BookForm from '../components/books/BookForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
 
@@ -10,6 +11,9 @@ const HomePage = () => {
     const [authors, updateAuthors] = useState([]);
     const [editingAuthorId, setEditingAuthorId] = useState(null);
     const [editedBio, setEditedBio] = useState('');
+
+    // Используем контекст
+    const { text, setText } = useContext(MyContext);
 
     useEffect(() => {
         fetchData('books', updateBooks);
@@ -78,6 +82,10 @@ const HomePage = () => {
                 Первым слайдом необходимо пользователя завлечь - предложить купон(как его получить), какая-нибудь программа лояльности, баллы иди др.
                 В слайд ставим по одной книги из каждого раздела ниже + информацию про книжный клуб + 1 анонс мероприятия
             </div>
+
+            <button onClick={() => setText('Hello, world!')}>
+                Click me
+            </button>
 
             <div className=''>
                 <h2>
