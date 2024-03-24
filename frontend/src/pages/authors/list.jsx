@@ -15,6 +15,7 @@ class AuthorsPage extends Component {
         return (
             <div>
                 <h1>Список авторов</h1>
+                <h2>{this.context.text}</h2>
                 <ul className='author-flex-wrap'>
                     {authors.map((author, i) =>
                         <AuthorPreview

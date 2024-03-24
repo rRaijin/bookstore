@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
+import { MyAnotherContext } from '../../MyContext';
 import authors from '../../mock/authors.json';
 import books from '../../mock/books.json';
 import genres from '../../mock/genres.json';
@@ -9,6 +10,8 @@ import BooksPagePreText from '../../components/books/BooksPagePreText';
 
 const BookPage = () => {
     const [myInputName, setMyInputName] = useState('');
+    const localContext = useContext(MyAnotherContext);
+    const [localCtxCount, changeLocalCtxCount] = useState(localContext);
     const myChangeHandlerName = (e) => setMyInputName(e.target.value);
 
     // В квадратных скобках указывается 2 элемента -> 1й - это единица состояния, а 2я - установщик(изменяет)
@@ -35,6 +38,8 @@ const BookPage = () => {
             (Number(selectedGenre) === 0 || x.genre.indexOf(Number(selectedGenre)) !== -1)
         )
     });
+
+    console.log('localContext: ', localCtxCount)
 
     return (
         <div className='books-page-main'>
@@ -76,13 +81,15 @@ const BookPage = () => {
                 {
                     filteredBooks.map((book, index) => { 
                         return (
-                            <BookPreview
-                                item={book}
-                                showAuthorName={true}
-                                stars={[1, 2, 3, 4, 5]}
-                                key={`book_${index}`}
-                                genres={genres}
-                                authors={authors}/>
+                            <MyAnotherContext.Provider value={{localCtxCount, changeLocalCtxCount}}>
+                                <BookPreview
+                                    item={book}
+                                    showAuthorName={true}
+                                    stars={[1, 2, 3, 4, 5]}
+                                    key={`book_${index}`}
+                                    genres={genres}
+                                    authors={authors}/>
+                            </MyAnotherContext.Provider>
                         )
                     })
                 }

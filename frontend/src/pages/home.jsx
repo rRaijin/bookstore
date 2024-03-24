@@ -13,7 +13,7 @@ const HomePage = () => {
     const [editedBio, setEditedBio] = useState('');
 
     // Используем контекст
-    const { text, setText } = useContext(MyContext);
+    const { setText } = useContext(MyContext);
 
     useEffect(() => {
         fetchData('books', updateBooks);

@@ -16,6 +16,15 @@ code {
     width: 1200px;
 }
 
+/* global skins */
+.skin-black {
+    background-color: #3b2f2f;
+}
+
+.skin-default {
+    background-color: #fff;
+}
+
 /* HEADER */
 .main-navigation {
     width: 100%;
@@ -35,14 +44,21 @@ code {
     color: #8d7e0f;
 }
 
-.second-navigation {
-    width: 100%;
+.second-navigation, .context-controls {
     background-color: #4d5fe2;
     margin: 0;
     padding: 0;
     display: flex;
     /* justify-content: space-around; */
     align-items: center;
+}
+
+.second-navigation {
+    width: 80%;
+}
+
+.context-controls {
+    width: 20%;
 }
 
 .second-navigation li {

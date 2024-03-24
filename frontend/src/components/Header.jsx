@@ -1,5 +1,7 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import { MyContext } from '../MyContext';
 
 
 const menuItems = [
@@ -55,6 +57,9 @@ const subMenuItems = [
 
 
 const Header = () => {
+    // Используем контекст
+    const { setSkin } = useContext(MyContext);
+
     return (
         <div className='flex flex-col'>
             <div className='flex'>
@@ -85,6 +90,14 @@ const Header = () => {
                             )
                         })
                     }
+                </ul>
+                <ul className='context-controls'>
+                    <li className='' onClick={() => setSkin('default')}>
+                        default
+                    </li>
+                    <li className='' onClick={() => setSkin('black')}>
+                        black
+                    </li>
                 </ul>
             </div>
         </div> 

@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { MyContext } from './MyContext';
 import AdminBooks from './pages/admin/books';
@@ -14,10 +14,20 @@ import Layout from './components/Layout';
 
 
 const App = () => {
-    const [text, setText] = useState('');
+    const defaultContextValues = useContext(MyContext);
+    const [text, setText] = useState(defaultContextValues.text);
+    const [skin, setSkin] = useState(defaultContextValues.skin);
+
+    const saveSkin = (value) => {
+        setSkin(value);
+        localStorage.setItem('skin', value);
+    };
+
+    const x = 42;
+
     return (
-        <div className='container'>
-            <MyContext.Provider value={{text, setText}}>
+        <div className={`container skin-${skin}`}>
+            <MyContext.Provider value={{text, setText, skin, setSkin: saveSkin, x}}>
                 <Header/>
                 <Routes>
                     <Route path='/' element={<Layout/>}>

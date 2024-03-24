@@ -543,3 +543,27 @@ class Extender {
 };
 Extender.addXValue(car);
 // console.log('car with x: ', car.x);
+
+
+/*****************************************************
+************************DECORATOR*********************
+*****************************************************/
+// function decorator (value, context) {
+//     console.log("decorated value is:", value);
+//     console.log("context is: ", context);
+// }
+  
+// @decorator
+// class C {
+//     @decorator // decorates a class field
+//     p = 5;
+
+//     @decorator // decorates a method
+//     m() {}
+
+//     @decorator // decorates a getter
+//     get x() {}
+
+//     @decorator // decorates a setter
+//     set x(v) {}
+// }
