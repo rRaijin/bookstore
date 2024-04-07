@@ -21,6 +21,7 @@ class BookDetail extends Component {
         }).then(async (response) => {
             if (response.ok === true);
             const results = await response.json();
+            console.log('res; ', results)
             this.setState({book: results.items.find(book => book._id === this.props.router.params.id)});
         });
     }
