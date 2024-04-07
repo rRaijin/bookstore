@@ -15,9 +15,24 @@ const HomePage = () => {
     // Используем контекст
     const { setText } = useContext(MyContext);
 
+    // 1. по запросу вернуть с сервера массив чисел [1, 2, 3, 4, 5] из роута books
+    // 2. написать по одному аналогичному запросу в каждом роуте, вернуть данные по желанию
+
     useEffect(() => {
         fetchData('books', updateBooks);
         fetchData('authors', updateAuthors);
+        
+        fetch('http://localhost:3001/api/books/test', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            console.log('res; ', results)
+        });
     }, []);
 
     // handlers

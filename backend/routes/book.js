@@ -5,8 +5,28 @@ import Book from '../models/book.js';
 import Author from '../models/author.js';
 
 
+// function express1() {
+//     function json() {
+//         return ''
+//     }
+
+//     class Router {
+
+//     }
+
+//     return 42;
+// }
+
 const jsonParser = express.json();
 const router = new express.Router();
+
+router.get('/test', (req, res) => {
+    console.log('SERVER FETCH!!!!');
+    return res.status(200).json({
+        x: 34,
+        y: 21
+    });
+});
 
 router.get('/', async (req, res, next) => {
     let items;
@@ -22,6 +42,7 @@ router.get('/', async (req, res, next) => {
 
     } catch (error) {
         console.log('Error: ', error);
+        return res.status(404).json({message: 'ERROR'});
     }
     if (!items) {
         return res.status(404).json({message: 'No items'});
