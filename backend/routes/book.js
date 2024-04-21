@@ -17,6 +17,44 @@ import Author from '../models/author.js';
 //     return 42;
 // }
 
+function y() {
+    const a = 1;
+    const b = 54;
+
+    function g() {
+        const jj = 54;
+        // *****
+        return {
+            pp: jj,
+            fgh: () => {
+                
+            }
+        };
+    }
+    return {
+        x: a * 2,
+        myMethod: g
+    }
+}
+
+const y2 = {
+    a: 1,
+    json: function () {
+        return '43';
+    },
+    Router: class asd {
+        static gg = 43;
+        get() {
+            return gg + 67
+        }
+    }
+}
+
+console.log('y: ', y().myMethod());
+
+const x = express();
+console.log('x: ', y2.json(), new y2.Router());
+
 const jsonParser = express.json();
 const router = new express.Router();
 
