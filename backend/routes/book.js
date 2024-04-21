@@ -28,6 +28,22 @@ router.get('/test', (req, res) => {
     });
 });
 
+router.get('/books', (req, res) => {
+    const numbers = [1, 2, 3, 4, 5];
+    res.status(200).json({ numbers });
+});
+
+router.get('/authors', async (req, res) => {
+    let authors;
+    try {
+        authors = await Author.find();
+    } catch (error) {
+        console.log('Error: ', error);
+        return res.status(500).json({ message: 'Error fetching authors' });
+    }
+    res.status(200).json({ authors });
+});
+
 router.get('/', async (req, res, next) => {
     let items;
     try {
