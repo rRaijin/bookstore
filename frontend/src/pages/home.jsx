@@ -35,6 +35,81 @@ const HomePage = () => {
         });
     }, []);
 
+    useEffect(() => {
+        /*
+            1. http://localhost:3001 - это адрес сервера
+            2. /api/books - это условный хаб, содержащий в себе набор обрабатываемых урл-запросов,
+            подключается в главном серверном файле
+            3.1. /books - это имя роутера внутри хаба
+            *** на каждое имя может быть по одному(!не больше, иначе
+            второй будет проигнорирован) роутеру для GET, POST, PUT, DELETE, PATCH etc
+            3.2 ?id=1&x=1&y=2 - параметры запроса, разделяются символом "&", начинаются с символа "?",
+            система после знака вопроса начинает читать строку до первого попавшегося символа "=", эта
+            строка будет считаться ключом, после этого читает все, что идет после символа "=" до символа
+            "&"
+        */
+        const fetchUrl = 'http://localhost:3001/api/books/books?id=1&x=1&y=2&special=true';
+        // const fetchUrl = 'http://localhost:3001/api/books/books?d=1&(x=1&y$=2%%%&H';
+            
+
+        fetch(fetchUrl, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            console.log('res; ', results);
+        });
+
+        fetch(fetchUrl, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id:12,
+                x: '1',
+                y:2,
+                special: true
+            })
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            console.log('res; ', results);
+        });
+
+        fetch('http://localhost:3001/api/books/testSend', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then(async (response) => {
+            console.log('res; ', response);
+        });
+    }, []);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/api/books/books2', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                x: 1, y:56
+            })
+        }).then(async (response) => {
+            if (response.ok === true);
+            const results = await response.json();
+            console.log('res; ', results);
+        });
+    }, []);
+
     // handlers
     const upDataToParent = (item) => {
         updateBooks([...books, item]);

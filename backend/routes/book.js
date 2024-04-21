@@ -67,8 +67,25 @@ router.get('/test', (req, res) => {
 });
 
 router.get('/books', (req, res) => {
+    console.log('req query fro GET 11: ', req.query);
     const numbers = [1, 2, 3, 4, 5];
-    res.status(200).json({ numbers });
+    return res.status(200).json({ numbers });
+});
+
+router.post('/books2', (req, res) => {
+    console.log('req body for POST/PUT/PATCH/DELETE: ', req.body);
+    const numbers = [1, 2, 3, 4, 5];
+    return res.status(200).json({ numbers });
+});
+
+router.delete('/books', (req, res) => {
+    console.log('DELETE: ', req.query, 'BOIDY: ', req.body);
+    const numbers = [1, 2, 3, 4, 5];
+    return res.status(200).json({ numbers });
+});
+
+router.get('/testSend', (req, res) => {
+    return res.send('<p>some html</p>')
 });
 
 router.get('/authors', async (req, res) => {
@@ -79,7 +96,7 @@ router.get('/authors', async (req, res) => {
         console.log('Error: ', error);
         return res.status(500).json({ message: 'Error fetching authors' });
     }
-    res.status(200).json({ authors });
+    return res.status(200).json({ authors });
 });
 
 router.get('/', async (req, res, next) => {
@@ -137,7 +154,7 @@ router.put('/', jsonParser, async (req, res) => {
     }
     saveFile(picture, imageFolder);
     await book.save();
-    res.status(200).json({message: 'OK', item: book});
+    return res.status(200).json({message: 'OK', item: book});
 });
 
 export default router;
