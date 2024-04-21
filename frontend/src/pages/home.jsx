@@ -81,16 +81,6 @@ const HomePage = () => {
             const results = await response.json();
             console.log('res; ', results);
         });
-
-        fetch('http://localhost:3001/api/books/testSend', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        }).then(async (response) => {
-            console.log('res; ', response);
-        });
     }, []);
 
     useEffect(() => {
@@ -131,6 +121,21 @@ const HomePage = () => {
 
 
 
+    // my home test 1
+    const testHandler = (value) => {
+        fetch(`http://localhost:3001/api/books/testSend?x=${value}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(async (response) => {
+            const results = await response.json();
+            console.log('res; ', results);
+        });
+    }
+
+
     // GET FILTERED BOOKS, GENRE = ROMAN
     // const showRoman = () => {
     //     // console.log('books: ', books);
@@ -165,6 +170,14 @@ const HomePage = () => {
                 <h1 className=''></h1>
                 Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
                 Минимум информации в блоке
+            </div>
+
+            <div>
+                <div onClick={() => testHandler(1)}>1</div>
+                <div onClick={() => testHandler(2)}>2</div>
+                <div onClick={() => testHandler(3)}>3</div>
+                <div onClick={() => testHandler(4)}>4</div>
+                <div onClick={() => testHandler(5)}>5</div>
             </div>
 
             <div className=''>

@@ -85,7 +85,10 @@ router.delete('/books', (req, res) => {
 });
 
 router.get('/testSend', (req, res) => {
-    return res.send('<p>some html</p>')
+    console.log('X: ', req.query.x);
+    const { x } = req.query;
+    const y = x ? Number(x) * 4 : 42;
+    return res.json({msg: `Значение получено, обработано и результат равен: ${y}`})
 });
 
 router.get('/authors', async (req, res) => {
