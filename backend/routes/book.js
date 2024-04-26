@@ -52,6 +52,30 @@ const y2 = {
 
 console.log('y: ', y().myMethod());
 
+app.get('/api/animalSound', (req, res) => {
+    const { type } = req.query;
+
+    let sound;
+    switch (type) {
+        case 'кот':
+            sound = 'мяу';
+            break;
+        case 'собака':
+            sound = 'гав';
+            break;
+        case 'корова':
+            sound = 'муу';
+            break;
+        case 'коза':
+            sound = 'мее';
+            break;
+        default:
+            sound = 'Неизвестное животное';
+    }
+
+    res.json({ sound });
+});
+
 const x = express();
 console.log('x: ', y2.json(), new y2.Router());
 

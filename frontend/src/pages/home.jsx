@@ -11,12 +11,24 @@ const HomePage = () => {
     const [authors, updateAuthors] = useState([]);
     const [editingAuthorId, setEditingAuthorId] = useState(null);
     const [editedBio, setEditedBio] = useState('');
+    const [animalSound, setAnimalSound] = useState('');
 
     // Используем контекст
     const { setText } = useContext(MyContext);
 
     // 1. по запросу вернуть с сервера массив чисел [1, 2, 3, 4, 5] из роута books
     // 2. написать по одному аналогичному запросу в каждом роуте, вернуть данные по желанию
+
+    const getAnimalSound = (animalType) => {
+        fetch(`http://localhost:3001/api/animalSound?type=${animalType}`)
+            .then(response => response.json())
+            .then(data => {
+                setAnimalSound(data.sound);
+            })
+            .catch(error => {
+                console.error('Ошибка при получении звука животного:', error);
+            });
+    };
 
     useEffect(() => {
         fetchData('books', updateBooks);
@@ -30,8 +42,8 @@ const HomePage = () => {
             }
         }).then(async (response) => {
             if (response.ok === true);
-            const results = await response.json();
-            console.log('res; ', results)
+            // const results = await response.json();
+            // console.log('res; ', results)
         });
     }, []);
 
@@ -170,6 +182,14 @@ const HomePage = () => {
                 <h1 className=''></h1>
                 Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
                 Минимум информации в блоке
+            </div>
+            <div>
+                <button onClick={() => getAnimalSound('кот')}>Получить звук кота</button>
+                <button onClick={() => getAnimalSound('собака')}>Получить звук собаки</button>
+                <button onClick={() => getAnimalSound('корова')}>Получить звук коровы</button>
+                <button onClick={() => getAnimalSound('коза')}>Получить звук козы</button>
+
+                {animalSound && <p>Звук: {animalSound}</p>}
             </div>
 
             <div>
