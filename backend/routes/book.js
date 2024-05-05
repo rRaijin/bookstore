@@ -163,7 +163,7 @@ router.put('/', jsonParser, async (req, res) => {
     return res.status(200).json({message: 'OK', item: book});
 });
 
-router.get('/api/animalSound', (req, res) => {
+router.get('/animalSound', (req, res) => {
     const { type } = req.query;
 
     let sound;
@@ -185,6 +185,20 @@ router.get('/api/animalSound', (req, res) => {
     }
 
     res.json({ sound });
+});
+
+router.put('/calculate', async (req, res) => {
+    
+    const { numbers } = req.body;
+    
+    if (!numbers || !Array.isArray(numbers) || numbers.length !== 4) {
+        return res.status(400).json({ error: 'Неверные входные данные' });
+    }
+
+    const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+    const product = numbers.reduce((acc, curr) => acc * curr, 1);
+
+    res.json({ sum, product });
 });
 
 export default router;

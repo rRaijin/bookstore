@@ -12,6 +12,13 @@ const HomePage = () => {
     const [editingAuthorId, setEditingAuthorId] = useState(null);
     const [editedBio, setEditedBio] = useState('');
     const [animalSound, setAnimalSound] = useState('');
+    const [number1, setNumber1] = useState('');
+    const [number2, setNumber2] = useState('');
+    const [number3, setNumber3] = useState('');
+    const [number4, setNumber4] = useState('');
+    const [sum, setSum] = useState(null);
+    const [product, setProduct] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Используем контекст
     const { setText } = useContext(MyContext);
@@ -20,7 +27,7 @@ const HomePage = () => {
     // 2. написать по одному аналогичному запросу в каждом роуте, вернуть данные по желанию
 
     const getAnimalSound = (animalType) => {
-        fetch(`http://localhost:3001/api/animalSound?type=${animalType}`)
+        fetch(`http://localhost:3001/api/books/animalSound?type=${animalType}`)
             .then(response => response.json())
             .then(data => {
                 setAnimalSound(data.sound);
@@ -29,6 +36,37 @@ const HomePage = () => {
                 console.error('Ошибка при получении звука животного:', error);
             });
     };
+
+    const handleCalculate = () => {
+        if (number1 && number2 && number3 && number4) {
+            const numbers = [parseInt(number1), parseInt(number2), parseInt(number3), parseInt(number4)];
+            fetch('http://localhost:3001/api/books/calculate', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ numbers })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setSum(data.sum);
+                setProduct(data.product);
+                setErrorMessage('');
+            })
+            .catch(error => {
+                console.error('Возникла проблема с запросом PUT:', error);
+                setErrorMessage('Возникла проблема с запросом');
+            });
+        } else {
+            setErrorMessage('Пожалуйста, введите все четыре цифры');
+        }
+    };
+
 
     useEffect(() => {
         fetchData('books', updateBooks);
@@ -190,6 +228,22 @@ const HomePage = () => {
                 <button onClick={() => getAnimalSound('коза')}>Получить звук козы</button>
 
                 {animalSound && <p>Звук: {animalSound}</p>}
+            </div>
+            <div>
+                <div>
+                    <input type="number" value={number1} onChange={e => setNumber1(e.target.value)} />
+                    <input type="number" value={number2} onChange={e => setNumber2(e.target.value)} />
+                    <input type="number" value={number3} onChange={e => setNumber3(e.target.value)} />
+                    <input type="number" value={number4} onChange={e => setNumber4(e.target.value)} />
+                    <button onClick={handleCalculate}>Калькуляция</button>
+                </div>
+                    {errorMessage && <div>{errorMessage}</div>}
+                    {sum !== null && product !== null && (
+                        <div>
+                            <p>Сума: {sum}</p>
+                            <p>Сума умножения: {product}</p>
+                        </div>
+                    )}
             </div>
 
             <div>
