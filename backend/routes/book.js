@@ -188,17 +188,24 @@ router.get('/animalSound', (req, res) => {
 });
 
 router.put('/calculate', async (req, res) => {
-    
-    const { numbers } = req.body;
+    const { numbers, x } = req.body;
+
+    console.log('body: ', numbers, x);
     
     if (!numbers || !Array.isArray(numbers) || numbers.length !== 4) {
         return res.status(400).json({ error: 'Неверные входные данные' });
     }
 
-    const sum = numbers.reduce((acc, curr) => acc + curr, 0);
-    const product = numbers.reduce((acc, curr) => acc * curr, 1);
+    const sum = numbers.reduce((acc, curr) => {
+        if (typeof curr === 'number') {
+            return acc + curr;
+        } else {
+            return acc;
+        }
+    }, 0);
+    const product = numbers.reduce((acc, curr) => typeof curr === 'number' ? acc * curr : acc, 1);
 
-    res.json({ sum, product });
+    res.status(200).json({ sum, product });
 });
 
 export default router;

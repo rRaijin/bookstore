@@ -39,21 +39,27 @@ const HomePage = () => {
 
     const handleCalculate = () => {
         if (number1 && number2 && number3 && number4) {
+            // const x = 'a'
+            // const numbers = [parseInt(number1), parseInt(number2), parseInt(number3), parseInt(x)];
             const numbers = [parseInt(number1), parseInt(number2), parseInt(number3), parseInt(number4)];
-            fetch('http://localhost:3001/api/books/calculate', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ numbers })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('');
+
+            fetch(
+                'http://localhost:3001/api/books/calculate', 
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ numbers })
                 }
-                return response.json();
-            })
-            .then(data => {
+            ).then(
+                (response) => {
+                    if (!response.ok) {
+                        throw new Error('My AERROR 1');
+                    }
+                    return response.json();
+                }
+            ).then(data => {
                 setSum(data.sum);
                 setProduct(data.product);
                 setErrorMessage('');
