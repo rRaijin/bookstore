@@ -130,3 +130,36 @@ code {
 .text-orange {
     color: #ee6d49;
 }
+
+
+/* BUTTONS */
+.btn {
+    padding: 5px 10px;
+    border-width: 2px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.btn-blue {
+    background-color: #4d5fe2;
+    border-color: #4d5fe2;
+    color: white;
+}
+
+.btn-green {
+    background-color: #065f35;
+    border-color: #065f35;
+    color: white;
+}
+
+.btn-steel {
+    background-color: #353641;
+    border-color: #353641;
+    color: white;
+}
+
+.btn-red {
+    background-color: #951b1b;
+    border-color: #951b1b;
+    color: white;
+}

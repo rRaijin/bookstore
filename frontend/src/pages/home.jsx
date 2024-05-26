@@ -6,6 +6,9 @@ import { MyContext } from '../MyContext';
 import BookForm from '../components/books/BookForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
 
+
+import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
+
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
     const [authors, updateAuthors] = useState([]);
@@ -228,10 +231,22 @@ const HomePage = () => {
                 Минимум информации в блоке
             </div>
             <div>
-                <button onClick={() => getAnimalSound('кот')}>Получить звук кота</button>
-                <button onClick={() => getAnimalSound('собака')}>Получить звук собаки</button>
-                <button onClick={() => getAnimalSound('корова')}>Получить звук коровы</button>
-                <button onClick={() => getAnimalSound('коза')}>Получить звук козы</button>
+                <ButtonGeneral
+                    btnText={'Получить звук кота'}
+                    className={'btn-blue'}
+                    onClickHandle={() => getAnimalSound('кот')}/>
+                <ButtonGeneral
+                    btnText={'Получить звук собаки'}
+                    onClickHandle={() => getAnimalSound('собака')}
+                    className={'btn-green'}/>
+                <ButtonGeneral
+                    btnText={'Получить звук коровы'}
+                    onClickHandle={() => getAnimalSound('корова')}
+                    className={'btn-steel'}/>
+                <ButtonGeneral
+                    btnText={'Получить звук козы'}
+                    onClickHandle={() => getAnimalSound('коза')}
+                    className={'btn-red'}/>
 
                 {animalSound && <p>Звук: {animalSound}</p>}
             </div>
