@@ -163,3 +163,12 @@ code {
     border-color: #951b1b;
     color: white;
 }
+
+.input1 {
+    border-bottom: 2px;
+    border-top: none;
+    border-right: 0px;
+    border-left: 1px;
+    border-bottom: 2px;
+    border-color: #41B3A3;
+}

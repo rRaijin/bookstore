@@ -9,6 +9,7 @@ import FilteredBooksList from '../components/books/FilteredBooksList';
 
 import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
 import InputGeneral from '../components/fields/InputGeneral';
+import TextareaField from '../components/fields/TextareaField';
 
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
@@ -20,6 +21,7 @@ const HomePage = () => {
     const [number2, setNumber2] = useState('');
     const [number3, setNumber3] = useState('');
     const [number4, setNumber4] = useState('');
+    const [number5, setNumber5] = useState('');
     const [sum, setSum] = useState(null);
     const [product, setProduct] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
@@ -224,6 +226,54 @@ const HomePage = () => {
         return moment().diff(moment(item.createdAt), 'days') <= 3;
     }
 
+    // пример передачи метода
+    const x = {
+        y: 1,
+        a: () => 25
+    }
+
+
+
+
+
+
+    const g = function (q, t) {
+        let r = 0;
+        if (typeof t === 'number') {
+            r = t;
+        } else if (typeof t === 'function') {
+            r = t();
+        } else if ((typeof t === 'string') && !isNaN(Number(t))) {
+            r = Number(t);
+        }
+
+
+        const results = q + r;
+        console.log('results: ', results);
+        return results;
+    }; // объявление функции
+    console.log('h: ', typeof x.a === 'function')
+    // g(5, x.a); // вызов функции
+    g(5, 'fg')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        console.log('submit!!!!', e)
+    }
+
     return (
         <div className=''>
             <div className=''>
@@ -252,7 +302,7 @@ const HomePage = () => {
                 {animalSound && <p>Звук: {animalSound}</p>}
             </div>
             <div>
-                <div>
+                <form onSubmit={submitForm}>
                     <InputGeneral
                         value={number1}
                         onChangeHandle={e => setNumber1(e.target.value)}
@@ -273,8 +323,15 @@ const HomePage = () => {
                         onChangeHandle={e => setNumber4(e.target.value)}
                         className={''}
                     />
-                    <button onClick={handleCalculate}>Калькуляция</button>
-                </div>
+                    <TextareaField
+                        className=''
+                        initialValue=''
+                        fieldName=''
+                        changeBookHandler={() => console.log('OK')}
+                        rows={5}/>
+                    <button type='submit'>Калькуляция</button>
+                </form>
+                    {/* <button onClick={handleCalculate}>Калькуляция</button> */}
                     {errorMessage && <div>{errorMessage}</div>}
                     {sum !== null && product !== null && (
                         <div>
