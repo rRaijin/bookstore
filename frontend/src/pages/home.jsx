@@ -8,6 +8,7 @@ import FilteredBooksList from '../components/books/FilteredBooksList';
 
 
 import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
+import InputGeneral from '../components/fields/InputGeneral';
 
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
@@ -252,10 +253,26 @@ const HomePage = () => {
             </div>
             <div>
                 <div>
-                    <input type="number" value={number1} onChange={e => setNumber1(e.target.value)} />
-                    <input type="number" value={number2} onChange={e => setNumber2(e.target.value)} />
-                    <input type="number" value={number3} onChange={e => setNumber3(e.target.value)} />
-                    <input type="number" value={number4} onChange={e => setNumber4(e.target.value)} />
+                    <InputGeneral
+                        value={number1}
+                        onChangeHandle={e => setNumber1(e.target.value)}
+                        className={''}
+                    />
+                    <InputGeneral
+                        value={number2}
+                        onChangeHandle={e => setNumber2(e.target.value)}
+                        className={''}
+                    />
+                    <InputGeneral
+                        value={number3}
+                        onChangeHandle={e => setNumber3(e.target.value)}
+                        className={''}
+                    />
+                    <InputGeneral
+                        value={number4}
+                        onChangeHandle={e => setNumber4(e.target.value)}
+                        className={''}
+                    />
                     <button onClick={handleCalculate}>Калькуляция</button>
                 </div>
                     {errorMessage && <div>{errorMessage}</div>}
