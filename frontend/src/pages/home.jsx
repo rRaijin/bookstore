@@ -223,6 +223,60 @@ const HomePage = () => {
     const getItemsByDate = (item) => {
         return moment().diff(moment(item.createdAt), 'days') <= 3;
     }
+// первое задание: 1 пример 
+    let a = 5;
+    let b = 10;
+    let result = (a > 3) && (b < 20);
+    console.log( '1 пример  :',result);
+// первое задание: 2 пример 
+    let x = 7;
+    let y = 14;
+    let z = 21;
+    let result2 = (x > 10) || (y > 14) && (z !== 21);
+    console.log('2 пример   :',result2); 
+
+// первое задание: 3 пример 
+    let p = 8;
+    let q = 15;
+    let r = 22;
+    let s = 30;
+    let result3 = !(p > 10) && (q <= 20) || (r != 22) && (s === 30);
+    console.log( '3 пример  :',result3);
+
+// второе задание 
+const myObjectWithMethod = {
+    method1: function() {
+      console.log("Метод 1");
+    },
+    method2: function() {
+      console.log("Метод 2");
+    }
+  };
+  
+  function executeMethods(methodA, methodB) {
+    methodA();
+    methodB();
+  }
+  
+  executeMethods(myObjectWithMethod.method1, myObjectWithMethod.method2);
+// задание со звездочками
+ function createObjectWithFunction(arg) {
+    function innerFunction() {
+      console.log("Внутренняя функция выполнена");
+    }
+  
+    return {
+      firstKey: arg,
+      secondKey: innerFunction
+    };
+  }
+  
+  const resultObj = createObjectWithFunction("пример");
+  
+  console.log(resultObj.firstKey); 
+  
+  resultObj.secondKey();  
+  
 
     return (
         <div className=''>

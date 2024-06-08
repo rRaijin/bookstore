@@ -163,3 +163,41 @@ code {
     border-color: #951b1b;
     color: white;
 }
+
+.inpt {
+    padding: 8px;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+.inpt-font-arial {
+    font-family: Arial, sans-serif;
+}
+
+.inpt-font-times {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.inpt-font-weight-normal {
+    font-weight: normal;
+}
+
+.inpt-font-weight-bold {
+    font-weight: bold;
+}
+
+.inpt-border-solid {
+    border-style: solid;
+}
+
+.inpt-border-dashed {
+    border-style: dashed;
+}
+
+.inpt-border-width-1 {
+    border-width: 1px;
+}
+
+.inpt-border-width-2 {
+    border-width: 2px;
+}

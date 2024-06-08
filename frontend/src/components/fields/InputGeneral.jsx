@@ -5,7 +5,7 @@ const InputGeneral = (props) => {
     return (
         <input
             type="number"
-            className={`input ${className === undefined ? '' : className}`}
+            className={`inpt ${className === undefined ? '' : className}`}
             value={value}
             onChange={onChangeHandle}
         />
