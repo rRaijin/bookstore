@@ -73,18 +73,18 @@ const AdminBooks = (props) => {
                         className='text-input'
                         fieldName='bookName'
                         initialValue={(selectedBook && selectedBook.bookName) ? selectedBook.bookName : ''}
-                        changeBookHandler={changeBookHandler}/>
+                        onChangeHandler={changeBookHandler}/>
                     <TextareaField
                         className='text-input'
                         fieldName='description'
                         initialValue={(selectedBook && selectedBook.description) ? selectedBook.description : ''}
-                        changeBookHandler={changeBookHandler}
+                        onChangeHandler={changeBookHandler}
                         rows={8}/>
                     <Input
                         className='text-input'
                         fieldName='pages'
                         initialValue={(selectedBook && selectedBook.pages) ? selectedBook.pages : ''}
-                        changeBookHandler={changeBookHandler}/>
+                        onChangeHandler={changeBookHandler}/>
                     <Input
                         className='text-input'
                         fieldName='price'
@@ -92,13 +92,13 @@ const AdminBooks = (props) => {
                         minValue={-100}
                         // maxValue={1000}
                         initialValue={(selectedBook && selectedBook.price) ? selectedBook.price : ''}
-                        changeBookHandler={changeBookHandler}/>
+                        onChangeHandler={changeBookHandler}/>
                     <Input
                         className='text-input'
                         fieldName='year'
                         maxValue={10000}
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
-                        changeBookHandler={changeBookHandler}/>
+                        onChangeHandler={changeBookHandler}/>
                     <FileField
                         initialValue={selectedBook && selectedBook.picture}
                         fieldName='picture'

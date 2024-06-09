@@ -13,26 +13,26 @@ const BookForm = (props) => {
 
     const submitForm = (event) => {
         event.preventDefault();
-        // console.log('state: ', bookName, description, year);
-        fetch('http://localhost:3001/api/books', {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                bookName: bookName,
-                description,
-                year
-            })
-        })
-        .then(async (response) => {
-            if (response.ok === true) {
-                const results = await response.json();
-                // console.log('Response when add book: ', results.item);
-                upDataToParent(results.item);
-            }
-        })
+        console.log('state: ', bookName, description, year);
+        // fetch('http://localhost:3001/api/books', {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         bookName: bookName,
+        //         description,
+        //         year
+        //     })
+        // })
+        // .then(async (response) => {
+        //     if (response.ok === true) {
+        //         const results = await response.json();
+        //         // console.log('Response when add book: ', results.item);
+        //         upDataToParent(results.item);
+        //     }
+        // })
     }
 
     return (

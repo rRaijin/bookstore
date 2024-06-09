@@ -1,25 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TextareaField = ({
-  className,
-  initialValue,
-  fieldName,
-  changeBookHandler,
-  rows = 3, 
+    className,
+    initialValue,
+    fieldName,
+    onChangeHandler,
+    rows = 3
 }) => {
-  const handleChange = (event) => {
-    const { value } = event.target;
-    changeBookHandler(fieldName, value);
-  };
+    const [value, setValue] = useState('');
 
-  return (
-    <textarea
-      className={className}
-      value={initialValue}
-      onChange={handleChange}
-      rows={rows}
-    />
-  );
+    useEffect(() => {
+        if (value !== initialValue) {
+            setValue(initialValue);
+        }
+    }, [initialValue]);
+
+    const handleChange = (event) => {
+        const { value } = event.target;
+        setValue(value);
+        onChangeHandler(fieldName, value);
+    };
+
+    return (
+        <textarea
+            className={className}
+            value={value}
+            onChange={handleChange}
+            rows={rows}/>
+    );
 };
 
 export default TextareaField;

@@ -3,11 +3,10 @@ import { useState, useEffect, Fragment } from 'react';
 
 const Input = (props) => {
     const {
-        initialValue, className, fieldName, changeBookHandler, 
+        initialValue, className, fieldName, onChangeHandler, 
         inputType = 'text', minValue = 0, maxValue = 10000
     } = props; // распаковываем свойства
     const [value, setValue] = useState(initialValue);
-    // console.log('init: ', maxValue);
 
     useEffect(() => {
         if (value !== initialValue) {
@@ -17,7 +16,7 @@ const Input = (props) => {
     
     const onInputChange = (e) => {
         setValue(e.target.value);
-        changeBookHandler(fieldName, e.target.value);
+        onChangeHandler(fieldName, e.target.value);
     };
 
     const inputAttrs = {
@@ -34,24 +33,6 @@ const Input = (props) => {
 
     return (
         <input {...inputAttrs}/>
-
-        // <Fragment>
-        //     {
-        //         inputType === 'text' ?
-        //         <input
-        //             type={inputType}
-        //             className={className}
-        //             value={value}
-        //             onChange={onInputChange}/> :
-        //         <input
-        //             type={inputType}
-        //             min={minValue}
-        //             max={maxValue}
-        //             className={className}
-        //             value={value}
-        //             onChange={onInputChange}/>
-        //     }
-        // </Fragment>
     )
 }
 
