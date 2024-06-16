@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
-const BookForm = (props) => {
-    // console.log('props: ', props);
-    const { upDataToParent } = props;
-
-    const [bookName, updateBookName] = useState('');
-    const [description, updateDescription] = useState('');
-    const [year, updateYear] = useState('');
+const BookForm = ({ upDataToParent, initialBookName, initialDescription, initialYear }) => {
+    const [bookName, updateBookName] = useState(initialBookName);
+    const [description, updateDescription] = useState(initialDescription);
+    const [year, updateYear] = useState(initialYear);
 
     const submitForm = (event) => {
         event.preventDefault();

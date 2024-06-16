@@ -345,6 +345,12 @@ const HomePage = () => {
                             <p>Сума умножения: {product}</p>
                         </div>
                     )}
+                    <BookForm
+                        upDataToParent={upDataToParent}
+                        initialBookName="Начальное название книги"
+                        initialDescription="Начальное описание"
+                        initialYear="2024"
+                    />
             </div>
 
             <div>
