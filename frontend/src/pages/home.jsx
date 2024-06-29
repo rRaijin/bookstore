@@ -6,7 +6,8 @@ import { MyContext } from '../MyContext';
 import BookForm from '../components/books/BookForm';
 import BaseForm from '../components/fields/BaseForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
-
+import Select from '../components/elements/Select';
+import Captcha from '../components/fields/Captcha';
 
 import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
 import InputGeneral from '../components/fields/InputGeneral';
@@ -289,6 +290,7 @@ const HomePage = () => {
                 Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
                 Минимум информации в блоке
             </div>
+            <Captcha/>
             <div>
                 <ButtonGeneral
                     btnText={'Получить звук кота'}
@@ -311,6 +313,29 @@ const HomePage = () => {
             </div>
             <div>
                 <BaseForm data123={number1}>
+                    <Select
+                        items={
+                            [
+                                {id: 1, name: 'bread'},
+                                {id: 2, name: 'milk'},
+                                {id: 3, name: 'apple'},
+                                {id: 4, name: 'cheese'},
+                                {id: 5, name: 'meet'}
+                            ]
+                        }
+                        propToView='name'
+                        initialId={2}/>
+
+                    <Select
+                        items={
+                            [
+                                {id: 1, title: 'one'},
+                                {id: 2, title: 'two'}
+                            ]
+                        }
+                        propToView='title'
+                        initialId={2}/>
+
                     <InputGeneral
                         value={number1}
                         onChangeHandle={e => setNumber1(e.target.value)}
