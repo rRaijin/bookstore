@@ -6,7 +6,7 @@ import { MyContext } from '../MyContext';
 import BookForm from '../components/books/BookForm';
 import BaseForm from '../components/fields/BaseForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
-
+import Captcha from '../components/fields/Captcha';
 
 import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
 import InputGeneral from '../components/fields/InputGeneral';
@@ -289,6 +289,7 @@ const HomePage = () => {
                 Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
                 Минимум информации в блоке
             </div>
+            <Captcha/>
             <div>
                 <ButtonGeneral
                     btnText={'Получить звук кота'}

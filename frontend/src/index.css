@@ -201,3 +201,35 @@ code {
 .inpt-border-width-2 {
     border-width: 2px;
 }
+/* Captcha */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+  }
+  
+  .square {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .square.selected {
+    border: 2px solid red;
+  }
+  
+  .square img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  
