@@ -1,0 +1,40 @@
+.select-container {
+    width: 25%;
+}
+
+.selected-item {
+    display: flex;
+    width: 98%;
+    margin: 1px;
+    text-align: center;
+    border-color: #4308af;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.selected-item > .selected-name {
+    width: 80%;
+}
+
+.selected-item > .selected-symbol {
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.select-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border-width: 1px; */
+    /* border-color: black; */
+    /* border-style: solid; */
+}
+
+.select-item {
+    margin: 1px;
+    text-align: center;
+    border-color: #3d9635;
+    border-width: 1px;
+    border-style: solid;
+}
