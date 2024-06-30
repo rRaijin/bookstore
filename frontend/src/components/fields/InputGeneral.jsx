@@ -1,10 +1,10 @@
 const InputGeneral = (props) => {
-    const { value, onChangeHandle, className } = props;
+    const { value, onChangeHandle, className, inputType = 'number' } = props;
     console.log('props: ', props);
 
     return (
         <input
-            type="number"
+            type={inputType}
             className={`inpt ${className === undefined ? '' : className}`}
             value={value}
             onChange={onChangeHandle}

@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 
 
 const Select = (props) => {
-    const { items, initialId, propToView } = props;
+    const { items, initialId, propToView, upToParent } = props;
 
     const [selectedItem, setSelectedItem] = useState();
     const [selectStatus, setSelectStatus] = useState(false);
 
     const onSelectHandle = (id) => {
         if (items) {
-            setSelectedItem(items.find(el => el.id === id));
+            const selected = items.find(el => el.id === id); // {id: 1, name: 'bread'}
+            setSelectedItem(selected);
+            upToParent(selected);
         }
         setSelectStatus(false);
     }

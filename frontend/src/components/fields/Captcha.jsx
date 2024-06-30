@@ -65,7 +65,7 @@ const Captcha = () => {
             <div className="grid">
               {numbers.map((number) => (
                 <div
-                  key={number}
+                  key={`${number}`}
                   className={`square ${selected.includes(number) ? 'selected' : ''}`}
                   onClick={() => handleNumberClick(number)}
                 >
