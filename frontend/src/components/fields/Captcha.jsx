@@ -26,13 +26,13 @@ const Captcha = ({ onCaptchaComplete }) => {
     }, []);
 
     const handleNumberClick = (number) => {
-        setSelected((prev) => 
+        setSelected((prev) =>
             prev.includes(number) ? prev.filter(n => n !== number) : [...prev, number]
         );
     };
 
     const handleImageClick = (index) => {
-        setSelected((prev) => 
+        setSelected((prev) =>
             prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
         );
     };
@@ -50,10 +50,11 @@ const Captcha = ({ onCaptchaComplete }) => {
         } else if (level === 2) {
             const isCorrect = selected.every(index => images[index].isCat) && selected.length === 5;
             if (isCorrect) {
-                alert('Калькуляция отправлена в console');
+                alert('Капча пройдена!');
                 onCaptchaComplete(true); // Вызов функции при успешном прохождении капчи
             } else {
-                setError('Пожалуйста выберите все изображения с котиком.');
+                setLevel(1); // Переход на первый уровень капчи при ошибке на втором уровне
+                setSelected([]); // Очистка выбранных элементов
             }
         }
     };
