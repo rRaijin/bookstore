@@ -17,6 +17,39 @@
     opacity: 0.5;
 } */
 
+.slider {
+    position: relative;
+    width: 700px;
+    height: 400px;
+    margin: auto;
+  }
+  
+  .slide-image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 16px;
+  }
+  
+  .nav-button:first-of-type {
+    left: 0;
+  }
+  
+  .nav-button:last-of-type {
+    right: 0;
+  }
+  
+  
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

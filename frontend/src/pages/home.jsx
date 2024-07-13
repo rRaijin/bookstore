@@ -7,6 +7,7 @@ import BookForm from '../components/books/BookForm';
 import BaseForm from '../components/fields/BaseForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
 import Select from '../components/elements/Select';
+import Slider from '../components/fields/MySlider';
 
 
 import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
@@ -287,7 +288,7 @@ const HomePage = () => {
                 Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
                 Минимум информации в блоке
             </div>
-            
+            <Slider/>
             <div>
                 <ButtonGeneral
                     btnText={'Получить звук кота'}
