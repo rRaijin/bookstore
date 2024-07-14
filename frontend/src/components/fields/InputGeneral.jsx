@@ -8,6 +8,8 @@ const InputGeneral = (props) => {
             className={`inpt ${className === undefined ? '' : className}`}
             value={value}
             onChange={onChangeHandle}
+            onSelect={() => console.log('selected')}
+            onBlur={() => console.log('data required')}
         />
     );
 }

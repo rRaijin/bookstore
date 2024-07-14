@@ -31,7 +31,9 @@ const SampleForm = (props) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+            <form
+                onSubmit={handleSubmit}
+                className='sample-form'>
             <Select
                 items={[
                     { id: 1, name: 'bread' },

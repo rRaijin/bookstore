@@ -1,5 +1,6 @@
 .select-container {
     width: 25%;
+    position: relative;
 }
 
 .selected-item {
@@ -23,9 +24,12 @@
 }
 
 .select-list {
+    position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: #4308af;
+    color: black;
     /* border-width: 1px; */
     /* border-color: black; */
     /* border-style: solid; */

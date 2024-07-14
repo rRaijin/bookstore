@@ -6,6 +6,7 @@ const Select = (props) => {
 
     const [selectedItem, setSelectedItem] = useState();
     const [selectStatus, setSelectStatus] = useState(false);
+    const [hoverCnt, setHoverCnt] = useState(0);
 
     const onSelectHandle = (id) => {
         if (items) {
@@ -25,15 +26,19 @@ const Select = (props) => {
             }
         }
     }, [initialId]);
+    console.log('hover cnt: ', hoverCnt);
 
     return (
-        <div className='select-container'>
+        <div className='select-container'
+            onMouseEnter={() => setSelectStatus(true)}
+            onMouseLeave={() => setSelectStatus(false)}
+        >
             <div className='selected-item'>
                 <div className='selected-name'>
                     {selectedItem && selectedItem[propToView]}
                 </div>
-                <div className='selected-symbol' onClick={() => setSelectStatus(!selectStatus)}>
-                    {selectStatus ? 'hide' : 'show'}
+                <div className='selected-symbol'>
+                    {selectStatus ? '-' : '+'}
                 </div>
             </div>
             {
@@ -45,6 +50,7 @@ const Select = (props) => {
                                 <div
                                     className='select-item'
                                     key={`${item.id}`}
+                                    onMouseEnter={() => setHoverCnt(hoverCnt + 1)}
                                     onClick={() => onSelectHandle(item.id)}>
                                     {item[propToView]}
                                 </div>

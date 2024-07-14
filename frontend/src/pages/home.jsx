@@ -289,7 +289,7 @@ const HomePage = () => {
                 Минимум информации в блоке
             </div>
             <Slider/>
-            <div>
+            {/* <div>
                 <ButtonGeneral
                     btnText={'Получить звук кота'}
                     className={'btn-blue'}
@@ -308,10 +308,10 @@ const HomePage = () => {
                     className={'btn-red'}/>
 
                 {animalSound && <p>Звук: {animalSound}</p>}
-            </div>
+            </div> */}
             <div>
                 <SampleForm/>
-                    {errorMessage && <div>{errorMessage}</div>}
+                    {/* {errorMessage && <div>{errorMessage}</div>}
                     {sum !== null && product !== null && (
                         <div>
                             <p>Сума: {sum}</p>
@@ -323,10 +323,10 @@ const HomePage = () => {
                         initialBookName="Начальное название книги"
                         initialDescription="Начальное описание"
                         initialYear="2024"
-                    />
+                    /> */}
             </div>
 
-            <div>
+            {/* <div>
                 <div onClick={() => testHandler(1)}>1</div>
                 <div onClick={() => testHandler(2)}>2</div>
                 <div onClick={() => testHandler(3)}>3</div>
@@ -342,7 +342,7 @@ const HomePage = () => {
 
             <button onClick={() => setText('Hello, world!')}>
                 Click me
-            </button>
+            </button> */}
 
             <div className=''>
                 <h2>

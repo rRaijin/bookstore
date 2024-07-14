@@ -44,4 +44,11 @@
 
 .author-card > div {
     color: black;
-} 
+}
+
+
+.sample-form {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid black;
+}
