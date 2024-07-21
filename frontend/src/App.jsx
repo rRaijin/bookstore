@@ -11,6 +11,7 @@ import BookDetail from './pages/books/item';
 import Header from './components/Header';
 import HomePage from './pages/home';
 import Layout from './components/Layout';
+import Publishings from './pages/publishings';
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
                         <Route path='authors' element={<AuthorsList/>}/>
                         <Route path='author/:id' element={<AuthorDetail/>}/>
                         <Route path='admin/books' element={<AdminBooks/>}/>
+                        <Route path='publishings' element={<Publishings/>}/>
                     </Route>
                 </Routes>
                 {/* <Footer/> */}

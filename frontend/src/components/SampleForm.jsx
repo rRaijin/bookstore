@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Select from './elements/Select';
 import InputGeneral from './fields/InputGeneral';
 import TextareaField from './fields/TextareaField';
+import MediaInput from './fields/MediaInput';
 import Captcha from './fields/Captcha';
 
 const SampleForm = (props) => {
@@ -65,6 +66,10 @@ const SampleForm = (props) => {
                 fieldName='description'
                 onChangeHandler={() => console.log('change')}
             />
+            <MediaInput
+            
+            />
+
             {
                 captchavisible &&
                 <Captcha onCaptchaComplete={handleCaptchaComplete} />
