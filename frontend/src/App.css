@@ -6,6 +6,6 @@
 
 ul {
   list-style: none;
-  display: flex;
+  /* display: flex; */
   color: white;
 }
