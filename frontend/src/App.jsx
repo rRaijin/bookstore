@@ -1,4 +1,11 @@
 import './App.css';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { 
+    faCoffee, faCheckSquare, faMagnifyingGlassPlus
+} from '@fortawesome/free-solid-svg-icons';
+
+
 import { Routes, Route } from 'react-router-dom';
 import { useState, useContext } from 'react';
 
@@ -15,6 +22,8 @@ import Publishings from './pages/publishings';
 
 
 const App = () => {
+    library.add(faCheckSquare, faCoffee, faMagnifyingGlassPlus);
+
     const defaultContextValues = useContext(MyContext);
     const [text, setText] = useState(defaultContextValues.text);
     const [skin, setSkin] = useState(defaultContextValues.skin);

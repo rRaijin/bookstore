@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Publishings = () => {
@@ -18,7 +19,7 @@ const Publishings = () => {
 
     const activeClick = (button) => {
         setActiveButton(button);
-      };
+    };
 
     const items = [
         {
@@ -98,6 +99,13 @@ const Publishings = () => {
 
     return (
         <div className="">
+            <FontAwesomeIcon
+                icon={"coffee"}
+                size={'xs'}
+            />
+            {/* <FontAwesomeIcon icon={faMagnifyingGlassPlus} /> */}
+            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass-plus" />
+
             <header className="header-background flex">
                 <div className="header-button cursor">
                     <div>
