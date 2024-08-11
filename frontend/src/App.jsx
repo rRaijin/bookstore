@@ -2,7 +2,7 @@ import './App.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { 
-    faCoffee, faCheckSquare, faMagnifyingGlassPlus
+    faCoffee, faCheckSquare, faMagnifyingGlassPlus, faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -22,7 +22,7 @@ import Publishings from './pages/publishings';
 
 
 const App = () => {
-    library.add(faCheckSquare, faCoffee, faMagnifyingGlassPlus);
+    library.add(faCheckSquare, faCoffee, faMagnifyingGlassPlus, faClock);
 
     const defaultContextValues = useContext(MyContext);
     const [text, setText] = useState(defaultContextValues.text);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { faClock, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faSquareYoutube, faFacebookF, faTelegram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 
 const Publishings = () => {
     // HW
@@ -99,12 +100,59 @@ const Publishings = () => {
 
     return (
         <div className="">
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
                 icon={"coffee"}
                 size={'xs'}
-            />
+            /> */}
             {/* <FontAwesomeIcon icon={faMagnifyingGlassPlus} /> */}
-            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass-plus" />
+            {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass-plus" /> */}
+            <div className='mr-t-1p mr-b-1p flex'>
+                <div className=''>
+                    <div className='litery-ye'>
+                        <span className='mr-5px '>
+                            Є 
+                        </span>
+                    </div>
+                    
+                    <span className='book-shop-styles'>
+                        КНИГАРНЯ
+                    </span>
+                </div>
+                
+                <div className='mr-l-15p  w-40p box-shadow-dark-grey flex border-r-5px'>
+                    <div className='diagonal-background border-r-5px-no-r-b '>
+                        <div>
+                            КЕШБЕК ДО 35%
+                        </div>
+                        <div className='font-14px black'>
+                            додатково до знижок
+                        </div>
+                        <a className='red-dark font-14px underline' href="">
+                            Подивитись
+                        </a>
+                    </div>
+                    <div className='black cashback'>
+                        <span className='bold white padd-t-l-14px font-15px'>
+                            КЕШБЕК ДО
+                        </span>
+                        <span className='bold white cashback-35'>
+                            35
+                        </span>
+                    </div>
+                </div>
+                <div className='black mr-l-15p'>
+                    <h3 className='weight-normal'>
+                        Інтернет-магазин
+                    </h3>
+                    <h3 className='weight-normal'>
+                        (0800) 33-05-65
+                    </h3>
+                    <h3 className='weight-normal'>
+                        (044) 333-42-20
+                    </h3>
+                </div>
+            </div>
+            
 
             <header className="header-background flex">
                 <div className="header-button cursor">
@@ -419,10 +467,179 @@ const Publishings = () => {
                                 </a>
                             </li>
                         </ul>
-                        
+                    </div>
+                    <div>
+                        <div className="bold">
+                            Інтернет-магазин
+                        </div>
+                        <div>
+                            support@book-ye.com
+                        </div>
+                        <div>
+                            0800 33 05 65
+                        </div>
+                        <div>
+                            044 333 42 20
+                        </div>
+                        <div className='font-monospace dark-grey'>
+                            <FontAwesomeIcon icon={faClock} />
+                            Графік роботи з 9.00 до 21.00 без вихідних
+                        </div>
+                    </div>
+                    <div className='street flex'>
+                        <div className=''>
+                            <h3 className='weight-normal'>
+                                Київ, вул. Лисенка, 3
+                            </h3>
+                            <div className='dark-grey'>
+                                <FontAwesomeIcon className='padd-r-10px' icon={faPhone} />
+                                (063)-373-94-76 (044) 235-88-50  
+                                <FontAwesomeIcon className='padd-l-10px padd-r-10px' icon={faClock} />
+                                графік: з 9:00 до 21:00, без вихідних
+                            </div>
+                        </div>
+                        <div>
+                            <img className='padd-for-img-street' src="https://lh3.googleusercontent.com/p/AF1QipMsT71TSFmBo0JvZWRe5lbAVpTaT6uMlhYZI1Wh=s156-w156-h108-n-k-no" alt="ffdd" />
+                        </div>
                     </div>
                 </div>
             </div>
+            <footer className='back-black flex'>
+                <div className='w-75p flex'>
+                    <ul className='footer-nav w-33p'>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Про нас
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Умови використання сайту
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Публічний договір (оферта)
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Складнощі із замовленням
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Контакти
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Читацький клуб
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <ul className='footer-nav w-33p'>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Книгарні
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Доставка і оплата
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Повернення товару
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Програма лояльності
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Карта сайту
+                            </a>
+                        </li>
+                    </ul>
+                    <ul className='footer-nav w-33p'>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Календар подій
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Партнери
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Зворотний зв'язок
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Проєкти
+                            </a>
+                        </li>
+                        <li className='foot-list'>
+                            <a className='foot-nav-link' href="">
+                                Клуб любителів книжки
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div className='w-25p white'>
+                    <div className='padd-t-10px font-19px mr-b-10px'>
+                        Ми у соц.мережах
+                    </div>
+                    <div className='flex'>
+                        <div>
+                            <FontAwesomeIcon
+                                className='icons-social-networks back-grey cursor'
+                                icon={faSquareYoutube} 
+                                size={'xl'}
+                                style={{color: "#000000",}}
+                            />
+                        </div>
+                        <div className='padd-l-10px'>
+                            <FontAwesomeIcon 
+                                className='facebook back-grey cursor'
+                                icon={faFacebookF} 
+                                size={'xl'}
+                                style={{color: "#000000",}}/>
+                        </div>
+                            <div className='padd-l-10px'>
+                                <FontAwesomeIcon 
+                                    className='icons-social-networks back-grey cursor'
+                                    icon={faTelegram} 
+                                    size={'xl'}
+                                    style={{color: "#000000",}}/>
+                            </div>
+                        <div className='padd-l-10px'>
+                            <FontAwesomeIcon 
+                                className='icons-social-networks back-grey cursor'
+                                icon={faInstagram} 
+                                size={'xl'}
+                                style={{color: "#000000",}}
+                            />
+                        </div>
+                        <div className='padd-l-10px'>
+                            <FontAwesomeIcon 
+                                className='icons-social-networks back-grey cursor'
+                                icon={faTiktok} 
+                                size={'xl'}
+                                style={{color: "#000000",}}
+                            />
+                        </div>
+                    </div>  
+                </div>
+            </footer>
         </div>
     );
 };
