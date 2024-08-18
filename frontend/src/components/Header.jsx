@@ -57,7 +57,7 @@ const subMenuItems = [
 
 
 const Header = () => {
-    // Используем контекст
+    // Используем контекст, доступен весь объект, но используем только метод(cb func) setSkin
     const { setSkin } = useContext(MyContext);
 
     return (

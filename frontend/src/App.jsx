@@ -31,6 +31,7 @@ const App = () => {
     const saveSkin = (value) => {
         setSkin(value);
         localStorage.setItem('skin', value);
+        // localStorage.removeItem('skin');
     };
 
     const x = 42;
