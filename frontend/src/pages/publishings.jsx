@@ -487,13 +487,61 @@ const Publishings = () => {
                         </div>
                     </div>
                     <div className='street flex'>
-                        <div className=''>
+                        <div className='w-60p '>
                             <h3 className='weight-normal'>
                                 Київ, вул. Лисенка, 3
                             </h3>
                             <div className='dark-grey'>
                                 <FontAwesomeIcon className='padd-r-10px' icon={faPhone} />
                                 (063)-373-94-76 (044) 235-88-50  
+                                <FontAwesomeIcon className='padd-l-10px padd-r-10px' icon={faClock} />
+                                графік: з 9:00 до 21:00, без вихідних
+                            </div>
+                        </div>
+                        <div>
+                            <img className='padd-for-img-street' src="https://lh3.googleusercontent.com/p/AF1QipMsT71TSFmBo0JvZWRe5lbAVpTaT6uMlhYZI1Wh=s156-w156-h108-n-k-no" alt="ffdd" />
+                        </div>
+                    </div>
+                    <div className='street flex'>
+                        <div className='w-60p '>
+                            <h3 className='weight-normal'>
+                                Київ, провулок Політехнічний, 1/33
+                            </h3>
+                            <div className='dark-grey'>
+                                <FontAwesomeIcon className='padd-r-10px' icon={faPhone} />
+                                (063)-374-00-48
+                                <FontAwesomeIcon className='padd-l-10px padd-r-10px' icon={faClock} />
+                                графік: з 9:00 до 21:00, без вихідних
+                            </div>
+                        </div>
+                        <div>
+                            <img className='padd-for-img-street' src="https://lh3.googleusercontent.com/p/AF1QipMsT71TSFmBo0JvZWRe5lbAVpTaT6uMlhYZI1Wh=s156-w156-h108-n-k-no" alt="ffdd" />
+                        </div>
+                    </div>
+                    <div className='street flex'>
+                        <div className='w-60p '>
+                            <h3 className='weight-normal'>
+                                Київ, вул. Спаська, 5
+                            </h3>
+                            <div className='dark-grey'>
+                                <FontAwesomeIcon className='padd-r-10px' icon={faPhone} />
+                                (063)-373-94-80 (044) 351-13-38
+                                <FontAwesomeIcon className='padd-l-10px padd-r-10px' icon={faClock} />
+                                графік: з 9:00 до 21:00, без вихідних
+                            </div>
+                        </div>
+                        <div>
+                            <img className='padd-for-img-street' src="https://lh3.googleusercontent.com/p/AF1QipMsT71TSFmBo0JvZWRe5lbAVpTaT6uMlhYZI1Wh=s156-w156-h108-n-k-no" alt="ffdd" />
+                        </div>
+                    </div>
+                    <div className='street flex brd-b-1px-grey'>
+                        <div className='w-60p '>
+                            <h3 className='weight-normal'>
+                                Київ, вул. Освіти, 2
+                            </h3>
+                            <div className='dark-grey'>
+                                <FontAwesomeIcon className='padd-r-10px' icon={faPhone} />
+                                (063)-373-95-31
                                 <FontAwesomeIcon className='padd-l-10px padd-r-10px' icon={faClock} />
                                 графік: з 9:00 до 21:00, без вихідних
                             </div>

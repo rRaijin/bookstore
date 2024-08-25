@@ -14,6 +14,7 @@ import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
 import InputGeneral from '../components/fields/InputGeneral';
 import TextareaField from '../components/fields/TextareaField';
 import SampleForm from '../components/SampleForm';
+import Chat from '../components/fields/Chat';
 
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
@@ -289,6 +290,7 @@ const HomePage = () => {
                 Минимум информации в блоке
             </div>
             <Slider/>
+            <Chat/>
             {/* <div>
                 <ButtonGeneral
                     btnText={'Получить звук кота'}

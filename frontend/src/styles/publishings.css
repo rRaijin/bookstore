@@ -205,9 +205,16 @@ a, a:focus, a:hover, input {
 .street {
     padding: 50px;
     border-top: 1px solid #d4d4d4;
-    border-bottom: 1px solid #d4d4d4;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.brd-b-1px-grey {
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.w-60p {
+    width: 60%;
 }
 
 .padd-r-10px {
