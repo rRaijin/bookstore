@@ -13,6 +13,8 @@ const FileField = (props) => {
         if (initialValue) {
             const filePath = getFilePath(folder, initialValue);
             setSelectedFilePath(filePath);
+        } else {
+            setSelectedFilePath(null);
         }
     }, [initialValue]);
 

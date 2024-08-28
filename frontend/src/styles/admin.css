@@ -1,24 +1,26 @@
 .admin-books-list-wrapper {
     width: 50%;
+    /* border: 1px solid black; */
 }
 
 .admin-books-form-wrapper {
     width: 50%;
+    border: 1px solid black;
 }
 
 .admin-books-list {
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding: 0;
+    padding: 5px;
 }
 
 .admin-books-list > li {
-    margin: 5px 0;
-    padding: 5px;
+    width: 100%;
     border: 1px solid black;
     border-radius: 5px;
     color: black;
+    margin-bottom: 5px;
 }
 
 .admin-books-form-wrapper > form {

@@ -10,7 +10,7 @@ import TextareaField from '../../components/fields/TextareaField';
 const AdminBooks = (props) => {
     const [books, setBooks] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);
-    const [tempData, setTempData] = useState(null);
+    const [tempData, setTempData] = useState({});
 
     useEffect(() => {
         fetchData('books', setBooks);
@@ -23,13 +23,19 @@ const AdminBooks = (props) => {
     }, [selectedBook]);
 
     const changeBookHandler = (field, val) => {
+        console.log('FFF: ', field, val)
         tempData[field] = val;
     }
 
     const formSubmit = () => {
         tempData['imageFolder'] = 'books';
-        // console.log('submit: ', tempData);
-        saveData('books', tempData, () => alert('OK!!!'));
+        console.log('submit: ', tempData);
+        // saveData('books', tempData, () => alert('OK!!!'));
+    }
+
+    const resetForm = () => {
+        setSelectedBook(null);
+        setTempData(null);
     }
 
     // 1. Для поля description написать компнент для Textarea тега, он должен принимать className,
@@ -68,6 +74,11 @@ const AdminBooks = (props) => {
                 </ul>
             </div>
             <div className='admin-books-form-wrapper'>
+                <div>
+                    <button className='' onClick={resetForm}>
+                        CREATE
+                    </button>
+                </div>
                 <form className='admin-books-form'>
                     <Input
                         className='text-input'
@@ -100,7 +111,7 @@ const AdminBooks = (props) => {
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
                         onChangeHandler={changeBookHandler}/>
                     <FileField
-                        initialValue={selectedBook && selectedBook.picture}
+                        initialValue={(selectedBook && selectedBook.picture) ? selectedBook.picture : null}
                         fieldName='picture'
                         onFileChoosed={changeBookHandler}
                         folder='books'/>

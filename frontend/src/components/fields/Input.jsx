@@ -7,6 +7,7 @@ const Input = (props) => {
         inputType = 'text', minValue = 0, maxValue = 10000
     } = props; // распаковываем свойства
     const [value, setValue] = useState(initialValue);
+    console.log(props)
 
     useEffect(() => {
         if (value !== initialValue) {
