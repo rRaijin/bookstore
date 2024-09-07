@@ -15,6 +15,7 @@ import InputGeneral from '../components/fields/InputGeneral';
 import TextareaField from '../components/fields/TextareaField';
 import SampleForm from '../components/SampleForm';
 import Chat from '../components/fields/Chat';
+import RandomNumber from '../components/randomNumber';
 
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
@@ -291,6 +292,7 @@ const HomePage = () => {
             </div>
             <Slider/>
             <Chat/>
+            <RandomNumber/>
             {/* <div>
                 <ButtonGeneral
                     btnText={'Получить звук кота'}
