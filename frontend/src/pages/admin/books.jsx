@@ -29,19 +29,18 @@ const AdminBooks = (props) => {
 
     const formSubmit = () => {
         tempData['imageFolder'] = 'books';
-        console.log('submit: ', tempData);
-        // saveData('books', tempData, () => alert('OK!!!'));
+        console.log('submit data: ', tempData);
+        saveData('books', tempData, () => alert('OK!!!'));
     }
 
     const resetForm = () => {
         setSelectedBook(null);
-        setTempData(null);
+        setTempData({});
     }
 
-    // 1. Для поля description написать компнент для Textarea тега, он должен принимать className,
-    // initialValue, fieldName, changeBookHandler и устанавливаемое значение строк.
-    // 2. сделать форму симпатичней
-    // 3. кроме имени книги в навигации слева выводить цену и год книги.
+    // 1. Сделать css для инпутов
+    // 2. Добавить селектор для передачи выбранного жанра (он будет один)
+    // 3. Добавить компонент (для формы), который будет позволять множественный выбор. (чекбокс)
 
     return (
         <div className='flex'>
@@ -94,6 +93,7 @@ const AdminBooks = (props) => {
                     <Input
                         className='text-input'
                         fieldName='pages'
+                        inputType='number'
                         initialValue={(selectedBook && selectedBook.pages) ? selectedBook.pages : ''}
                         onChangeHandler={changeBookHandler}/>
                     <Input
@@ -107,6 +107,7 @@ const AdminBooks = (props) => {
                     <Input
                         className='text-input'
                         fieldName='year'
+                        inputType='number'
                         maxValue={10000}
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
                         onChangeHandler={changeBookHandler}/>

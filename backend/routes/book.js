@@ -130,7 +130,9 @@ router.get('/', async (req, res, next) => {
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
     const { bookName, description, year, authorId, price, pages, picture, imageFolder, genresIdsList } = req.body;
-    const author = await Author.findById(authorId._id);
+    const authors = await Author.find({});
+    const author = authors[0];
+    // const author = await Author.findById(authorId._id);
     // Определяем нужно создать новую книгу или обновить существующую
     // Для существующей в body прийдет поле "_id"
     let book;

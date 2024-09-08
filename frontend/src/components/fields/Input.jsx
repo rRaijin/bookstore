@@ -16,8 +16,9 @@ const Input = (props) => {
     }, [initialValue]);
     
     const onInputChange = (e) => {
-        setValue(e.target.value);
-        onChangeHandler(fieldName, e.target.value);
+        const newValue = inputType === 'number' ? Number(e.target.value) : e.target.value;
+        setValue(newValue);
+        onChangeHandler(fieldName, newValue);
     };
 
     const inputAttrs = {
@@ -33,7 +34,10 @@ const Input = (props) => {
     }
 
     return (
-        <input {...inputAttrs}/>
+        <div className=''>
+            <label>{fieldName}</label>
+            <input {...inputAttrs}/>
+        </div>
     )
 }
 

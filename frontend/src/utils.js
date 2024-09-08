@@ -58,7 +58,7 @@ export const fetchData = (url, callback) => {
 };
 
 export const saveData = (url, data, callback) => {
-    fetch(`${SERVER_URL}/api/${url}`, {
+    fetch(`${SERVER_URL}/api/${url}`, { // 'http://localhost:3001/api/books'
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
