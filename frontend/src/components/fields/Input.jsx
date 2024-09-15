@@ -1,13 +1,13 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const Input = (props) => {
     const {
         initialValue, className, fieldName, onChangeHandler, 
-        inputType = 'text', minValue = 0, maxValue = 10000, options = []
+        inputType = 'text', minValue = 0, maxValue = 10000
     } = props; // распаковываем свойства
     const [value, setValue] = useState(initialValue);
-    console.log(props)
+    // console.log(props);
 
     useEffect(() => {
         if (value !== initialValue) {
@@ -21,13 +21,13 @@ const Input = (props) => {
         onChangeHandler(fieldName, newValue);
     };
 
-    const onCheckboxChange = (option) => {
-        const updatedValues = value.includes(option)
-            ? value.filter(val => val !== option)
-            : [...value, option];
-        setValue(updatedValues);
-        onChangeHandler(fieldName, updatedValues);
-    }
+    // const onCheckboxChange = (option) => {
+    //     const updatedValues = value.includes(option)
+    //         ? value.filter(val => val !== option)
+    //         : [...value, option];
+    //     setValue(updatedValues);
+    //     onChangeHandler(fieldName, updatedValues);
+    // }
 
     const inputAttrs = {
         type: inputType,
@@ -46,7 +46,7 @@ const Input = (props) => {
             <label className='bold'>
                 {fieldName}: 
             </label>
-            {inputType === 'checkbox' ? (
+            {/* {inputType === 'checkbox' ? (
                 options.length > 0 ? (
                     options.map((option, index) => (
                         <div key={index}>
@@ -62,8 +62,8 @@ const Input = (props) => {
                     <p></p>
                 )
             ) : (
-                <input {...inputAttrs}/>
-            )}
+            )} */}
+            <input {...inputAttrs}/>
         </div>
     )
 }

@@ -1,22 +1,26 @@
 import { useState, useEffect } from 'react';
 
-
 import { fetchData, saveData } from '../../utils';
 import Input from '../../components/fields/Input';
+import Selector from '../../components/fields/Selector';
 import FileField from '../../components/fields/FileField';
 import TextareaField from '../../components/fields/TextareaField';
 
 
 const AdminBooks = (props) => {
     const [books, setBooks] = useState([]);
+    const [genres, setGenres] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);
     const [tempData, setTempData] = useState({});
-    const [allGenres, setAllGenres] = useState([])
+    // const [allGenres, setAllGenres] = useState([]);
 
     useEffect(() => {
         fetchData('books', (data) => {
             setBooks(data);
-            extractGenresFromBooks(data);
+            // extractGenresFromBooks(data);
+        });
+        fetchData('genres', (data) => {
+            setGenres(data);
         });
     }, []);
 
@@ -24,7 +28,7 @@ const AdminBooks = (props) => {
         if (selectedBook) {
             setTempData({
                 ...selectedBook,
-                genres: selectedBook.genres ? selectedBook.genres.map((g) => g.title) : []
+                // genres: selectedBook.genres ? selectedBook.genres.map((g) => g.title) : []
             });
         } else {
             setTempData({});
@@ -54,32 +58,34 @@ const AdminBooks = (props) => {
     // 2. Добавить селектор для передачи выбранного жанра (он будет один)
     // 3. Добавить компонент (для формы), который будет позволять множественный выбор. (чекбокс)
     // 4. На следующий урок показать предачу компонента как свойство
-    function handleGenreCheckboxChange(genre) {
-        setTempData((prevData) => {
-            const updatedGenres = prevData.genres ? [...prevData.genres] : [];
-            if (updatedGenres.includes(genre)) {
-                return {
-                    ...prevData,
-                    genres: updatedGenres.filter((g) => g !== genre),
-                };
-            } else {
-                return {
-                    ...prevData,
-                    genres: [...updatedGenres, genre],
-                };
-            }
-        });
-    }
 
-    const extractGenresFromBooks = (books) => {
-        const genresSet = new Set();
-        books.forEach((book) => {
-            if (book.genres) {
-                book.genres.forEach((genre) => genresSet.add(genre.title));
-            }
-        });
-        setAllGenres([...genresSet]);
-    };
+
+    // function handleGenreCheckboxChange(genre) {
+    //     setTempData((prevData) => {
+    //         const updatedGenres = prevData.genres ? [...prevData.genres] : [];
+    //         if (updatedGenres.includes(genre)) {
+    //             return {
+    //                 ...prevData,
+    //                 genres: updatedGenres.filter((g) => g !== genre),
+    //             };
+    //         } else {
+    //             return {
+    //                 ...prevData,
+    //                 genres: [...updatedGenres, genre],
+    //             };
+    //         }
+    //     });
+    // }
+
+    // const extractGenresFromBooks = (books) => {
+    //     const genresSet = new Set();
+    //     books.forEach((book) => {
+    //         if (book.genres) {
+    //             book.genres.forEach((genre) => genresSet.add(genre.title));
+    //         }
+    //     });
+    //     setAllGenres([...genresSet]);
+    // };
 
     return (
         <div className='flex'>
@@ -150,13 +156,20 @@ const AdminBooks = (props) => {
                         maxValue={10000}
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
                         onChangeHandler={changeBookHandler}/>
-                    <Input
+                    <Selector
+                        className=''
+                        fieldName='genres'
+                        items={genres}
+                        initialValue={(selectedBook && selectedBook.genres) ? selectedBook.genres : []}
+                        onSelectHandler={changeBookHandler}/>
+
+                    {/* <Input
                         className='text-input'
                         fieldName='genres'
                         inputType='checkbox'
                         options={allGenres}
                         initialValue={tempData.genres || []}
-                        onChangeHandler={changeBookHandler}/>
+                        onChangeHandler={changeBookHandler}/> */}
                     <FileField
                         initialValue={(selectedBook && selectedBook.picture) ? selectedBook.picture : null}
                         fieldName='picture'

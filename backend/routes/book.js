@@ -116,7 +116,6 @@ router.get('/', async (req, res, next) => {
                 model: 'User'
             }
         }).populate('genres');
-
     } catch (error) {
         console.log('Error: ', error);
         return res.status(404).json({message: 'ERROR'});
@@ -129,7 +128,7 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
-    const { bookName, description, year, authorId, price, pages, picture, imageFolder, genresIdsList } = req.body;
+    const { bookName, description, year, authorId, price, pages, picture, imageFolder, genres } = req.body;
     const authors = await Author.find({});
     const author = authors[0];
     // const author = await Author.findById(authorId._id);
@@ -145,6 +144,7 @@ router.put('/', jsonParser, async (req, res) => {
             book.price = price;
             book.pages = pages;
             book.picture = picture;
+            book.genres = genres;
         } else {
             // error
         }
@@ -157,10 +157,10 @@ router.put('/', jsonParser, async (req, res) => {
             pages,
             picture,
             authorId: author._id,
-            genre: genresIdsList
+            genre: genres
         });
     }
-    saveFile(picture, imageFolder);
+    // saveFile(picture, imageFolder);
     await book.save();
     return res.status(200).json({message: 'OK', item: book});
 });
