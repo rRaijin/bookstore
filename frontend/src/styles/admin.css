@@ -3,6 +3,10 @@
     /* border: 1px solid black; */
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .admin-books-form-wrapper {
     width: 50%;
     border: 1px solid black;
@@ -21,6 +25,7 @@
     border-radius: 5px;
     color: black;
     margin-bottom: 5px;
+    background: #dcdcdc;
 }
 
 .admin-books-form-wrapper > form {
@@ -60,7 +65,50 @@
   .submit-button:hover {
     background-color: #45a049;
   }
-  
+.bold {
+  font-weight: bold;
+}
+
+.create-battom {
+    background: #4d5fe2;
+    color: white;
+    border: 1px solid #000000;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
+.save-botton {
+    background: #4d5fe2;
+    color: white;
+    padding: 10px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 0;
+    cursor: pointer;
+}
+
+.ml-40px {
+    margin-left: 40px;
+}
+
+.ml-46-5px {
+    margin-left: 46.5px;
+}
+
+.ml-51px {
+    margin-left: 51px;
+}
+
+.ml-84px {
+    margin-left: 84px;
+}
+
+.white {
+    color: white;
+}
 
 /* TEMP CSS FOR FORM FIELDS */
 .text-input {

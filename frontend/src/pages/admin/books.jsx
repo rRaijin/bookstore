@@ -11,20 +11,32 @@ const AdminBooks = (props) => {
     const [books, setBooks] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);
     const [tempData, setTempData] = useState({});
+    const [allGenres, setAllGenres] = useState([])
 
     useEffect(() => {
-        fetchData('books', setBooks);
+        fetchData('books', (data) => {
+            setBooks(data);
+            extractGenresFromBooks(data);
+        });
     }, []);
 
     useEffect(() => {
         if (selectedBook) {
-            setTempData({...selectedBook});
+            setTempData({
+                ...selectedBook,
+                genres: selectedBook.genres ? selectedBook.genres.map((g) => g.title) : []
+            });
+        } else {
+            setTempData({});
         }
     }, [selectedBook]);
 
     const changeBookHandler = (field, val) => {
         console.log('FFF: ', field, val)
-        tempData[field] = val;
+        setTempData((prevData) => ({
+            ...prevData,
+            [field]: val,
+        }));
     }
 
     const formSubmit = () => {
@@ -42,6 +54,32 @@ const AdminBooks = (props) => {
     // 2. Добавить селектор для передачи выбранного жанра (он будет один)
     // 3. Добавить компонент (для формы), который будет позволять множественный выбор. (чекбокс)
     // 4. На следующий урок показать предачу компонента как свойство
+    function handleGenreCheckboxChange(genre) {
+        setTempData((prevData) => {
+            const updatedGenres = prevData.genres ? [...prevData.genres] : [];
+            if (updatedGenres.includes(genre)) {
+                return {
+                    ...prevData,
+                    genres: updatedGenres.filter((g) => g !== genre),
+                };
+            } else {
+                return {
+                    ...prevData,
+                    genres: [...updatedGenres, genre],
+                };
+            }
+        });
+    }
+
+    const extractGenresFromBooks = (books) => {
+        const genresSet = new Set();
+        books.forEach((book) => {
+            if (book.genres) {
+                book.genres.forEach((genre) => genresSet.add(genre.title));
+            }
+        });
+        setAllGenres([...genresSet]);
+    };
 
     return (
         <div className='flex'>
@@ -51,7 +89,7 @@ const AdminBooks = (props) => {
                         books.map((book, i) => {
                             return (
                                 <li
-                                    className=''
+                                    className='pointer'
                                     key={`book-${i}`}
                                     onClick={() => setSelectedBook(book)}>
 
@@ -75,7 +113,7 @@ const AdminBooks = (props) => {
             </div>
             <div className='admin-books-form-wrapper'>
                 <div>
-                    <button className='' onClick={resetForm}>
+                    <button className='create-battom' onClick={resetForm}>
                         CREATE
                     </button>
                 </div>
@@ -92,13 +130,13 @@ const AdminBooks = (props) => {
                         onChangeHandler={changeBookHandler}
                         rows={8}/>
                     <Input
-                        className='text-input'
+                        className='text-input ml-40px'
                         fieldName='pages'
                         inputType='number'
                         initialValue={(selectedBook && selectedBook.pages) ? selectedBook.pages : ''}
                         onChangeHandler={changeBookHandler}/>
                     <Input
-                        className='text-input'
+                        className='text-input ml-46-5px'
                         fieldName='price'
                         inputType='number'
                         minValue={-100}
@@ -106,11 +144,18 @@ const AdminBooks = (props) => {
                         initialValue={(selectedBook && selectedBook.price) ? selectedBook.price : ''}
                         onChangeHandler={changeBookHandler}/>
                     <Input
-                        className='text-input'
+                        className='text-input ml-51px'
                         fieldName='year'
                         inputType='number'
                         maxValue={10000}
                         initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
+                        onChangeHandler={changeBookHandler}/>
+                    <Input
+                        className='text-input'
+                        fieldName='genres'
+                        inputType='checkbox'
+                        options={allGenres}
+                        initialValue={tempData.genres || []}
                         onChangeHandler={changeBookHandler}/>
                     <FileField
                         initialValue={(selectedBook && selectedBook.picture) ? selectedBook.picture : null}
@@ -119,9 +164,9 @@ const AdminBooks = (props) => {
                         folder='books'/>
                     <button
                         type='button'
-                        className=''
+                        className='save-botton'
                         onClick={formSubmit}>
-                        save
+                        SAVE
                     </button>
                 </form>
             </div>

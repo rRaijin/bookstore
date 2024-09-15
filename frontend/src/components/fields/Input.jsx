@@ -4,7 +4,7 @@ import { useState, useEffect, Fragment } from 'react';
 const Input = (props) => {
     const {
         initialValue, className, fieldName, onChangeHandler, 
-        inputType = 'text', minValue = 0, maxValue = 10000
+        inputType = 'text', minValue = 0, maxValue = 10000, options = []
     } = props; // распаковываем свойства
     const [value, setValue] = useState(initialValue);
     console.log(props)
@@ -21,6 +21,14 @@ const Input = (props) => {
         onChangeHandler(fieldName, newValue);
     };
 
+    const onCheckboxChange = (option) => {
+        const updatedValues = value.includes(option)
+            ? value.filter(val => val !== option)
+            : [...value, option];
+        setValue(updatedValues);
+        onChangeHandler(fieldName, updatedValues);
+    }
+
     const inputAttrs = {
         type: inputType,
         className: className,
@@ -35,8 +43,27 @@ const Input = (props) => {
 
     return (
         <div className=''>
-            <label>{fieldName}</label>
-            <input {...inputAttrs}/>
+            <label className='bold'>
+                {fieldName}: 
+            </label>
+            {inputType === 'checkbox' ? (
+                options.length > 0 ? (
+                    options.map((option, index) => (
+                        <div key={index}>
+                            <input
+                                type='checkbox'
+                                checked={value.includes(option)}
+                                onChange={() => onCheckboxChange(option)}
+                            />
+                            <label className=''>{option}</label>
+                        </div>
+                    ))
+                ) : (
+                    <p></p>
+                )
+            ) : (
+                <input {...inputAttrs}/>
+            )}
         </div>
     )
 }
