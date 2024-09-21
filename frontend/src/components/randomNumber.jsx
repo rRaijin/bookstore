@@ -43,6 +43,10 @@ const randomPosition = () => {
 const Clicks = () => {
     setPosition(randomPosition());
     setClicks(clicks + 1)
+    if (clicks === 5) {
+        setMessage(`Поймали)))`)
+        setClicks(0)
+    }
 }
 
 const handleGuess = () => {
@@ -104,6 +108,7 @@ return (
             <div>
                 <button 
                     onClick={Clicks}
+                    // onChange={clickCounter}
                     style={{
                         position: 'absolute',
                         top: position.top,

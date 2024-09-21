@@ -43,7 +43,7 @@ const Input = (props) => {
 
     return (
         <div className=''>
-            <label className='bold'>
+            <label className='fieldName'>
                 {fieldName}: 
             </label>
             {/* {inputType === 'checkbox' ? (

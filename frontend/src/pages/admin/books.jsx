@@ -119,7 +119,7 @@ const AdminBooks = (props) => {
             </div>
             <div className='admin-books-form-wrapper'>
                 <div>
-                    <button className='create-battom' onClick={resetForm}>
+                    <button className='create-buttom' onClick={resetForm}>
                         CREATE
                     </button>
                 </div>
@@ -136,13 +136,13 @@ const AdminBooks = (props) => {
                         onChangeHandler={changeBookHandler}
                         rows={8}/>
                     <Input
-                        className='text-input ml-40px'
+                        className='text-input pages-book'
                         fieldName='pages'
                         inputType='number'
                         initialValue={(selectedBook && selectedBook.pages) ? selectedBook.pages : ''}
                         onChangeHandler={changeBookHandler}/>
                     <Input
-                        className='text-input ml-46-5px'
+                        className='text-input price-book'
                         fieldName='price'
                         inputType='number'
                         minValue={-100}
@@ -150,7 +150,7 @@ const AdminBooks = (props) => {
                         initialValue={(selectedBook && selectedBook.price) ? selectedBook.price : ''}
                         onChangeHandler={changeBookHandler}/>
                     <Input
-                        className='text-input ml-51px'
+                        className='text-input year-book'
                         fieldName='year'
                         inputType='number'
                         maxValue={10000}
@@ -177,7 +177,7 @@ const AdminBooks = (props) => {
                         folder='books'/>
                     <button
                         type='button'
-                        className='save-botton'
+                        className='save-button'
                         onClick={formSubmit}>
                         SAVE
                     </button>

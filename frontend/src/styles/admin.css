@@ -65,11 +65,8 @@
   .submit-button:hover {
     background-color: #45a049;
   }
-.bold {
-  font-weight: bold;
-}
 
-.create-battom {
+.create-buttom {
     background: #4d5fe2;
     color: white;
     border: 1px solid #000000;
@@ -79,7 +76,7 @@
     cursor: pointer;
 }
 
-.save-botton {
+.save-button {
     background: #4d5fe2;
     color: white;
     padding: 10px;
@@ -90,16 +87,20 @@
     cursor: pointer;
 }
 
-.ml-40px {
+.pages-book {
     margin-left: 40px;
 }
 
-.ml-46-5px {
+.price-book {
     margin-left: 46.5px;
 }
 
-.ml-51px {
+.year-book {
     margin-left: 51px;
+}
+
+.fieldName {
+    font-weight: bold;
 }
 
 .ml-84px {

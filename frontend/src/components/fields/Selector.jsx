@@ -24,6 +24,9 @@ const Selector = (props) => {
 
     return (
         <div className={className}>
+            <div className='fieldName'>
+                {fieldName}:
+            </div>
             {
                 items.map((item, index) => (
                     <div key={`${fieldName}-${index}`}>
