@@ -5,38 +5,50 @@ import Input from '../../components/fields/Input';
 import Selector from '../../components/fields/Selector';
 import FileField from '../../components/fields/FileField';
 import TextareaField from '../../components/fields/TextareaField';
+import Dropdown from '../../components/elements/Dropdown';
 
 
 const AdminBooks = (props) => {
     const [books, setBooks] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [authors, setAuthors] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);
     const [tempData, setTempData] = useState({});
-    // const [allGenres, setAllGenres] = useState([]);
 
     useEffect(() => {
-        fetchData('books', (data) => {
-            setBooks(data);
-            // extractGenresFromBooks(data);
-        });
-        fetchData('genres', (data) => {
-            setGenres(data);
-        });
+        fetchData('books', (data) => setBooks(data));
+        fetchData('genres', (data) => setGenres(data));
     }, []);
 
     useEffect(() => {
+        if (books.length > 0) {
+            const ids = [];
+            const results = books.reduce((acc, book) => {
+                if (ids.indexOf(book.authorId._id) === -1) {
+                    acc.push({
+                        id: book.authorId._id,
+                        firstName: book.authorId.userId.firstName,
+                        lastName: book.authorId.userId.lastName
+                    });
+                    ids.push(book.authorId._id);
+                }
+                return acc;
+            }, []);
+            setAuthors(results);
+        }
+    }, [books]);
+
+    useEffect(() => {
         if (selectedBook) {
-            setTempData({
-                ...selectedBook,
-                // genres: selectedBook.genres ? selectedBook.genres.map((g) => g.title) : []
-            });
+            setTempData({...selectedBook});
         } else {
             setTempData({});
         }
     }, [selectedBook]);
 
-    const changeBookHandler = (field, val) => {
-        console.log('FFF: ', field, val)
+    const changeBookHandler = (field, val, additionalParam = null) => {
+        // console.log('FFF: ', field, val)
+        if (additionalParam) console.log('ADD: ', additionalParam);
         setTempData((prevData) => ({
             ...prevData,
             [field]: val,
@@ -54,39 +66,7 @@ const AdminBooks = (props) => {
         setTempData({});
     }
 
-    // 1. Сделать css для инпутов (лейблы), для текстарии
-    // 2. Добавить селектор для передачи выбранного жанра (он будет один)
-    // 3. Добавить компонент (для формы), который будет позволять множественный выбор. (чекбокс)
-    // 4. На следующий урок показать предачу компонента как свойство
-
-
-    // function handleGenreCheckboxChange(genre) {
-    //     setTempData((prevData) => {
-    //         const updatedGenres = prevData.genres ? [...prevData.genres] : [];
-    //         if (updatedGenres.includes(genre)) {
-    //             return {
-    //                 ...prevData,
-    //                 genres: updatedGenres.filter((g) => g !== genre),
-    //             };
-    //         } else {
-    //             return {
-    //                 ...prevData,
-    //                 genres: [...updatedGenres, genre],
-    //             };
-    //         }
-    //     });
-    // }
-
-    // const extractGenresFromBooks = (books) => {
-    //     const genresSet = new Set();
-    //     books.forEach((book) => {
-    //         if (book.genres) {
-    //             book.genres.forEach((genre) => genresSet.add(genre.title));
-    //         }
-    //     });
-    //     setAllGenres([...genresSet]);
-    // };
-
+    // console.log('books: ', books);
     return (
         <div className='flex'>
             <div className='admin-books-list-wrapper'>
@@ -160,16 +140,16 @@ const AdminBooks = (props) => {
                         className=''
                         fieldName='genres'
                         items={genres}
-                        initialValue={(selectedBook && selectedBook.genres) ? selectedBook.genres : []}
+                        initialValue={(selectedBook && selectedBook.genres) ? selectedBook.genres : null}
                         onSelectHandler={changeBookHandler}/>
 
-                    {/* <Input
-                        className='text-input'
-                        fieldName='genres'
-                        inputType='checkbox'
-                        options={allGenres}
-                        initialValue={tempData.genres || []}
-                        onChangeHandler={changeBookHandler}/> */}
+                    <Dropdown
+                        className={''}
+                        items={authors}
+                        initialValue={selectedBook}
+                        onChangeHandler={(val) => changeBookHandler('authorId', val, 42)}/>
+                        {/* onChangeHandler={(val) => {changeBookHandler('authorId', val)}}/> */}
+                    
                     <FileField
                         initialValue={(selectedBook && selectedBook.picture) ? selectedBook.picture : null}
                         fieldName='picture'

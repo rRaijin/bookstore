@@ -161,7 +161,7 @@ router.put('/', jsonParser, async (req, res) => {
         });
     }
     // saveFile(picture, imageFolder);
-    await book.save();
+    // await book.save();
     return res.status(200).json({message: 'OK', item: book});
 });
 

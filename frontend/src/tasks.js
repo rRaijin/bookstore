@@ -519,12 +519,15 @@ const motorcycle = vehicleFactory.createVehicle("motorcycle") // Motorcycle { tu
 // Шаблон Builder используется для создания объектов «по шагам». 
 // Обычно у нас есть функции или методы, которые добавляют к нашему объекту определенные свойства или методы.
 
-console.log('Наш автомобиль: ', car);
+// console.log('Наш автомобиль: ', car);
 // console.dir(car); // тоже интересный метод консоли
 
 // These functions take an object as parameter and add a method to them
 const addFlyingAbility = obj => {
-    obj.fly = () => console.log(`Now ${obj.name} can fly!`);
+    obj.fly = () => {
+
+    }
+        // console.log(`Now ${obj.name} can fly!`);
 }
 
 const addSpeechAbility = obj => {

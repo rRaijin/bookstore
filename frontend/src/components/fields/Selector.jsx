@@ -11,6 +11,8 @@ const Selector = (props) => {
                 acc.push(item._id);
                 return acc;
             }, []));
+        } else {
+            updateSelectedList([]);
         }
     }, [initialValue]);
 
