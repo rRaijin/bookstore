@@ -4,8 +4,20 @@ import { useState, useEffect } from 'react';
 const Dropdown = (props) => {
     const { className, items, initialValue, onChangeHandler } = props;
 
-    const [selectedItem, setSelectedItem] = useState();
+    const [selectedItem, setSelectedItem] = useState(null);
     const [selectStatus, setSelectStatus] = useState(false);
+
+    useEffect(() => {
+        // if (initialValue && initialValue?.authorId?._id) {
+        // if (initialValue && initialValue.hasOwnProperty('authorId') && initialValue.authorId.hasOwnProperty('_id')) {
+        if (initialValue) {
+            const initAuthor = items.find(k => k.id === initialValue.authorId._id);
+            setSelectedItem(initAuthor);
+        } else {
+            console.log('initialValue: ', initialValue)
+            setSelectedItem(null);
+        }
+    }, [initialValue]);
 
     const onSelectHandle = (id) => {
         console.log('select: ', id)
@@ -17,20 +29,7 @@ const Dropdown = (props) => {
         setSelectStatus(false);
     }
 
-    // useEffect(() => {
-    //     if (initialId) {
-    //         if (items) {
-    //             setSelectedItem(items.find(item => item.id === initialId));
-    //         } else {
-
-    //         }
-    //     }
-    // }, [initialId]);
-
-    console.log('items: ', items);
-
-    // изначально показываем 1го автора, при наведении курсора мыши - открываем весь список(можно без скрола, но лучше с ним),
-    // клик по автору - меняем стейт и закрываем список, желательно css красиво
+    console.log('sel: ', selectedItem)
 
     return (
         <div className={className}
@@ -40,10 +39,8 @@ const Dropdown = (props) => {
             <div className='flex select-author-default'>
                 <div className=''>
                     {
-                        selectedItem ? 
-                        `${selectedItem.firstName} ${selectedItem.lastName}` : 
-                        (items && items.length > 0 ? `${items[0].firstName} ${items[0].lastName}` : 'Нет авторов')
-
+                        selectedItem && 
+                        `${selectedItem.firstName} ${selectedItem.lastName}`
                     }
                 </div>
                 <div>

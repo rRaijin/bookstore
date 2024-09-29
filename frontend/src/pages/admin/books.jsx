@@ -13,7 +13,7 @@ const AdminBooks = (props) => {
     const [genres, setGenres] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [selectedBook, setSelectedBook] = useState(null);
-    const [tempData, setTempData] = useState({});
+    const [preparedData, setPreparedData] = useState({});
 
     useEffect(() => {
         fetchData('books', (data) => setBooks(data));
@@ -40,30 +40,40 @@ const AdminBooks = (props) => {
 
     useEffect(() => {
         if (selectedBook) {
-            setTempData({...selectedBook});
+            setPreparedData({...selectedBook});
         } else {
-            setTempData({});
+            setPreparedData({});
         }
     }, [selectedBook]);
 
     const changeBookHandler = (field, val, additionalParam = null) => {
         // console.log('FFF: ', field, val)
-        if (additionalParam) console.log('ADD: ', additionalParam);
-        setTempData((prevData) => ({
+        // if (additionalParam) console.log('ADD: ', additionalParam);
+        setPreparedData((prevData) => ({
             ...prevData,
             [field]: val,
         }));
     }
 
     const formSubmit = () => {
-        tempData['imageFolder'] = 'books';
-        console.log('submit data: ', tempData);
-        saveData('books', tempData, () => alert('OK!!!'));
+        preparedData['imageFolder'] = 'books';
+        console.log('submit data: ', preparedData);
+        if (
+            preparedData.authorId && 
+            preparedData.genres && 
+            Array.isArray(preparedData.genres) && 
+            preparedData.genres.length > 0 &&
+            preparedData.picture
+        ) {
+            saveData('books', preparedData, () => alert('OK!!!'));
+        } else {
+            alert('ALERT')
+        }
     }
 
     const resetForm = () => {
         setSelectedBook(null);
-        setTempData({});
+        setPreparedData({});
     }
 
     // console.log('books: ', books);

@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs';
 
 import { saveFile } from './files.js';
 import Book from '../models/book.js';
@@ -129,8 +130,6 @@ router.get('/', async (req, res, next) => {
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
     const { bookName, description, year, authorId, price, pages, picture, imageFolder, genres } = req.body;
-    const authors = await Author.find({});
-    const author = authors[0];
     // const author = await Author.findById(authorId._id);
     // Определяем нужно создать новую книгу или обновить существующую
     // Для существующей в body прийдет поле "_id"
@@ -140,6 +139,7 @@ router.put('/', jsonParser, async (req, res) => {
         if (book) {
             book.bookName = bookName;
             book.description = description;
+            book.authorId = authorId;
             book.year = year;
             book.price = price;
             book.pages = pages;
@@ -156,12 +156,13 @@ router.put('/', jsonParser, async (req, res) => {
             price,
             pages,
             picture,
-            authorId: author._id,
-            genre: genres
+            authorId,
+            genres
         });
     }
-    // saveFile(picture, imageFolder);
-    // await book.save();
+    console.log('BOOK: ', book)
+    await saveFile(picture, imageFolder);
+    await book.save();
     return res.status(200).json({message: 'OK', item: book});
 });
 
