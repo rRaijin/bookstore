@@ -19,6 +19,7 @@ import Header from './components/Header';
 import HomePage from './pages/home';
 import Layout from './components/Layout';
 import Publishings from './pages/publishings';
+import AdminAuthors from './pages/admin/authors';
 
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
                         <Route path='authors' element={<AuthorsList/>}/>
                         <Route path='author/:id' element={<AuthorDetail/>}/>
                         <Route path='admin/books' element={<AdminBooks/>}/>
+                        <Route path='admin/authors' element={<AdminAuthors/>}/>
                         <Route path='publishings' element={<Publishings/>}/>
                     </Route>
                 </Routes>

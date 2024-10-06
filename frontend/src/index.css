@@ -61,6 +61,11 @@ code {
     width: 20%;
 }
 
+.admin-navigation {
+    display: flex;
+    border-bottom: 1px solid white;
+}
+
 .second-navigation li {
     background-color: #4d5fe2;
     padding: 1px 10px;

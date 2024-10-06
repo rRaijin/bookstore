@@ -52,6 +52,11 @@ const subMenuItems = [
         name: 'books',
         src: '/admin/books',
         icon: ''
+    },
+    {
+        name: 'authors',
+        src: '/admin/authors',
+        icon: ''
     }
 ];
 
@@ -77,7 +82,7 @@ const Header = () => {
                     }
                 </ul>
             </div>
-            <div className='flex'>
+            <div className='flex admin-navigation'>
                 <ul className='second-navigation'>
                     {
                         subMenuItems.map((el, i) => {

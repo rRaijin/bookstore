@@ -67,24 +67,43 @@
   }
 
 .create-buttom {
-    background: #4d5fe2;
+    border: none;
+    text-decoration: none;
     color: white;
-    border: 1px solid #000000;
-    padding: 10px;
+    background: #0B63F6;
+    box-shadow: 0 5px 0 #003CC5;
+    padding-left: 15px;
+    padding-right: 15px;
     margin: 5px;
-    border-radius: 5%;
+    border-radius: 9px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     cursor: pointer;
 }
 
+.create-buttom:active {
+    background: #003CC5;
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+}
+
 .save-button {
-    background: #4d5fe2;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
     color: white;
+    background: #0B63F6;
+    box-shadow: 0 5px 0 #003CC5;
     padding: 10px;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 0;
     cursor: pointer;
+}
+
+.save-button:active {
+    background: #003CC5;
+    box-shadow: none;
+    position: relative;
+    top: 5px;
 }
 
 .pages-book {
@@ -109,6 +128,58 @@
 
 .white {
     color: white;
+}
+
+.admin-authors-list {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 5px;
+}
+
+.admin-authors-list > li {
+    width: 100%;
+    /* border-radius: 5px; */
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    height: 50px;
+}
+
+.admin-authors-list > li:hover  {
+    width: 102%;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    height: 50px;
+    color: #4d5fe2;
+}
+
+.admin-authors-list > li > div {
+    padding: 14px;
+    height: 50px;
+}
+
+.admin-authors-list-wrapper {
+    width: 30%;
+    /* border: 1px solid black; */
+    background-color: #4d5fe2;
+    
+}
+
+.admin-authors-form-wrapper {
+    width: 70%;
+    /* border: 1px solid black; */
+}
+
+.admin-author-name {
+    margin-top: 5%;
+    box-shadow: 0px 0px 5px;
+}
+
+.admin-author-bio {
+    margin-left: 18.1%;
+    box-shadow: 0px 0px 5px;
 }
 
 /* TEMP CSS FOR FORM FIELDS */
