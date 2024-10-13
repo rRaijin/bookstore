@@ -45,20 +45,44 @@ const AdminAuthors = (props) => {
         }
     }, [selectedBook]);
 
-    const changeAuthorHandler = (field, val, additionalParam = null) => {
-        // console.log('FFF: ', field, val)
-        // if (additionalParam) console.log('ADD: ', additionalParam);
+    const changeAuthorHandler = (field, val) => {
         setPreparedData((prevData) => ({
             ...prevData,
             [field]: val,
+            authorId: selectedAuthor ? selectedAuthor.id : null
         }));
     }
+    
+    
 
     const resetForm = () => {
         setSelectedAuthor(null);
     }
+    // console.log('preparedData ', preparedData);
+    const formSubmit = () => {
+        const dataToSubmit = {
+            ...preparedData,
+            imageFolder: 'authors'
+        };
+        console.log('submit data: ', dataToSubmit);
+        if (
+            dataToSubmit.authorId && 
+            dataToSubmit.bio &&
+            dataToSubmit.firstName &&
+            dataToSubmit.lastName
+        ) {
+            saveData('authors', dataToSubmit, (response) => {
+                // Обработка успешного ответа
+                alert('Автор успешно сохранён!');
+            }, (error) => {
+                console.error('Ошибка при сохранении автора:', error);
+            });
+        } else {
+            alert('Не возможно создать автора');
+        }
+    }
+    
 
-    console.log('authors: ', authors);
     return (
         <div className='flex'>
             <div className='admin-authors-list-wrapper'>
@@ -91,17 +115,32 @@ const AdminAuthors = (props) => {
                     </button>
                 </div>
                 <form className='admin-books-form'>
-                        <Input
-                            className='text-input admin-author-name'
-                            fieldName='AuthorName'
-                            initialValue={selectedAuthor ? `${selectedAuthor.firstName} ${selectedAuthor.lastName}` : ''}
-                            onChangeHandler={changeAuthorHandler}/>
-                        <TextareaField
-                            className='text-input admin-author-bio'
-                            fieldName='Bio'
-                            initialValue={selectedAuthor ? `${selectedAuthor.bio}` : ''}
-                            onChangeHandler={changeAuthorHandler}
-                            rows={8}/>
+                    <Input
+                        className='text-input admin-author-firstname'
+                        fieldName='firstName'
+                        initialValue={selectedAuthor ? selectedAuthor.firstName : ''}
+                        onChangeHandler={changeAuthorHandler}
+                    />
+                    <Input
+                        className='text-input admin-author-lastname'
+                        fieldName='lastName'
+                        initialValue={selectedAuthor ? selectedAuthor.lastName : ''}
+                        onChangeHandler={changeAuthorHandler}
+                    />
+                    <TextareaField
+                        className='text-input admin-author-bio'
+                        fieldName='bio'
+                        initialValue={selectedAuthor ? selectedAuthor.bio : ''}
+                        onChangeHandler={changeAuthorHandler}
+                        rows={8}
+                    />
+                    <button
+                        type='button'
+                        className='save-button'
+                        onClick={formSubmit}>
+                        SAVE
+                    </button>
+
                         
                 </form>
             </div>

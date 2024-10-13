@@ -408,7 +408,7 @@ const HomePage = () => {
                 {
                     authors.map((author, i) => (
                         <div key={`author-${i}`} className=''>
-                            <div className='author-name'>
+                            {/* <div className='author-name'>
                                 {author.userId.firstName} {author.userId.lastName}
                             </div>
                             <img
@@ -436,7 +436,7 @@ const HomePage = () => {
                                         Редактировать
                                     </button>
                                 </div>
-                            }
+                            } */}
                         </div>
                     ))
                 }

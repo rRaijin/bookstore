@@ -70,7 +70,7 @@ const AdminBooks = (props) => {
             alert('ALERT')
         }
     }
-
+    console.log('preparedData: ', preparedData);
     const resetForm = () => {
         setSelectedBook(null);
         setPreparedData({});
