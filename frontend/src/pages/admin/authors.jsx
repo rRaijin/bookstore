@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react';
 
 import { fetchData, saveData } from '../../utils';
 
-import Input from '../../components/fields/Input';
-import TextareaField from '../../components/fields/TextareaField';
+import AdminAuthorsList from '../../components/authors/admin/AdminAuthorsList';
+import AdminAuthorsForm from '../../components/authors/admin/AdminAuthorsForm';
 
 const AdminAuthors = (props) => {
     const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
-    const [selectedBook, setSelectedBook] = useState(null);
-    const [preparedData, setPreparedData] = useState({});
     const [selectedAuthor, setSelectedAuthor] = useState(null);
 
 
@@ -36,114 +34,26 @@ const AdminAuthors = (props) => {
             setAuthors(results);
         }
     }, [books]);
-
-    useEffect(() => {
-        if (selectedBook) {
-            setPreparedData({...selectedBook});
-        } else {
-            setPreparedData({});
-        }
-    }, [selectedBook]);
-
-    const changeAuthorHandler = (field, val) => {
-        setPreparedData((prevData) => ({
-            ...prevData,
-            [field]: val,
-            authorId: selectedAuthor ? selectedAuthor.id : null
-        }));
-    }
     
-    
-
     const resetForm = () => {
         setSelectedAuthor(null);
-    }
-    // console.log('preparedData ', preparedData);
-    const formSubmit = () => {
-        const dataToSubmit = {
-            ...preparedData,
-            imageFolder: 'authors'
-        };
-        console.log('submit data: ', dataToSubmit);
-        if (
-            dataToSubmit.authorId && 
-            dataToSubmit.bio &&
-            dataToSubmit.firstName &&
-            dataToSubmit.lastName
-        ) {
-            saveData('authors', dataToSubmit, (response) => {
-                // Обработка успешного ответа
-                alert('Автор успешно сохранён!');
-            }, (error) => {
-                console.error('Ошибка при сохранении автора:', error);
-            });
-        } else {
-            alert('Не возможно создать автора');
-        }
     }
     
 
     return (
         <div className='flex'>
-            <div className='admin-authors-list-wrapper'>
-                <div>
-                    <ul className='admin-authors-list'>
-                        {
-                            authors.map((author, i) => {
-                                return (
-                                    <li
-                                        className='pointer flex'
-                                        key={`author-${i}`}
-                                        onClick={() => setSelectedAuthor(author)}>
 
-                                        <div>
-                                            <strong>
-                                                {author.firstName} {author.lastName}
-                                            </strong>
-                                        </div>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
-            <div className='admin-authors-form-wrapper'>
-                <div>
-                    <button className='create-buttom' onClick={resetForm}>
-                        CREATE
-                    </button>
-                </div>
-                <form className='admin-books-form'>
-                    <Input
-                        className='text-input admin-author-firstname'
-                        fieldName='firstName'
-                        initialValue={selectedAuthor ? selectedAuthor.firstName : ''}
-                        onChangeHandler={changeAuthorHandler}
-                    />
-                    <Input
-                        className='text-input admin-author-lastname'
-                        fieldName='lastName'
-                        initialValue={selectedAuthor ? selectedAuthor.lastName : ''}
-                        onChangeHandler={changeAuthorHandler}
-                    />
-                    <TextareaField
-                        className='text-input admin-author-bio'
-                        fieldName='bio'
-                        initialValue={selectedAuthor ? selectedAuthor.bio : ''}
-                        onChangeHandler={changeAuthorHandler}
-                        rows={8}
-                    />
-                    <button
-                        type='button'
-                        className='save-button'
-                        onClick={formSubmit}>
-                        SAVE
-                    </button>
+            <AdminAuthorsList
+                authors={authors}
+                selectedAuthor={setSelectedAuthor}
+            />
 
-                        
-                </form>
-            </div>
+            <AdminAuthorsForm
+                selectedAuthor={selectedAuthor}
+                onStartCreate={resetForm}
+                authors={authors}
+                setSelectedAuthor={setSelectedAuthor}            
+            />
         </div>
     )
 }

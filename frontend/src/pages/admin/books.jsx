@@ -36,40 +36,6 @@ const AdminBooks = (props) => {
 
     const resetForm = () => setSelectedBook(null);
 
-<<<<<<< HEAD
-    const changeBookHandler = (field, val, additionalParam = null) => {
-        // console.log('FFF: ', field, val)
-        // if (additionalParam) console.log('ADD: ', additionalParam);
-        setPreparedData((prevData) => ({
-            ...prevData,
-            [field]: val,
-        }));
-    }
-
-    const formSubmit = () => {
-        preparedData['imageFolder'] = 'books';
-        console.log('submit data: ', preparedData);
-        if (
-            preparedData.authorId && 
-            preparedData.genres && 
-            Array.isArray(preparedData.genres) && 
-            preparedData.genres.length > 0 &&
-            preparedData.picture
-        ) {
-            saveData('books', preparedData, () => alert('OK!!!'));
-        } else {
-            alert('ALERT')
-        }
-    }
-    console.log('preparedData: ', preparedData);
-    const resetForm = () => {
-        setSelectedBook(null);
-        setPreparedData({});
-    }
-
-    // console.log('books: ', books);
-=======
->>>>>>> dbb530ff2cb2e8cdc92728eff57ead29f2ff6bd7
     return (
         <div className='flex'>
             <AdminBooksList
