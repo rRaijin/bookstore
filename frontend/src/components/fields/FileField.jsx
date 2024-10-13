@@ -42,7 +42,7 @@ const FileField = (props) => {
         <div className={className}>
             {
                 selectedFilePath &&
-                <img src={selectedFilePath} alt='book-image'/>
+                <img style={{width: '100%', height: 'auto'}} src={selectedFilePath} alt='book-image'/>
             }
             <input
                 className={childClassName}
