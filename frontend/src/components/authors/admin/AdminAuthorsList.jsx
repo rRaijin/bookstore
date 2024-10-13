@@ -1,4 +1,4 @@
-const AdminAuthorsList = ({ authors, selectedAuthor }) => {
+const AdminAuthorsList = ({ authors, onAuthorSelected }) => {
 
     return (
         <div className='admin-authors-list-wrapper'>
@@ -10,7 +10,7 @@ const AdminAuthorsList = ({ authors, selectedAuthor }) => {
                                 <li
                                     className='pointer flex'
                                     key={`author-${i}`}
-                                    onClick={() => selectedAuthor(author)}>
+                                    onClick={() => onAuthorSelected(author)}>
 
                                     <div>
                                         <strong>

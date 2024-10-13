@@ -51,6 +51,4 @@ const AdminBooks = (props) => {
     )
 }
 
-
-
 export default AdminBooks;

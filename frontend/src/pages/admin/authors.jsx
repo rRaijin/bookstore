@@ -6,58 +6,53 @@ import AdminAuthorsList from '../../components/authors/admin/AdminAuthorsList';
 import AdminAuthorsForm from '../../components/authors/admin/AdminAuthorsForm';
 
 const AdminAuthors = (props) => {
-    const [books, setBooks] = useState([]);
     const [authors, setAuthors] = useState([]);
+    const [authors2, setAuthors2] = useState([]);
+
     const [selectedAuthor, setSelectedAuthor] = useState(null);
 
-
     useEffect(() => {
-        fetchData('books', (data) => setBooks(data));
+        fetchData('authors', (data) => {
+            console.log('data: ', data);
+            setAuthors(data);
+    });
     }, []);
-    
 
     useEffect(() => {
-        if (books.length > 0) {
+        if (authors.length > 0) {
             const ids = [];
-            const results = books.reduce((acc, book) => {
-                if (ids.indexOf(book.authorId._id) === -1) {
+            const results = authors.reduce((acc, author) => {
+                if (ids.indexOf(author.userId._id) === -1) {
                     acc.push({
-                        id: book.authorId._id,
-                        firstName: book.authorId.userId.firstName,
-                        lastName: book.authorId.userId.lastName,
-                        bio: book.authorId.bio
+                        id: author.userId._id,
+                        firstName: author.userId.firstName,
+                        lastName: author.userId.lastName,
+                        userEmail: author.userId.userEmail,
+                        bio: author.bio,
+                        userId: author.userId._id
                     });
-                    ids.push(book.authorId._id);
+                    ids.push(author.userId._id);
                 }
                 return acc;
             }, []);
-            setAuthors(results);
+            setAuthors2(results);
         }
-    }, [books]);
+    }, [authors]);
+    console.log(authors)
     
-    const resetForm = () => {
-        setSelectedAuthor(null);
-    }
+    const resetForm = () => setSelectedAuthor(null);
     
-
     return (
         <div className='flex'>
-
             <AdminAuthorsList
-                authors={authors}
-                selectedAuthor={setSelectedAuthor}
-            />
+                authors={authors2}
+                onAuthorSelected={setSelectedAuthor}/>
 
             <AdminAuthorsForm
                 selectedAuthor={selectedAuthor}
-                onStartCreate={resetForm}
-                authors={authors}
-                setSelectedAuthor={setSelectedAuthor}            
-            />
+                onStartCreate={resetForm}/>
         </div>
     )
 }
-
-
 
 export default AdminAuthors;

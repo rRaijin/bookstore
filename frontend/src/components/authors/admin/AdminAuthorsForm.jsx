@@ -1,49 +1,43 @@
 import { useState, useEffect } from 'react';
 
 import { saveData } from '../../../utils';
-
 import Input from '../../fields/Input';
 import TextareaField from '../../fields/TextareaField';
 
 
 const AdminAuthorsForm = (props) => {
-    const { selectedBook, onStartCreate, authors, selectedAuthor,setSelectedAuthor } = props;
+    const { selectedAuthor, onStartCreate } = props;
     const [preparedData, setPreparedData] = useState({});
-
+    console.log(selectedAuthor)
     useEffect(() => {
-        if (selectedBook) {
-            setPreparedData({...selectedBook});
+        if (selectedAuthor) {
+            setPreparedData({...selectedAuthor});
         } else {
             setPreparedData({});
         }
-    }, [selectedBook]);
+    }, [selectedAuthor]);
 
     const changeAuthorHandler = (field, val) => {
         setPreparedData((prevData) => ({
             ...prevData,
             [field]: val,
-            authorId: selectedAuthor ? selectedAuthor.id : null
+            userId: selectedAuthor ? selectedAuthor.userId : null
         }));
     }
 
-    const resetForm = () => {
-        setSelectedAuthor(null);
+    const onStartCreateHandle = () => {
+        setPreparedData({});
         onStartCreate();
     }
 
     const formSubmit = () => {
-        const dataToSubmit = {
-            ...preparedData,
-            imageFolder: 'authors'
-        };
-        console.log('submit data: ', dataToSubmit);
         if (
-            dataToSubmit.authorId && 
-            dataToSubmit.bio &&
-            dataToSubmit.firstName &&
-            dataToSubmit.lastName
+            preparedData.lastName &&
+            preparedData.bio &&
+            preparedData.firstName &&
+            preparedData.userEmail
         ) {
-            saveData('authors', dataToSubmit, (response) => {
+            saveData('authors', preparedData, (response) => {
                 // Обработка успешного ответа
                 alert('Автор успешно сохранён!');
             }, (error) => {
@@ -57,7 +51,7 @@ const AdminAuthorsForm = (props) => {
     return (
         <div className='admin-authors-form-wrapper'>
             <div>
-                <button className='create-buttom' onClick={resetForm}>
+                <button className='create-buttom' onClick={onStartCreateHandle}>
                     CREATE
                 </button>
             </div>
@@ -66,29 +60,29 @@ const AdminAuthorsForm = (props) => {
                     className='text-input admin-author-firstname'
                     fieldName='firstName'
                     initialValue={selectedAuthor ? selectedAuthor.firstName : ''}
-                    onChangeHandler={changeAuthorHandler}
-                />
+                    onChangeHandler={changeAuthorHandler}/>
                 <Input
                     className='text-input admin-author-lastname'
                     fieldName='lastName'
                     initialValue={selectedAuthor ? selectedAuthor.lastName : ''}
-                    onChangeHandler={changeAuthorHandler}
-                />
+                    onChangeHandler={changeAuthorHandler}/>
+                <Input
+                    className='text-input admin-author-lastname'
+                    fieldName='userEmail'
+                    initialValue={selectedAuthor ? selectedAuthor.userEmail : ''}
+                    onChangeHandler={changeAuthorHandler}/>
                 <TextareaField
                     className='text-input admin-author-bio'
                     fieldName='bio'
                     initialValue={selectedAuthor ? selectedAuthor.bio : ''}
                     onChangeHandler={changeAuthorHandler}
-                    rows={8}
-                />
+                    rows={8}/>
                 <button
                     type='button'
                     className='save-button'
                     onClick={formSubmit}>
                     SAVE
                 </button>
-
-                    
             </form>
         </div>
     )
