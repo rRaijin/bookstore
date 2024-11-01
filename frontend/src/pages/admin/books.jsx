@@ -20,7 +20,8 @@ const AdminBooks = (props) => {
         if (books.length > 0) {
             const ids = [];
             const results = books.reduce((acc, book) => {
-                if (ids.indexOf(book.authorId._id) === -1) {
+                // Проверяем, что book.authorId и book.authorId.userId определены
+                if (book.authorId && book.authorId.userId && ids.indexOf(book.authorId._id) === -1) {
                     acc.push({
                         id: book.authorId._id,
                         firstName: book.authorId.userId.firstName,
@@ -33,6 +34,7 @@ const AdminBooks = (props) => {
             setAuthors(results);
         }
     }, [books]);
+    
 
     const resetForm = () => setSelectedBook(null);
 

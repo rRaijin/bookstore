@@ -57,6 +57,11 @@ const subMenuItems = [
         name: 'authors',
         src: '/admin/authors',
         icon: ''
+    },
+    {
+        name: 'newspaper',
+        src: '/admin/newspaper',
+        icon: ''
     }
 ];
 

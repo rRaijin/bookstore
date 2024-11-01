@@ -20,6 +20,7 @@ import HomePage from './pages/home';
 import Layout from './components/Layout';
 import Publishings from './pages/publishings';
 import AdminAuthors from './pages/admin/authors';
+import AdminNewspapper from './pages/admin/newspapers';
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
                         <Route path='author/:id' element={<AuthorDetail/>}/>
                         <Route path='admin/books' element={<AdminBooks/>}/>
                         <Route path='admin/authors' element={<AdminAuthors/>}/>
+                        <Route path='admin/newspaper' element={<AdminNewspapper/>}/>
                         <Route path='publishings' element={<Publishings/>}/>
                     </Route>
                 </Routes>

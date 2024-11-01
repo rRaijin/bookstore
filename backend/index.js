@@ -7,6 +7,7 @@ import routerBook from './routes/book.js';
 import routerGenre from './routes/genre.js';
 import routerUser from './routes/user.js';
 import routerImages from './routes/files.js';
+import routerNewspaper from './routes/newspaper.js';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/uploads', express.static('uploads')); // предоставляется доступ ко всем медиа-файлам в папке uploads
 app.use('/api/authors', routerAuthor);
 app.use('/api/books', routerBook);
+app.use('/api/newspaper', routerNewspaper)
 app.use('/api/genres', routerGenre);
 app.use('/api/users', routerUser);
 app.use('/api/images', routerImages);
