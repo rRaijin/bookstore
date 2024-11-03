@@ -5,57 +5,24 @@ import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
 
 const AdminNewspapper = (props) => {
-    const { onStartCreate } = props;
-    const [newspapers, setNewspapers] = useState([]);
-    const [preparedData, setPreparedData] = useState([]);
-    const [selectedNewspapper, setSelectedNewspapper] = useState(null);
+    const [newspapers, setNewspapers] = useState([]); // храним все газеты
+    const [preparedData, setPreparedData] = useState(null); // храним предварительный объект отправки данный на сервер
 
     useEffect(() => {
-        fetchData('newspapers', (data) => {
-            console.log('data: ', data);
+        fetchData('newspaper', (data) => {
             setNewspapers(data);
-    });
+        });
     }, []);
-    console.log(newspapers)
-
-    useEffect(() => {
-        if (newspapers.length > 0) {
-            const ids = [];
-            const results = newspapers.reduce((acc, newspaper) => {
-                if (ids.indexOf(newspaper._id) === -1) {
-                    acc.push({
-                        // newspaperName: newspaper.userId.newspaperName
-                    });
-                    ids.push(newspaper._id);
-                }
-                return acc;
-            }, []);
-            setNewspapers(results);
-        }
-    }, [newspapers]);
-    // console.log(newspapers)
-    
-    console.log(selectedNewspapper)
-    useEffect(() => {
-        if (selectedNewspapper) {
-            setPreparedData({...selectedNewspapper});
-        } else {
-            setPreparedData({});
-        }
-    }, [selectedNewspapper]);
 
     const changeNewspapperHandler = (field, val) => {
         setPreparedData((prevData) => ({
             ...prevData,
-            [field]: val,
-            // userId: selectedAuthor ? selectedAuthor.userId : null
+            [field]: val
         }));
     }
 
-    const onStartCreateHandle = () => {
-        setPreparedData({});
-        onStartCreate();
-    }
+    const setSelectedNewspapperHandler = (item) => setPreparedData({...item}); // устанавливает подготовленній к редактированию объект
+    const onStartCreateHandle = () => setPreparedData(null); // сброс
 
     const formSubmit = () => {
         if (
@@ -86,7 +53,7 @@ const AdminNewspapper = (props) => {
                                     <li
                                         className='pointer flex'
                                         key={`newspaper-${i}`}
-                                        onClick={() => setSelectedNewspapper(newspaper)}>
+                                        onClick={() => setSelectedNewspapperHandler(newspaper)}>
 
                                         <div>
                                             <strong>
@@ -110,24 +77,24 @@ const AdminNewspapper = (props) => {
                     <Input
                         className='text-input admin-author-firstname'
                         fieldName='newspaperName'
-                        // initialValue={selectedAuthor ? selectedAuthor.firstName : ''}
+                        initialValue={preparedData ? preparedData.newspaperName : ''}
                         onChangeHandler={changeNewspapperHandler}/>
                     <Input
                         className='text-input admin-author-lastname'
                         fieldName='description'
-                        // initialValue={selectedAuthor ? selectedAuthor.userEmail : ''}
+                        initialValue={preparedData ? preparedData.description : ''}
                         onChangeHandler={changeNewspapperHandler}/>
                     <Input
                         className='text-input year-book'
                         fieldName='year'
                         inputType='number'
                         maxValue={10000}
-                        // initialValue={(selectedBook && selectedBook.year) ? selectedBook.year : ''}
+                        initialValue={preparedData ? preparedData.year : ''}
                         onChangeHandler={changeNewspapperHandler}/>
                     <TextareaField
                         className='text-input admin-author-bio'
                         fieldName='publisher'
-                        // initialValue={selectedAuthor ? selectedAuthor.bio : ''}
+                        initialValue={preparedData ? preparedData.publisher : ''}
                         onChangeHandler={changeNewspapperHandler}
                         rows={8}/>
                     <button

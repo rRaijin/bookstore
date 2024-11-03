@@ -7,20 +7,19 @@ import Newspaper from '../models/newspaper.js';
 const jsonParser = express.json();
 const router = new express.Router();
 
-router.get('/', async (req, res, next) => {
-    try {
-        const items = await Newspaper.find();
-        if (!items || items.length === 0) {
-            return res.status(404).json({ message: 'Газеты не найдены' });
+router.get('/', (req, res) => {
+    console.log('DEBUG SERVER: ', req.query);
+    return Newspaper.find().then((items) => {
+        console.log('items: ', items);
+        if (items.length === 0) {
+            return res.status(200).json({message: 'Газеты не найдены', items});
+        } else {
+            return res.status(200).json({items});
         }
-        return res.status(200).json({ items });
-    } catch (error) {
-        console.log('Error: ', error);
-        return res.status(500).json({ message: 'Ошибка при получении газет' });
-    }
+    }).catch((err) => {
+        return res.json({message: 'Ошибка при получении газет'});
+    });
 });
-
-
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);

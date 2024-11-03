@@ -46,6 +46,7 @@ export const fetchData = (url, callback) => {
             'Content-Type': 'application/json'
         }
     }).then(async (response) => {
+        console.log('resp: ', response)
         if (response.ok === true) {
             const results = await response.json();
             if (callback) {
