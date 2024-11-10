@@ -3,44 +3,29 @@ import { useState, useEffect } from 'react';
 import { fetchData, saveData } from '../../utils';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
+import { adminEditHOC } from '../../hocs/adminEditHOC';
+
 
 const AdminNewspapper = (props) => {
-    const [newspapers, setNewspapers] = useState([]); // храним все газеты
-    const [preparedData, setPreparedData] = useState(null); // храним предварительный объект отправки данный на сервер
+    const { items, initialValues, updateInitialValues, setSelectedItem, onStartCreateHandle, formSubmit } = props;
 
-    useEffect(() => {
-        fetchData('newspaper', (data) => {
-            setNewspapers(data);
-        });
-    }, []);
-
-    const changeNewspapperHandler = (field, val) => {
-        setPreparedData((prevData) => ({
-            ...prevData,
-            [field]: val
-        }));
-    }
-
-    const setSelectedNewspapperHandler = (item) => setPreparedData({...item}); // устанавливает подготовленній к редактированию объект
-    const onStartCreateHandle = () => setPreparedData(null); // сброс
-
-    const formSubmit = () => {
-        if (
-            preparedData.newspaperName &&
-            preparedData.description &&
-            preparedData.year &&
-            preparedData.publisher
-        ) {
-            saveData('newspaper', preparedData, (response) => {
-                // Обработка успешного ответа
-                alert('Газета успешно сохранён!');
-            }, (error) => {
-                console.error('Ошибка при сохранении газеты:', error);
-            });
-        } else {
-            alert('Не возможно создать газету');
-        }
-    }
+    // const formSubmit = () => {
+    //     if (
+    //         initialValues.newspaperName &&
+    //         initialValues.description &&
+    //         initialValues.year &&
+    //         initialValues.publisher
+    //     ) {
+    //         saveData('newspaper', initialValues, (response) => {
+    //             // Обработка успешного ответа
+    //             alert('Газета успешно сохранён!');
+    //         }, (error) => {
+    //             console.error('Ошибка при сохранении газеты:', error);
+    //         });
+    //     } else {
+    //         alert('Не возможно создать газету');
+    //     }
+    // }
 
     return (
         <div className='flex'>
@@ -48,12 +33,12 @@ const AdminNewspapper = (props) => {
                 <div>
                     <ul className='admin-list'>
                         {
-                            newspapers.map((newspaper, i) => {
+                            items.map((newspaper, i) => {
                                 return (
                                     <li
                                         className='pointer flex'
                                         key={`newspaper-${i}`}
-                                        onClick={() => setSelectedNewspapperHandler(newspaper)}>
+                                        onClick={() => setSelectedItem(newspaper)}>
 
                                         <div>
                                             <strong>
@@ -77,25 +62,25 @@ const AdminNewspapper = (props) => {
                     <Input
                         className='text-input admin-author-name'
                         fieldName='newspaperName'
-                        initialValue={preparedData ? preparedData.newspaperName : ''}
-                        onChangeHandler={changeNewspapperHandler}/>
+                        initialValue={initialValues ? initialValues.newspaperName : ''}
+                        onChangeHandler={updateInitialValues}/>
                     <Input
                         className='text-input admin-author-lastname'
                         fieldName='description'
-                        initialValue={preparedData ? preparedData.description : ''}
-                        onChangeHandler={changeNewspapperHandler}/>
+                        initialValue={initialValues ? initialValues.description : ''}
+                        onChangeHandler={updateInitialValues}/>
                     <Input
                         className='text-input year-book'
                         fieldName='year'
                         inputType='number'
                         maxValue={10000}
-                        initialValue={preparedData ? preparedData.year : ''}
-                        onChangeHandler={changeNewspapperHandler}/>
+                        initialValue={initialValues ? initialValues.year : ''}
+                        onChangeHandler={updateInitialValues}/>
                     <TextareaField
                         className='text-input admin-bio'
                         fieldName='publisher'
-                        initialValue={preparedData ? preparedData.publisher : ''}
-                        onChangeHandler={changeNewspapperHandler}
+                        initialValue={initialValues ? initialValues.publisher : ''}
+                        onChangeHandler={updateInitialValues}
                         rows={8}/>
                     <button
                         type='button'
@@ -106,8 +91,16 @@ const AdminNewspapper = (props) => {
                 </form>
             </div>
         </div>
-        
     )
 }
 
-export default AdminNewspapper;
+export default adminEditHOC(
+    AdminNewspapper,
+    'newspaper',
+    (initialValues) =>
+        initialValues.newspaperName &&
+        initialValues.description &&
+        initialValues.year &&
+        initialValues.publisher,
+    'газет'
+);

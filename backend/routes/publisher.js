@@ -2,8 +2,10 @@ import express from 'express';
 import { saveFile } from './files.js';
 import Publisher from '../models/publisher.js';
 
+
 const jsonParser = express.json();
 const router = new express.Router();
+
 
 router.get('/', (req, res) => {
     console.log('DEBUG SERVER: ', req.query);
@@ -48,6 +50,5 @@ router.put('/', jsonParser, async (req, res) => {
     await publisher.save();
     return res.status(200).json({message: 'OK', item: publisher});
 });
-
 
 export default router;

@@ -3,44 +3,11 @@ import { useState, useEffect } from 'react';
 import { fetchData, saveData } from '../../utils';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
+import { adminEditHOC } from '../../hocs/adminEditHOC';
+
 
 const AdminPublisher = (props) => {
-    const [publisher, setPublisher] = useState([]); 
-    const [preparedData, setPreparedData] = useState(null); 
-
-    useEffect(() => {
-        fetchData('publisher', (data) => {
-            setPublisher(data);
-        });
-    }, []);
-
-    const changeNewspapperHandler = (field, val) => {
-        setPreparedData((prevData) => ({
-            ...prevData,
-            [field]: val
-        }));
-    }
-
-    const setSelectedNewspapperHandler = (item) => setPreparedData({...item}); 
-    const onStartCreateHandle = () => setPreparedData(null); 
-
-    const formSubmit = () => {
-        if (
-            preparedData.publisherName &&
-            preparedData.description &&
-            preparedData.year &&
-            preparedData.editorInChief
-        ) {
-            saveData('publisher', preparedData, (response) => {
-                // Обработка успешного ответа
-                alert('Издатель успешно сохранён!');
-            }, (error) => {
-                console.error('Ошибка при сохранении Издателя:', error);
-            });
-        } else {
-            alert('Не возможно создать Издателя');
-        }
-    }
+    const { items, initialValues, updateInitialValues, setSelectedItem, onStartCreateHandle, formSubmit } = props;
 
     return (
         <div className='flex'>
@@ -48,12 +15,12 @@ const AdminPublisher = (props) => {
                 <div>
                     <ul className='admin-list'>
                         {
-                            publisher.map((publisher, i) => {
+                            items.map((publisher, i) => {
                                 return (
                                     <li
                                         className='pointer flex'
                                         key={`publisher-${i}`}
-                                        onClick={() => setSelectedNewspapperHandler(publisher)}>
+                                        onClick={() => setSelectedItem(publisher)}>
 
                                         <div>
                                             <strong>
@@ -77,26 +44,26 @@ const AdminPublisher = (props) => {
                     <Input
                         className='text-input admin-author-name'
                         fieldName='publisherName'
-                        initialValue={preparedData ? preparedData.publisherName : ''}
-                        onChangeHandler={changeNewspapperHandler}/>
+                        initialValue={initialValues ? initialValues.publisherName : ''}
+                        onChangeHandler={updateInitialValues}/>
                     <TextareaField
                         className='text-input admin-bio'
                         fieldName='description'
-                        initialValue={preparedData ? preparedData.description : ''}
-                        onChangeHandler={changeNewspapperHandler}
+                        initialValue={initialValues ? initialValues.description : ''}
+                        onChangeHandler={updateInitialValues}
                         rows={8}/>
                     <Input
                         className='text-input admin-author-name'
                         fieldName='editorInChief'
-                        initialValue={preparedData ? preparedData.editorInChief : ''}
-                        onChangeHandler={changeNewspapperHandler}/>
+                        initialValue={initialValues ? initialValues.editorInChief : ''}
+                        onChangeHandler={updateInitialValues}/>
                     <Input
                         className='text-input year-book'
                         fieldName='year'
                         inputType='number'
                         maxValue={10000}
-                        initialValue={preparedData ? preparedData.year : ''}
-                        onChangeHandler={changeNewspapperHandler}/>
+                        initialValue={initialValues ? initialValues.year : ''}
+                        onChangeHandler={updateInitialValues}/>
                     <button
                         type='button'
                         className='save-button'
@@ -110,4 +77,12 @@ const AdminPublisher = (props) => {
     )
 }
 
-export default AdminPublisher;
+export default adminEditHOC(
+    AdminPublisher,
+    'publisher',
+    (initialValues) =>
+        initialValues.publisherName &&
+        initialValues.description &&
+        initialValues.year &&
+        initialValues.editorInChief
+);
