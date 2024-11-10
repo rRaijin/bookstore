@@ -49,7 +49,7 @@ const AdminAuthorsForm = (props) => {
     }
 
     return (
-        <div className='admin-authors-form-wrapper'>
+        <div className='admin-form-wrapper'>
             <div>
                 <button className='create-buttom' onClick={onStartCreateHandle}>
                     CREATE
@@ -57,7 +57,7 @@ const AdminAuthorsForm = (props) => {
             </div>
             <form className='admin-books-form'>
                 <Input
-                    className='text-input admin-author-firstname'
+                    className='text-input admin-author-name'
                     fieldName='firstName'
                     initialValue={selectedAuthor ? selectedAuthor.firstName : ''}
                     onChangeHandler={changeAuthorHandler}/>
@@ -72,7 +72,7 @@ const AdminAuthorsForm = (props) => {
                     initialValue={selectedAuthor ? selectedAuthor.userEmail : ''}
                     onChangeHandler={changeAuthorHandler}/>
                 <TextareaField
-                    className='text-input admin-author-bio'
+                    className='text-input admin-bio'
                     fieldName='bio'
                     initialValue={selectedAuthor ? selectedAuthor.bio : ''}
                     onChangeHandler={changeAuthorHandler}

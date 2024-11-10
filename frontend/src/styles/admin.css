@@ -134,14 +134,14 @@
     color: white;
 }
 
-.admin-authors-list {
+.admin-list {
     display: flex;
     flex-direction: column;
     align-items: start;
     padding: 5px;
 }
 
-.admin-authors-list > li {
+.admin-list > li {
     width: 100%;
     /* border-radius: 5px; */
     color: rgb(255, 255, 255);
@@ -149,7 +149,7 @@
     height: 50px;
 }
 
-.admin-authors-list > li:hover  {
+.admin-list > li:hover  {
     width: 102%;
     background-color: rgb(255, 255, 255);
     margin-bottom: 10px;
@@ -159,29 +159,29 @@
     color: #4d5fe2;
 }
 
-.admin-authors-list > li > div {
+.admin-list > li > div {
     padding: 14px;
     height: 50px;
 }
 
-.admin-authors-list-wrapper {
+.admin-list-wrapper {
     width: 30%;
     /* border: 1px solid black; */
     background-color: #4d5fe2;
     
 }
 
-.admin-authors-form-wrapper {
+.admin-form-wrapper {
     width: 70%;
     /* border: 1px solid black; */
 }
 
-.admin-author-name {
+.admin-name {
     margin-top: 5%;
     box-shadow: 0px 0px 5px;
 }
 
-.admin-author-bio {
+.admin-bio {
     margin-left: 18.1%;
     box-shadow: 0px 0px 5px;
 }

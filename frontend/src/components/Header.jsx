@@ -62,6 +62,11 @@ const subMenuItems = [
         name: 'newspaper',
         src: '/admin/newspaper',
         icon: ''
+    },
+    {
+        name: 'publisher',
+        src: '/admin/publisher',
+        icon: ''
     }
 ];
 

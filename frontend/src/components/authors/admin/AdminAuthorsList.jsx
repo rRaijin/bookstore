@@ -1,9 +1,9 @@
 const AdminAuthorsList = ({ authors, onAuthorSelected }) => {
 
     return (
-        <div className='admin-authors-list-wrapper'>
+        <div className='admin-list-wrapper'>
             <div>
-                <ul className='admin-authors-list'>
+                <ul className='admin-list'>
                     {
                         authors.map((author, i) => {
                             return (
