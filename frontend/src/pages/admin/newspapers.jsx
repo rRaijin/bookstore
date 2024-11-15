@@ -1,53 +1,37 @@
-import { useState, useEffect } from 'react';
-
-import { fetchData, saveData } from '../../utils';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
 import { adminEditHOC } from '../../hocs/adminEditHOC';
 
 
 const AdminNewspapper = (props) => {
-    const { items, initialValues, updateInitialValues, setSelectedItem, onStartCreateHandle, formSubmit } = props;
-
-    // const formSubmit = () => {
-    //     if (
-    //         initialValues.newspaperName &&
-    //         initialValues.description &&
-    //         initialValues.year &&
-    //         initialValues.publisher
-    //     ) {
-    //         saveData('newspaper', initialValues, (response) => {
-    //             // Обработка успешного ответа
-    //             alert('Газета успешно сохранён!');
-    //         }, (error) => {
-    //             console.error('Ошибка при сохранении газеты:', error);
-    //         });
-    //     } else {
-    //         alert('Не возможно создать газету');
-    //     }
-    // }
+    const { items, 
+            initialValues, 
+            updateInitialValues, 
+            onStartCreateHandle, 
+            formSubmit, 
+            displayText,
+            keyGenerate,
+            dontclickDisplayText } = props;
 
     return (
-        <div className='flex'>
+        <div className='flex admin-cards'>
             <div className='admin-list-wrapper'>
                 <div>
                     <ul className='admin-list'>
                         {
-                            items.map((newspaper, i) => {
-                                return (
-                                    <li
-                                        className='pointer flex'
-                                        key={`newspaper-${i}`}
-                                        onClick={() => setSelectedItem(newspaper)}>
-
-                                        <div>
-                                            <strong>
-                                                {newspaper.newspaperName} 
-                                            </strong>
-                                        </div>
-                                    </li>
-                                )
-                            })
+                            items.map((newspaper, i) => (
+                                <li
+                                    className='pointer flex'
+                                    key={keyGenerate ? keyGenerate(newspaper, i) : `newspaper-${i}`}
+                                    onClick={() => dontclickDisplayText(newspaper)}
+                                >
+                                    <div>
+                                        <strong >
+                                            {displayText ? displayText(newspaper) : ''}
+                                        </strong>
+                                    </div>
+                                </li>
+                            ))
                         }
                     </ul>
                 </div>
@@ -77,7 +61,7 @@ const AdminNewspapper = (props) => {
                         initialValue={initialValues ? initialValues.year : ''}
                         onChangeHandler={updateInitialValues}/>
                     <TextareaField
-                        className='text-input admin-bio'
+                        className='textarea-input admin-bio'
                         fieldName='publisher'
                         initialValue={initialValues ? initialValues.publisher : ''}
                         onChangeHandler={updateInitialValues}
@@ -90,9 +74,15 @@ const AdminNewspapper = (props) => {
                     </button>
                 </form>
             </div>
+            <div  className='empty-block'>
+
+            </div>
         </div>
     )
 }
+
+
+
 
 export default adminEditHOC(
     AdminNewspapper,
@@ -102,5 +92,5 @@ export default adminEditHOC(
         initialValues.description &&
         initialValues.year &&
         initialValues.publisher,
-    'газет'
+    'газет',
 );

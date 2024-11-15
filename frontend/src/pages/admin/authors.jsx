@@ -43,7 +43,7 @@ const AdminAuthors = (props) => {
     const resetForm = () => setSelectedAuthor(null);
     
     return (
-        <div className='flex'>
+        <div className='flex admin-cards'>
             <AdminAuthorsList
                 authors={authors2}
                 onAuthorSelected={setSelectedAuthor}/>

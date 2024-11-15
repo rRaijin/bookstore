@@ -7,10 +7,12 @@ import { adminEditHOC } from '../../hocs/adminEditHOC';
 
 
 const AdminPublisher = (props) => {
-    const { items, initialValues, updateInitialValues, setSelectedItem, onStartCreateHandle, formSubmit } = props;
+    const { items, initialValues, updateInitialValues, setSelectedItem, onStartCreateHandle, formSubmit, displayText,
+        keyGenerate,
+        dontclickDisplayText } = props;
 
     return (
-        <div className='flex'>
+        <div className='flex admin-cards'>
             <div className='admin-list-wrapper'>
                 <div>
                     <ul className='admin-list'>
@@ -19,12 +21,12 @@ const AdminPublisher = (props) => {
                                 return (
                                     <li
                                         className='pointer flex'
-                                        key={`publisher-${i}`}
-                                        onClick={() => setSelectedItem(publisher)}>
-
+                                        key={keyGenerate ? keyGenerate(publisher, i) : `publisher-${i}`}
+                                        onClick={() => dontclickDisplayText(publisher)}
+                                    >
                                         <div>
                                             <strong>
-                                                {publisher.publisherName} 
+                                                {displayText ? displayText(publisher) : ''}
                                             </strong>
                                         </div>
                                     </li>
@@ -46,12 +48,6 @@ const AdminPublisher = (props) => {
                         fieldName='publisherName'
                         initialValue={initialValues ? initialValues.publisherName : ''}
                         onChangeHandler={updateInitialValues}/>
-                    <TextareaField
-                        className='text-input admin-bio'
-                        fieldName='description'
-                        initialValue={initialValues ? initialValues.description : ''}
-                        onChangeHandler={updateInitialValues}
-                        rows={8}/>
                     <Input
                         className='text-input admin-author-name'
                         fieldName='editorInChief'
@@ -64,6 +60,12 @@ const AdminPublisher = (props) => {
                         maxValue={10000}
                         initialValue={initialValues ? initialValues.year : ''}
                         onChangeHandler={updateInitialValues}/>
+                    <TextareaField
+                        className='textarea-input admin-bio'
+                        fieldName='description'
+                        initialValue={initialValues ? initialValues.description : ''}
+                        onChangeHandler={updateInitialValues}
+                        rows={8}/>
                     <button
                         type='button'
                         className='save-button'
@@ -71,6 +73,9 @@ const AdminPublisher = (props) => {
                         SAVE
                     </button>
                 </form>
+            </div>
+            <div  className='empty-block'>
+
             </div>
         </div>
         

@@ -10,7 +10,7 @@ const router = new express.Router();
 router.get('/', (req, res) => {
     console.log('DEBUG SERVER: ', req.query);
     return Newspaper.find().then((items) => {
-        console.log('items: ', items);
+        // console.log('items: ', items);
         if (items.length === 0) {
             return res.status(200).json({message: 'Газеты не найдены', items});
         } else {

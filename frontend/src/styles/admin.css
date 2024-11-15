@@ -1,3 +1,143 @@
+/* Сброс стилей для консистентности */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background-color: #f4f7fc;
+    color: #333;
+  }
+  
+  /* Контейнер для всего макета */
+  .flex {
+    display: flex;
+    
+  }
+
+.admin-cards {
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  
+  /* Обертка списка админов */
+.admin-list-wrapper {
+    flex: 1;
+    width: 33%; /* Занимает 33% */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  
+.admin-list-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+  
+  /* Стилизация списка админов */
+.admin-list {
+    list-style-type: none;
+}
+  
+.admin-list .pointer {
+    cursor: pointer;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+  
+.admin-list .pointer:hover {
+    background-color: #f0f8ff;
+}
+  
+.admin-list strong {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+  
+  /* Обертка формы админа */
+.admin-form-wrapper {
+    flex: 1;
+    width: 33%; /* Занимает 33% */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+  
+.create-buttom {
+    background: #5050ff;
+    color: white;
+    border: 0;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #003CC5;
+}
+  
+.create-buttom:active {
+    background: #3636ff;
+    box-shadow: none;
+    top: 5px;
+    position: relative;
+}
+
+.text-input {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+.text-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+  
+.textarea-input {
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.textarea-input:focus {
+    resize: vertical;
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.save-button {
+    padding: 12px;
+    background: #5050ff;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #003CC5;
+}
+  
+.save-button:active {
+    background: #3636ff;
+    box-shadow: none;
+    top: 5px;
+    position: relative;
+}
+
+.empty-block {
+    width: 33%;
+    flex: 1;
+}
+  
 .admin-books-list-wrapper {
     width: 50%;
     /* border: 1px solid black; */
@@ -70,46 +210,6 @@
     background-color: #45a049;
   }
 
-.create-buttom {
-    border: none;
-    text-decoration: none;
-    color: white;
-    background: #0B63F6;
-    box-shadow: 0 5px 0 #003CC5;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin: 5px;
-    border-radius: 9px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    cursor: pointer;
-}
-
-.create-buttom:active {
-    background: #003CC5;
-    box-shadow: none;
-    position: relative;
-    top: 5px;
-}
-
-.save-button {
-    border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    color: white;
-    background: #0B63F6;
-    box-shadow: 0 5px 0 #003CC5;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.save-button:active {
-    background: #003CC5;
-    box-shadow: none;
-    position: relative;
-    top: 5px;
-}
-
 .pages-book {
     margin-left: 40px;
 }
@@ -122,69 +222,6 @@
     margin-left: 51px;
 }
 
-.fieldName {
-    font-weight: bold;
-}
-
-.ml-84px {
-    margin-left: 84px;
-}
-
-.white {
-    color: white;
-}
-
-.admin-list {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 5px;
-}
-
-.admin-list > li {
-    width: 100%;
-    /* border-radius: 5px; */
-    color: rgb(255, 255, 255);
-    margin-bottom: 10px;
-    height: 50px;
-}
-
-.admin-list > li:hover  {
-    width: 102%;
-    background-color: rgb(255, 255, 255);
-    margin-bottom: 10px;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    height: 50px;
-    color: #4d5fe2;
-}
-
-.admin-list > li > div {
-    padding: 14px;
-    height: 50px;
-}
-
-.admin-list-wrapper {
-    width: 30%;
-    /* border: 1px solid black; */
-    background-color: #4d5fe2;
-    
-}
-
-.admin-form-wrapper {
-    width: 70%;
-    /* border: 1px solid black; */
-}
-
-.admin-name {
-    margin-top: 5%;
-    box-shadow: 0px 0px 5px;
-}
-
-.admin-bio {
-    margin-left: 18.1%;
-    box-shadow: 0px 0px 5px;
-}
 
 /* TEMP CSS FOR FORM FIELDS */
 .text-input {
