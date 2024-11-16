@@ -7,9 +7,10 @@ import { adminEditHOC } from '../../hocs/adminEditHOC';
 
 
 const AdminPublisher = (props) => {
-    const { items, initialValues, updateInitialValues, setSelectedItem, onStartCreateHandle, formSubmit, displayText,
-        keyGenerate,
-        dontclickDisplayText } = props;
+    const {
+        items, initialValues, updateInitialValues, setSelectedItem, 
+        onStartCreateHandle, formSubmit, displayText, keyGenerate,
+    } = props;
 
     return (
         <div className='flex admin-cards'>
@@ -22,13 +23,10 @@ const AdminPublisher = (props) => {
                                     <li
                                         className='pointer flex'
                                         key={keyGenerate ? keyGenerate(publisher, i) : `publisher-${i}`}
-                                        onClick={() => dontclickDisplayText(publisher)}
-                                    >
-                                        <div>
-                                            <strong>
-                                                {displayText ? displayText(publisher) : ''}
-                                            </strong>
-                                        </div>
+                                        onClick={() => setSelectedItem(publisher)}>
+                                        <strong>
+                                            {displayText ? displayText(publisher) : ''}
+                                        </strong>
                                     </li>
                                 )
                             })
@@ -75,7 +73,7 @@ const AdminPublisher = (props) => {
                 </form>
             </div>
             <div  className='empty-block'>
-
+                
             </div>
         </div>
         
@@ -89,5 +87,7 @@ export default adminEditHOC(
         initialValues.publisherName &&
         initialValues.description &&
         initialValues.year &&
-        initialValues.editorInChief
+        initialValues.editorInChief,
+    'qwerty',
+    () => <div>DEF</div>
 );

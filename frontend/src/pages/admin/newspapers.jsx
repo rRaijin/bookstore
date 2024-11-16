@@ -4,14 +4,10 @@ import { adminEditHOC } from '../../hocs/adminEditHOC';
 
 
 const AdminNewspapper = (props) => {
-    const { items, 
-            initialValues, 
-            updateInitialValues, 
-            onStartCreateHandle, 
-            formSubmit, 
-            displayText,
-            keyGenerate,
-            dontclickDisplayText } = props;
+    const {
+        items, initialValues, updateInitialValues, onStartCreateHandle, 
+        formSubmit, keyGenerate, setSelectedItem, displayText
+    } = props;
 
     return (
         <div className='flex admin-cards'>
@@ -23,13 +19,10 @@ const AdminNewspapper = (props) => {
                                 <li
                                     className='pointer flex'
                                     key={keyGenerate ? keyGenerate(newspaper, i) : `newspaper-${i}`}
-                                    onClick={() => dontclickDisplayText(newspaper)}
-                                >
-                                    <div>
-                                        <strong >
-                                            {displayText ? displayText(newspaper) : ''}
-                                        </strong>
-                                    </div>
+                                    onClick={() => setSelectedItem(newspaper)}>
+                                    <strong>
+                                        {displayText ? displayText(newspaper) : ''}
+                                    </strong>
                                 </li>
                             ))
                         }
@@ -75,14 +68,19 @@ const AdminNewspapper = (props) => {
                 </form>
             </div>
             <div  className='empty-block'>
-
+                
             </div>
         </div>
     )
 }
 
-
-
+const ComponentX = () => {
+    return (
+        <div>
+            12345
+        </div>
+    )
+}
 
 export default adminEditHOC(
     AdminNewspapper,
@@ -93,4 +91,7 @@ export default adminEditHOC(
         initialValues.year &&
         initialValues.publisher,
     'газет',
+    () => <ComponentX>
+        <div>ABC</div>
+    </ComponentX>
 );
