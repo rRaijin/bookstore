@@ -36,7 +36,6 @@
 }
   
 .admin-list-wrapper:hover {
-    transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
   
@@ -70,9 +69,15 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-left: 5px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.admin-form-wrapper:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: 0.3 ease;
 }
   
 .create-buttom {

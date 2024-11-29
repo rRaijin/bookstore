@@ -31,7 +31,7 @@ router.put('/', jsonParser, async (req, res) => {
             publisher.publisherName = publisherName;
             publisher.description = description;
             publisher.year = year;
-            // newspaper.picture = picture;
+            // publisher.picture = picture;
             publisher.editorInChief = editorInChief;
         } else {
             // error
