@@ -62,3 +62,29 @@
 .media-input-container ul {
     color: #000;
 }
+
+.home-footer{
+    background: black;
+    color: white;
+    width: 100%;
+    display: flex;
+}
+
+.home-footer > div{
+    width: 33%;
+}
+
+.home-footer > div > ul > li > a{
+    color: white;
+}
+
+.home-footer > div > ul > li{
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.home-footer > div > ul > li > a:hover{
+    color: #007BFF;
+    transition: 0.4s ease;
+}
+

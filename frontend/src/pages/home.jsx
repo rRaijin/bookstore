@@ -3,16 +3,12 @@ import moment from 'moment';
 
 import { fetchData } from '../utils';
 import { MyContext } from '../MyContext';
-import BookForm from '../components/books/BookForm';
-import BaseForm from '../components/fields/BaseForm';
 import FilteredBooksList from '../components/books/FilteredBooksList';
-import Select from '../components/elements/Select';
 import Slider from '../components/fields/MySlider';
 
 
-import ButtonGeneral from '../components/elements/buttons/ButtonGeneral';
-import InputGeneral from '../components/fields/InputGeneral';
-import TextareaField from '../components/fields/TextareaField';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faSquareYoutube, faFacebookF, faTelegram, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import SampleForm from '../components/SampleForm';
 import Chat from '../components/fields/Chat';
 import RandomNumber from '../components/randomNumber';
@@ -29,9 +25,6 @@ const HomePage = () => {
 
     // Используем контекст
     const { setText } = useContext(MyContext);
-
-    // 1. по запросу вернуть с сервера массив чисел [1, 2, 3, 4, 5] из роута books
-    // 2. написать по одному аналогичному запросу в каждом роуте, вернуть данные по желанию
 
     const getAnimalSound = (animalType) => {
         fetch(`http://localhost:3001/api/books/animalSound?type=${animalType}`)
@@ -442,6 +435,93 @@ const HomePage = () => {
                 }
                 </div>
             </div>
+            <footer className='home-footer'>
+                <div>
+                    <ul>
+                        <li>
+                            <a href="">Про Нас</a>
+                        </li>
+                        <li>
+                            <a href="">Новинки</a>
+                        </li>
+                        <li>
+                            <a href="">Наша Политика</a>
+                        </li>
+                        <li>
+                            <a href="">Доставка</a>
+                        </li>
+                        <li>
+                            <a href="">Безопасность клиента</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                <ul>
+                    <li>
+                        <a href="">Контакты</a>
+                    </li>
+                    <li>
+                        <a href="">Адреса</a>
+                    </li>
+                    <li>
+                        <a href="">Способы оплаты</a>
+                    </li>
+                    <li>
+                        <a href="">Клуб</a>
+                    </li>
+                    <li>
+                        <a href="">Партнеры</a>
+                    </li>
+                    </ul>
+                </div>
+                <div>
+                    <div>
+                        <p>
+                            Наши соц.сети
+                        </p>
+                    </div>
+                    <div className='flex'>
+                        <div>
+                            <FontAwesomeIcon
+                                className='icons-social-networks back-grey cursor'
+                                icon={faSquareYoutube} 
+                                size={'xl'}
+                                style={{color: "#000000",}}
+                            />
+                        </div>
+                        <div className='padd-l-10px'>
+                            <FontAwesomeIcon 
+                                className='facebook back-grey cursor'
+                                icon={faFacebookF} 
+                                size={'xl'}
+                                style={{color: "#000000",}}/>
+                        </div>
+                            <div className='padd-l-10px'>
+                                <FontAwesomeIcon 
+                                    className='icons-social-networks back-grey cursor'
+                                    icon={faTelegram} 
+                                    size={'xl'}
+                                    style={{color: "#000000",}}/>
+                            </div>
+                        <div className='padd-l-10px'>
+                            <FontAwesomeIcon 
+                                className='icons-social-networks back-grey cursor'
+                                icon={faInstagram} 
+                                size={'xl'}
+                                style={{color: "#000000",}}
+                            />
+                        </div>
+                        <div className='padd-l-10px'>
+                            <FontAwesomeIcon 
+                                className='icons-social-networks back-grey cursor'
+                                icon={faTiktok} 
+                                size={'xl'}
+                                style={{color: "#000000",}}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 };
