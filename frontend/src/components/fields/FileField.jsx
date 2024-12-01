@@ -8,10 +8,14 @@ import { SERVER_URL } from '../../constants';
 const FileField = (props) => {
     const { initialValue, folder, fieldName, onFileChoosed, className, childClassName } = props;
     const [selectedFilePath, setSelectedFilePath] = useState(null);
+    const [dropped, setDrop] = useState(false);
 
     useEffect(() => {
-        if (initialValue) {
+        if (initialValue && !dropped) {
             const filePath = getFilePath(folder, initialValue);
+            setSelectedFilePath(filePath);
+        } else if (dropped) {
+            const filePath = getFilePath(folder, initialValue, true);
             setSelectedFilePath(filePath);
         } else {
             setSelectedFilePath(null);
@@ -28,6 +32,7 @@ const FileField = (props) => {
             if (response.ok === true) {
                 const results = await response.json();
                 const filePath = getFilePath(folder, results.file, true);
+                setDrop(true);
                 setSelectedFilePath(filePath);
                 onFileChoosed(fieldName, results.file);
             }
@@ -35,8 +40,6 @@ const FileField = (props) => {
             console.log('error: ', e);
         });
     }
-
-    // console.log('sel: ', selectedFilePath);
 
     return (
         <div className={className}>

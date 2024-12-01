@@ -1,7 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 
 import { fetchData, saveData } from '../utils';
-import newspapers from '../pages/admin/newspapers';
 
 
 export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = 'что-то', childHTML) => {
@@ -28,6 +27,7 @@ export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = '
         const onStartCreateHandle = () => setInitialValues(null);
 
         const formSubmit = () => {
+            console.log('submit data: ', initialValues);
             if (validationFn(initialValues)) {
                 saveData(fetchedURLName, initialValues, (response) => {
                     // Обработка успешного ответа
@@ -43,7 +43,17 @@ export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = '
         const keyGenerate = (item, index) => `custom-key-${item.id || index}`;
         const displayText = (item) => item[`${fetchedURLName}Name`];
 
-        console.log('asfds', childHTML().props)
+        if (childHTML && typeof childHTML === 'function') {
+            console.log('childHTML PROPS: ', childHTML().props)
+        }
+
+        // const x = {a : 1};
+        // if (x && x.a) {
+        //     console.log('x a: ', x.a);
+        // }
+        // if (x && x.hasOwnProperty('a')) {
+        //     console.log('x a: ', x.a);
+        // }
 
         return (
             <Fragment>
@@ -57,8 +67,8 @@ export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = '
                     formSubmit={formSubmit}
                     keyGenerate={keyGenerate}
                     displayText={displayText}/>
-                {childHTML()}
-                {childHTML().props.children}
+                {childHTML && typeof childHTML === 'function' && childHTML()}
+                {childHTML && typeof childHTML === 'function' && childHTML().props.children}
             </Fragment>
         )
     }

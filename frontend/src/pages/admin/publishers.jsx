@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-
-import { fetchData, saveData } from '../../utils';
+import { adminEditHOC } from '../../hocs/adminEditHOC';
+import FileField from '../../components/fields/FileField';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
-import { adminEditHOC } from '../../hocs/adminEditHOC';
 
 
 const AdminPublisher = (props) => {
@@ -11,6 +9,8 @@ const AdminPublisher = (props) => {
         items, initialValues, updateInitialValues, setSelectedItem, 
         onStartCreateHandle, formSubmit, displayText, keyGenerate,
     } = props;
+
+    // console.log('initialValues: ', initialValues);
 
     return (
         <div className='flex admin-cards'>
@@ -64,6 +64,12 @@ const AdminPublisher = (props) => {
                         initialValue={initialValues ? initialValues.description : ''}
                         onChangeHandler={updateInitialValues}
                         rows={8}/>
+                    <FileField
+                        className=''
+                        initialValue={(initialValues && initialValues.picture) ? initialValues.picture : null}
+                        fieldName='picture'
+                        onFileChoosed={updateInitialValues}
+                        folder='publishers'/>
                     <button
                         type='button'
                         className='save-button'
@@ -88,6 +94,5 @@ export default adminEditHOC(
         initialValues.description &&
         initialValues.year &&
         initialValues.editorInChief,
-    'qwerty',
-    () => <div>DEF</div>
+    'qwerty'
 );
