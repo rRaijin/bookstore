@@ -22,19 +22,16 @@ const TextareaField = ({
     };
 
     return (
-        <div className='flex'>
-            <div className='bold'>
-                {fieldName}:
-            </div>
+        <div className='flex flex-col'>
+            <label className='text-base'>
+                {fieldName}
+            </label>
             <textarea
-            className={className}
-            value={value}
-            onChange={handleChange}
-            rows={rows}/>
-            
+                className={className}
+                value={value}
+                onChange={handleChange}
+                rows={rows}/>
         </div>
-        
-        
     );
 };
 

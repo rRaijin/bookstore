@@ -5,6 +5,9 @@ import { getFilePath } from '../../utils';
 import { SERVER_URL } from '../../constants';
 
 
+// 1. сделать универсальнім: фльт должен меняться, класснейм настраиваемій
+
+
 const FileField = (props) => {
     const { initialValue, folder, fieldName, onFileChoosed, className, childClassName } = props;
     const [selectedFilePath, setSelectedFilePath] = useState(null);
@@ -44,8 +47,9 @@ const FileField = (props) => {
     return (
         <div className={className}>
             {
-                selectedFilePath &&
-                <img style={{width: '100%', height: 'auto'}} src={selectedFilePath} alt='book-image'/>
+                selectedFilePath ?
+                <img style={{width: '100%', height: '300px', overflowY: 'hidden'}} src={selectedFilePath} alt='book-image'/> :
+                <img src='https://placehold.co/400' alt='book-image' style={{width: '100%', height: '300px'}}/>
             }
             <input
                 className={childClassName}

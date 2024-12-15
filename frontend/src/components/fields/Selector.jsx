@@ -26,21 +26,22 @@ const Selector = (props) => {
 
     return (
         <div className={className}>
-            <div className='fieldName'>
-                {fieldName}:
+            {/* <div className='select-header'>
+                {fieldName}
+            </div> */}
+            <div className='flex flex-wrap'>
+                {
+                    items.map((item, index) => (
+                        <div key={`${fieldName}-${index}`} className='select-item-1'>
+                            <input
+                                type='checkbox'
+                                checked={selectedList.includes(item._id)}
+                                onChange={() => onCheckHandler(item._id)}/>
+                            <label className=''>{item.title}</label>
+                        </div>
+                    ))
+                }
             </div>
-            {
-                items.map((item, index) => (
-                    <div key={`${fieldName}-${index}`}>
-                        <input
-                            type='checkbox'
-                            checked={selectedList.includes(item._id)}
-                            onChange={() => onCheckHandler(item._id)}
-                        />
-                        <label className=''>{item.title}</label>
-                    </div>
-                ))
-            }
         </div>
     )
 }

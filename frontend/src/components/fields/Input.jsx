@@ -42,9 +42,9 @@ const Input = (props) => {
     }
 
     return (
-        <div className=''>
-            <label className='fieldName'>
-                {fieldName}: 
+        <div className='flex flex-col'>
+            <label className='text-base'>
+                {fieldName}
             </label>
             {/* {inputType === 'checkbox' ? (
                 options.length > 0 ? (

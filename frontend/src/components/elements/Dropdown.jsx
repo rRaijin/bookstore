@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
 
+// 1. чтобі не растягивало форму + скролилось.
+
+
 const Dropdown = (props) => {
     const { className, items, initialValue, onChangeHandler, fieldName } = props;
 
@@ -29,19 +32,10 @@ const Dropdown = (props) => {
         setSelectStatus(false);
     }
 
-    // console.log('sel: ', selectedItem)
-
     return (
         
-        <div className={className}
-            onMouseEnter={() => setSelectStatus(true)}
-            onMouseLeave={() => setSelectStatus(false)}>
-            <div className='flex'>
-                {fieldName}:
-            </div>
-        
+        <div className={className} onMouseEnter={() => setSelectStatus(true)} onMouseLeave={() => setSelectStatus(false)}>
             <div className='flex select-author-default'>
-                
                 <div className=''>
                     {
                         selectedItem && 
@@ -55,23 +49,44 @@ const Dropdown = (props) => {
                 </div>
             </div>
             {
-                <div className=''>
-                    {selectStatus && items && items.length > 0 &&(
-                        <div className='authors-select'>
-                            {
-                                items.map((item, i) => {
-                                    return (
-                                        <div
-                                            className='author-select'
-                                            key={`${item.id}`}
-                                            onClick={() => onSelectHandle(item.id)}>
-                                            {item.firstName + ' ' + item.lastName}
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    )}
+                selectStatus && items && items.length > 0 && 
+                <div className='authors-select'>
+                    {
+                        items.map((item, i) => {
+                            return (
+                                <div
+                                    className='author-select'
+                                    key={`${item.id}`}
+                                    onClick={() => onSelectHandle(item.id)}>
+                                    {item.firstName + ' ' + item.lastName}
+                                </div>
+                            )
+                        })
+                    }
+                    {
+                        items.map((item, i) => {
+                            return (
+                                <div
+                                    className='author-select'
+                                    key={`${item.id}`}
+                                    onClick={() => onSelectHandle(item.id)}>
+                                    {item.firstName + ' ' + item.lastName}
+                                </div>
+                            )
+                        })
+                    }
+                    {
+                        items.map((item, i) => {
+                            return (
+                                <div
+                                    className='author-select'
+                                    key={`${item.id}`}
+                                    onClick={() => onSelectHandle(item.id)}>
+                                    {item.firstName + ' ' + item.lastName}
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             }
         </div>

@@ -84,14 +84,6 @@ const AdminEditorInChief = (props) => {
     )
 }
 
-const ComponentX = () => {
-    return (
-        <div>
-            12345
-        </div>
-    )
-}
-
 export default adminEditHOC(
     AdminEditorInChief,
     'editorInChief',
@@ -100,8 +92,5 @@ export default adminEditHOC(
         initialValues.lastName &&
         initialValues.userEmail &&
         initialValues.bio,
-    'редактора',
-    () => <ComponentX>
-        <div>ABC</div>
-    </ComponentX>
+    'редактор'
 );
