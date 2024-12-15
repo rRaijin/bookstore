@@ -9,6 +9,7 @@ import routerUser from './routes/user.js';
 import routerImages from './routes/files.js';
 import routerNewspaper from './routes/newspaper.js';
 import routerPublisher from './routes/publisher.js';
+import routerEditorInChief from './routes/editorInChief.js';
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.use('/api/authors', routerAuthor);
 app.use('/api/books', routerBook);
 app.use('/api/newspaper', routerNewspaper);
 app.use('/api/publisher', routerPublisher);
+app.use('/api/editorInChief', routerEditorInChief);
 app.use('/api/genres', routerGenre);
 app.use('/api/users', routerUser);
 app.use('/api/images', routerImages);

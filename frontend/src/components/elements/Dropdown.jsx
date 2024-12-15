@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 
 const Dropdown = (props) => {
-    const { className, items, initialValue, onChangeHandler } = props;
+    const { className, items, initialValue, onChangeHandler, fieldName } = props;
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectStatus, setSelectStatus] = useState(false);
@@ -29,14 +29,19 @@ const Dropdown = (props) => {
         setSelectStatus(false);
     }
 
-    console.log('sel: ', selectedItem)
+    // console.log('sel: ', selectedItem)
 
     return (
+        
         <div className={className}
             onMouseEnter={() => setSelectStatus(true)}
-            onMouseLeave={() => setSelectStatus(false)}
-        >
+            onMouseLeave={() => setSelectStatus(false)}>
+            <div className='flex'>
+                {fieldName}:
+            </div>
+        
             <div className='flex select-author-default'>
+                
                 <div className=''>
                     {
                         selectedItem && 

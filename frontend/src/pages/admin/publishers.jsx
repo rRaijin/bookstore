@@ -2,15 +2,28 @@ import { adminEditHOC } from '../../hocs/adminEditHOC';
 import FileField from '../../components/fields/FileField';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
-
+import { useEffect, useState } from 'react';
+import { fetchData } from '../../utils';
+import Dropdown from '../../components/elements/Dropdown';
 
 const AdminPublisher = (props) => {
     const {
         items, initialValues, updateInitialValues, setSelectedItem, 
         onStartCreateHandle, formSubmit, displayText, keyGenerate,
     } = props;
-
-    // console.log('initialValues: ', initialValues);
+    const [editorInChief, setEditorInChief] = useState([])
+    
+    useEffect(() => {
+        fetchData('editorInChief', (data) => {
+            const transformeredData = data.map(editor => ({
+                id: editor._id,
+                firstName: editor.userId.firstName,
+                lastName: editor.userId.lastName
+            }))
+            setEditorInChief(transformeredData)
+        })
+    }, []);
+    console.log(editorInChief);
 
     return (
         <div className='flex admin-cards'>
@@ -46,11 +59,14 @@ const AdminPublisher = (props) => {
                         fieldName='publisherName'
                         initialValue={initialValues ? initialValues.publisherName : ''}
                         onChangeHandler={updateInitialValues}/>
-                    <Input
-                        className='text-input admin-author-name'
+                    <Dropdown
+                        className=""
                         fieldName='editorInChief'
-                        initialValue={initialValues ? initialValues.editorInChief : ''}
-                        onChangeHandler={updateInitialValues}/>
+                        items={editorInChief}
+                        initialValue={{authorId: { _id: initialValues?.editorInChief || '' }}}
+                        onChangeHandler={(id) => updateInitialValues('editorInChief', id)}
+                    />
+
                     <Input
                         className='text-input year-book'
                         fieldName='year'

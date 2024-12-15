@@ -15,7 +15,6 @@ const AdminBooks = (props) => {
         fetchData('books', (data) => setBooks(data));
         fetchData('genres', (data) => setGenres(data));
     }, []);
-
     useEffect(() => {
         if (books.length > 0) {
             const ids = [];

@@ -8,7 +8,7 @@ const router = new express.Router();
 
 
 router.get('/', (req, res) => {
-    console.log('DEBUG SERVER: ', req.query);
+    // console.log('DEBUG SERVER: ', req.query);
     return Publisher.find().then((items) => {
         // console.log('items: ', items);
         if (items.length === 0) {

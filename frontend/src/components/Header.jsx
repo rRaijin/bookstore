@@ -67,6 +67,11 @@ const subMenuItems = [
         name: 'publisher',
         src: '/admin/publisher',
         icon: ''
+    },
+    {
+        name: 'editorInChief',
+        src: '/admin/editorInChief',
+        icon: ''
     }
 ];
 

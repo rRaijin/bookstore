@@ -6,7 +6,10 @@ const publisherSchema = new Schema({
     description: String,
     year: Number,
     picture: String,
-    editorInChief: String,
+    editorInChief: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'EditorInChief'
+    },
 }, {
     timestamps: true
 });
