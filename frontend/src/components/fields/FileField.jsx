@@ -9,7 +9,7 @@ import { SERVER_URL } from '../../constants';
 
 
 const FileField = (props) => {
-    const { initialValue, folder, fieldName, onFileChoosed, className, childClassName } = props;
+    const { initialValue, folder, fieldName, onFileChoosed, className, childClassName, alt='picture' } = props;
     const [selectedFilePath, setSelectedFilePath] = useState(null);
     const [dropped, setDrop] = useState(false);
 
@@ -48,7 +48,7 @@ const FileField = (props) => {
         <div className={className}>
             {
                 selectedFilePath ?
-                <img style={{width: '100%', height: '300px', overflowY: 'hidden'}} src={selectedFilePath} alt='book-image'/> :
+                <img style={{width: '100%', height: '300px', overflowY: 'hidden'}} src={selectedFilePath} alt={alt}/> :
                 <img src='https://placehold.co/400' alt='book-image' style={{width: '100%', height: '300px'}}/>
             }
             <input

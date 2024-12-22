@@ -192,9 +192,10 @@
     width: 100%;
 }
 
-.admin-books-form-wrapper > form > button {
+.admin-books-form-wrapper > form  > div > button {
     margin-top: 20px;
-    width: 25%;
+    width: 33%;
+    float: right;
 }
 
 .admin-books-form {

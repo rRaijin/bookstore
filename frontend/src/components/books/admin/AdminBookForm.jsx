@@ -124,22 +124,14 @@ const AdminBookForm = (props) => {
                                 onFileChoosed={changeBookHandler}
                                 folder='books'/>
                         </div>
+                    </div>     
+                    <div>
+                        <Btn
+                            className='btn-blue text-lg uppercase font-base'
+                            onClickHandle={formSubmit}
+                            btnText='save'/>
                     </div>
-
-
-
                     
-                    
-                    
-                    
-
-                    
-                    
-
-                    <Btn
-                        className='btn-blue text-lg uppercase font-base'
-                        onClickHandle={formSubmit}
-                        btnText='save'/>
                 </form>
             </div>
         </div>
