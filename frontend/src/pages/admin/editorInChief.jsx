@@ -1,6 +1,7 @@
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
 import { adminEditHOC } from '../../hocs/adminEditHOC';
+import Btn from '../../components/elements/buttons/Btn';
 
 
 const AdminEditorInChief = (props) => {
@@ -11,7 +12,7 @@ const AdminEditorInChief = (props) => {
 
 
 
-    // console.log(items)
+    console.log(items)
     return (
         <div className='flex admin-cards'>
             <div className='admin-list-wrapper'>
@@ -33,10 +34,11 @@ const AdminEditorInChief = (props) => {
                 </div>
             </div>
             <div className='admin-form-wrapper'>
-                <div>
-                    <button className='create-buttom' onClick={onStartCreateHandle}>
-                        CREATE
-                    </button>
+                <div className='admin-books-btn-wrapper'>
+                    <Btn
+                        className='btn-green text-lg uppercase font-base'
+                        onClickHandle={onStartCreateHandle}
+                        btnText='create'/>
                 </div>
                 <form className='admin-books-form'>
                     <Input
@@ -69,12 +71,12 @@ const AdminEditorInChief = (props) => {
                         initialValue={initialValues ? initialValues.bio : ''}
                         onChangeHandler={updateInitialValues}
                         rows={8}/>
-                    <button
-                        type='button'
-                        className='save-button'
-                        onClick={formSubmit}>
-                        SAVE
-                    </button>
+                    <div className='mt-1p'>
+                        <Btn
+                            className='btn-blue text-lg uppercase font-base w-33p float-r'
+                            onClickHandle={formSubmit}
+                            btnText='save'/>
+                    </div>
                 </form>
             </div>
             <div  className='empty-block'>

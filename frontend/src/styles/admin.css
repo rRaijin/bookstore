@@ -26,8 +26,7 @@
   
   /* Обертка списка админов */
 .admin-list-wrapper {
-    flex: 1;
-    width: 33%; /* Занимает 33% */
+    width: 40%; /* Занимает 33% */
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -63,8 +62,7 @@
   
   /* Обертка формы админа */
 .admin-form-wrapper {
-    flex: 1;
-    width: 33%; /* Занимает 33% */
+    width: 60%; /* Занимает 33% */
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -175,16 +173,59 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
 }
 
 .admin-books-list > li {
     width: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 5px;
     color: black;
     margin-bottom: 5px;
-    background: #dcdcdc;
+    padding: 5px;
+    background: #f0f0f0;
+}
+
+.admin-books-list > li > p:last-child {
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #d2c7c7;
+}
+
+.admin-books-list > li .bookName {
+    font-size: 20px;
+    font-weight: 700;
+    color: #259573;
+}
+
+.admin-books-list > li .bookAuthor {
+    /* text-align: right; */
+}
+
+.admin-books-list > li .bookPrice {
+    text-align: center;
+}
+
+.admin-books-list > li .bookPrice > span:first-child {
+    margin-right: 5px;
+}
+
+.admin-books-list > li .bookPrice > span:last-child {
+    font-weight: 600;
+}
+
+.admin-books-list > li .bookYear {
+    text-align: center;
+}
+
+.admin-books-list > li .bookYear > span:first-child {
+    margin-right: 5px;
+}
+
+.admin-books-list > li .bookYear > span:last-child {
+    font-weight: 600;
 }
 
 .admin-books-form-wrapper > form {

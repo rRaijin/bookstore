@@ -8,7 +8,7 @@ const jsonParser = express.json();
 const router = new express.Router();
 
 router.get('/', (req, res) => {
-    console.log('DEBUG SERVER: ', req.query);
+    // console.log('DEBUG SERVER: ', req.query);
     return Newspaper.find().then((items) => {
         // console.log('items: ', items);
         if (items.length === 0) {
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
-    const { newspaperName, description, year, picture, imageFolder, publisher } = req.body;
+    const { newspaperName, description, year, picture, imageFolder, publisher,editorInChief } = req.body;
     // const author = await Author.findById(authorId._id);
     // Определяем нужно создать новую книгу или обновить существующую
     // Для существующей в body прийдет поле "_id"
@@ -36,6 +36,7 @@ router.put('/', jsonParser, async (req, res) => {
             newspaper.year = year;
             // newspaper.picture = picture;
             newspaper.publisher = publisher;
+            newspaper.editorInChief = editorInChief;
         } else {
             // error
         }
@@ -45,7 +46,8 @@ router.put('/', jsonParser, async (req, res) => {
             description,
             year,
             // picture,
-            publisher
+            publisher,
+            editorInChief
         });
     }
     console.log('newspaper: ', newspaper)
@@ -53,26 +55,4 @@ router.put('/', jsonParser, async (req, res) => {
     await newspaper.save();
     return res.status(200).json({message: 'OK', item: newspaper});
 });
-
-router.put('/calculate', async (req, res) => {
-    const { numbers, x } = req.body;
-
-    console.log('body: ', numbers, x);
-    
-    if (!numbers || !Array.isArray(numbers) || numbers.length !== 4) {
-        return res.status(400).json({ error: 'Неверные входные данные' });
-    }
-
-    const sum = numbers.reduce((acc, curr) => {
-        if (typeof curr === 'number') {
-            return acc + curr;
-        } else {
-            return acc;
-        }
-    }, 0);
-    const product = numbers.reduce((acc, curr) => typeof curr === 'number' ? acc * curr : acc, 1);
-
-    res.status(200).json({ sum, product });
-});
-
-export default router;
+export default router

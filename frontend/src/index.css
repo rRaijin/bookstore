@@ -116,6 +116,19 @@ code {
     width: 50%;    
 }
 
+.w-33p {
+    width: 33%;
+}
+
+.float-r {
+    float: right;
+}
+
+.float-l {
+    float: left;
+}
+
+
 /*****************************TEXT STYLES SETTINGS***********************/
 .uppercase {
     text-transform: uppercase;
@@ -287,6 +300,10 @@ code {
 /* MARGINS */
 .ml-5 {
     margin-left: 5px;
+}
+
+.mt-1p {
+    margin-top: 1%;
 }
 
 /* Captcha */

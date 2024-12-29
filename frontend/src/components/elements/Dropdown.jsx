@@ -35,6 +35,9 @@ const Dropdown = (props) => {
     return (
         
         <div className={`dropdown-container ${className}`} onMouseEnter={() => setSelectStatus(true)} onMouseLeave={() => setSelectStatus(false)}>
+            <div>
+                {fieldName}
+            </div>
             <div className='flex select-author-default'>
                 <div className=''>
                     {
@@ -51,42 +54,6 @@ const Dropdown = (props) => {
             {
                 selectStatus && items && items.length > 0 && 
                 <div className='authors-select'>
-                    {
-                        items.map((item, i) => {
-                            return (
-                                <div
-                                    className='author-select'
-                                    key={`${item.id}`}
-                                    onClick={() => onSelectHandle(item.id)}>
-                                    {item.firstName + ' ' + item.lastName}
-                                </div>
-                            )
-                        })
-                    }
-                    {
-                        items.map((item, i) => {
-                            return (
-                                <div
-                                    className='author-select'
-                                    key={`${item.id}`}
-                                    onClick={() => onSelectHandle(item.id)}>
-                                    {item.firstName + ' ' + item.lastName}
-                                </div>
-                            )
-                        })
-                    }
-                    {
-                        items.map((item, i) => {
-                            return (
-                                <div
-                                    className='author-select'
-                                    key={`${item.id}`}
-                                    onClick={() => onSelectHandle(item.id)}>
-                                    {item.firstName + ' ' + item.lastName}
-                                </div>
-                            )
-                        })
-                    }
                     {
                         items.map((item, i) => {
                             return (

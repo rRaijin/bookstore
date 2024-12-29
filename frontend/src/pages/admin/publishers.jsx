@@ -2,29 +2,15 @@ import { adminEditHOC } from '../../hocs/adminEditHOC';
 import FileField from '../../components/fields/FileField';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
-import { useEffect, useState } from 'react';
-import { fetchData } from '../../utils';
-import Dropdown from '../../components/elements/Dropdown';
+import Btn from '../../components/elements/buttons/Btn';
 
 const AdminPublisher = (props) => {
     const {
         items, initialValues, updateInitialValues, setSelectedItem, 
         onStartCreateHandle, formSubmit, displayText, keyGenerate,
     } = props;
-    const [editorInChief, setEditorInChief] = useState([])
     
-    useEffect(() => {
-        fetchData('editorInChief', (data) => {
-            const transformeredData = data.map(editor => ({
-                id: editor._id,
-                firstName: editor.userId.firstName,
-                lastName: editor.userId.lastName
-            }))
-            setEditorInChief(transformeredData)
-        })
-    }, []);
-    console.log(editorInChief);
-
+    console.log(items)
     return (
         <div className='flex admin-cards'>
             <div className='admin-list-wrapper'>
@@ -38,7 +24,7 @@ const AdminPublisher = (props) => {
                                         key={keyGenerate ? keyGenerate(publisher, i) : `publisher-${i}`}
                                         onClick={() => setSelectedItem(publisher)}>
                                         <strong>
-                                            {displayText ? displayText(publisher) : ''}
+                                            {publisher.userId.firstName} {publisher.userId.lastName}
                                         </strong>
                                     </li>
                                 )
@@ -48,50 +34,67 @@ const AdminPublisher = (props) => {
                 </div>
             </div>
             <div className='admin-form-wrapper'>
-                <div>
-                    <button className='create-buttom' onClick={onStartCreateHandle}>
-                        CREATE
-                    </button>
+                <div className='admin-books-btn-wrapper'>
+                    <Btn
+                        className='btn-green text-lg uppercase font-base'
+                        onClickHandle={onStartCreateHandle}
+                        btnText='create'/>
                 </div>
                 <form className='admin-books-form'>
-                    <Input
-                        className='text-input admin-author-name'
-                        fieldName='publisherName'
-                        initialValue={initialValues ? initialValues.publisherName : ''}
-                        onChangeHandler={updateInitialValues}/>
-                    <Dropdown
-                        className=""
-                        fieldName='editorInChief'
-                        items={editorInChief}
-                        initialValue={{authorId: { _id: initialValues?.editorInChief || '' }}}
-                        onChangeHandler={(id) => updateInitialValues('editorInChief', id)}
-                    />
-
-                    <Input
-                        className='text-input year-book'
-                        fieldName='year'
-                        inputType='number'
-                        maxValue={10000}
-                        initialValue={initialValues ? initialValues.year : ''}
-                        onChangeHandler={updateInitialValues}/>
-                    <TextareaField
-                        className='textarea-input admin-bio'
-                        fieldName='description'
-                        initialValue={initialValues ? initialValues.description : ''}
-                        onChangeHandler={updateInitialValues}
-                        rows={8}/>
-                    <FileField
-                        className=''
-                        initialValue={(initialValues && initialValues.picture) ? initialValues.picture : null}
-                        fieldName='picture'
-                        onFileChoosed={updateInitialValues}
-                        folder='publishers'/>
-                    <button
-                        type='button'
-                        className='save-button'
-                        onClick={formSubmit}>
-                        SAVE
-                    </button>
+                    <div className='flex'>
+                        <div className='w-50p'>
+                        <Input
+                            className='text-input admin-author-name'
+                            fieldName='firstName'
+                            initialValue={initialValues && initialValues.userId ? initialValues.userId.firstName : ''}
+                            onChangeHandler={updateInitialValues}/>
+                        <Input
+                            className='text-input admin-author-lastname'
+                            fieldName='lastName'
+                            initialValue={initialValues && initialValues.userId ? initialValues.userId.lastName :''}
+                            onChangeHandler={updateInitialValues}/>
+                        <Input
+                            className='text-input admin-author-lastname'
+                            fieldName='userEmail'
+                            initialValue={initialValues && initialValues.userId ? initialValues.userId.userEmail : ''}
+                            onChangeHandler={updateInitialValues}
+                        />
+                        
+                        </div>
+                        <div className='w-50p'>
+                            <TextareaField
+                                className='textarea-input admin-bio ml-5'
+                                fieldName='bio'
+                                initialValue={initialValues ? initialValues.bio : ''}
+                                onChangeHandler={updateInitialValues}
+                                rows={8}/>
+                        </div>
+                    </div>
+                    <div className='flex'>
+                        <div className='w-50p'>
+                            <Input
+                                className='text-input year-book'
+                                fieldName='year'
+                                inputType='number'
+                                maxValue={10000}
+                                initialValue={initialValues ? initialValues.year : ''}
+                                onChangeHandler={updateInitialValues}/>
+                        </div>
+                        <div className='w-50p'>
+                            <FileField
+                                className=''
+                                initialValue={(initialValues && initialValues.picture) ? initialValues.picture : null}
+                                fieldName='picture'
+                                onFileChoosed={updateInitialValues}
+                                folder='publishers'/>
+                        </div>
+                    </div>
+                    <div>
+                        <Btn
+                            className='btn-blue text-lg uppercase font-base w-33p float-r'
+                            onClickHandle={formSubmit}
+                            btnText='save'/>
+                    </div>
                 </form>
             </div>
             <div  className='empty-block'>
@@ -106,9 +109,10 @@ export default adminEditHOC(
     AdminPublisher,
     'publisher',
     (initialValues) =>
-        initialValues.publisherName &&
-        initialValues.description &&
-        initialValues.year &&
-        initialValues.editorInChief,
+        initialValues.firstName &&
+        initialValues.lastName &&
+        initialValues.userEmail &&
+        initialValues.bio &&
+        initialValues.year,
     'qwerty'
 );

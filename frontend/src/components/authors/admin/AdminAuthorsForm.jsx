@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { saveData } from '../../../utils';
 import Input from '../../fields/Input';
 import TextareaField from '../../fields/TextareaField';
+import Btn from '../../elements/buttons/Btn';
+
 
 
 const AdminAuthorsForm = (props) => {
@@ -50,10 +52,11 @@ const AdminAuthorsForm = (props) => {
 
     return (
         <div className='admin-form-wrapper'>
-            <div>
-                <button className='create-buttom' onClick={onStartCreateHandle}>
-                    CREATE
-                </button>
+            <div className='admin-books-btn-wrapper'>
+                <Btn
+                    className='btn-green text-lg uppercase font-base'
+                    onClickHandle={onStartCreateHandle}
+                    btnText='create'/>
             </div>
             <form className='admin-books-form'>
                 <Input
@@ -77,12 +80,12 @@ const AdminAuthorsForm = (props) => {
                     initialValue={selectedAuthor ? selectedAuthor.bio : ''}
                     onChangeHandler={changeAuthorHandler}
                     rows={8}/>
-                <button
-                    type='button'
-                    className='save-button'
-                    onClick={formSubmit}>
-                    SAVE
-                </button>
+                <div>
+                    <Btn
+                        className='btn-blue text-lg uppercase font-base w-50p float-r'
+                        onClickHandle={formSubmit}
+                        btnText='save'/>
+                </div>
             </form>
         </div>
     )
