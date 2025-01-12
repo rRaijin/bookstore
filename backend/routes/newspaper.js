@@ -1,11 +1,14 @@
 import express from 'express';
 import { saveFile } from './files.js';
 import Newspaper from '../models/newspaper.js';
+import mongoose from 'mongoose';
 
 
 
 const jsonParser = express.json();
 const router = new express.Router();
+const ObjectId = mongoose.Types.ObjectId;
+
 
 router.get('/', (req, res) => {
     // console.log('DEBUG SERVER: ', req.query);
@@ -46,8 +49,11 @@ router.put('/', jsonParser, async (req, res) => {
             description,
             year,
             // picture,
-            publisher,
-            editorInChief
+            // publisher,
+            // editorInChief
+            editors: [
+                new ObjectId('678398437d4ab7b553d4dcbb'), new ObjectId('6783a57309d075f816b7278f')
+            ]
         });
     }
     console.log('newspaper: ', newspaper)

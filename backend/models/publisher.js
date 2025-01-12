@@ -9,6 +9,11 @@ const publisherSchema = new Schema({
     bio: String,
     year: Number,
     picture: String,
+    pseudonym: String,
+    isEditorInChief: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true
 });

@@ -1,16 +1,16 @@
 import { adminEditHOC } from '../../hocs/adminEditHOC';
+import Btn from '../../components/elements/buttons/Btn';
 import FileField from '../../components/fields/FileField';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
-import Btn from '../../components/elements/buttons/Btn';
+
 
 const AdminPublisher = (props) => {
     const {
         items, initialValues, updateInitialValues, setSelectedItem, 
-        onStartCreateHandle, formSubmit, displayText, keyGenerate,
+        onStartCreateHandle, formSubmit, keyGenerate,
     } = props;
-    
-    console.log(items)
+
     return (
         <div className='flex admin-cards'>
             <div className='admin-list-wrapper'>
@@ -43,23 +43,26 @@ const AdminPublisher = (props) => {
                 <form className='admin-books-form'>
                     <div className='flex'>
                         <div className='w-50p'>
-                        <Input
-                            className='text-input admin-author-name'
-                            fieldName='firstName'
-                            initialValue={initialValues && initialValues.userId ? initialValues.userId.firstName : ''}
-                            onChangeHandler={updateInitialValues}/>
-                        <Input
-                            className='text-input admin-author-lastname'
-                            fieldName='lastName'
-                            initialValue={initialValues && initialValues.userId ? initialValues.userId.lastName :''}
-                            onChangeHandler={updateInitialValues}/>
-                        <Input
-                            className='text-input admin-author-lastname'
-                            fieldName='userEmail'
-                            initialValue={initialValues && initialValues.userId ? initialValues.userId.userEmail : ''}
-                            onChangeHandler={updateInitialValues}
-                        />
-                        
+                            <Input
+                                className='text-input admin-author-name'
+                                fieldName='firstName'
+                                initialValue={initialValues && initialValues.userId ? initialValues.userId.firstName : ''}
+                                onChangeHandler={updateInitialValues}/>
+                            <Input
+                                className='text-input admin-author-lastname'
+                                fieldName='lastName'
+                                initialValue={initialValues && initialValues.userId ? initialValues.userId.lastName :''}
+                                onChangeHandler={updateInitialValues}/>
+                            <Input
+                                className='text-input admin-author-lastname'
+                                fieldName='userEmail'
+                                initialValue={initialValues && initialValues.userId ? initialValues.userId.userEmail : ''}
+                                onChangeHandler={updateInitialValues}/>
+                            <Input
+                                className='text-input admin-author-lastname'
+                                fieldName='pseudonym'
+                                initialValue={initialValues && initialValues.pseudonym ? initialValues.pseudonym : ''}
+                                onChangeHandler={updateInitialValues}/>
                         </div>
                         <div className='w-50p'>
                             <TextareaField
@@ -109,9 +112,10 @@ export default adminEditHOC(
     AdminPublisher,
     'publisher',
     (initialValues) =>
-        initialValues.firstName &&
-        initialValues.lastName &&
-        initialValues.userEmail &&
+        (initialValues.userId ? initialValues.userId.firstName : true) &&
+        (initialValues.userId ? initialValues.userId.lastName : true) &&
+        (initialValues.userId ? initialValues.userId.userEmail : true) &&
+        initialValues.pseudonym &&
         initialValues.bio &&
         initialValues.year,
     'qwerty'

@@ -26,7 +26,8 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
-    const {_id, firstName, lastName, userEmail, bio, userId, year, picture, imageFolder } = req.body;
+    const {_id, userId, userEmail, firstName, lastName, bio, year, pseudonym, picture, imageFolder } = req.body;
+
     let publisher;
     if (_id) {
         publisher = await Publisher.findById(_id);
@@ -36,17 +37,18 @@ router.put('/', jsonParser, async (req, res) => {
         publisher.bio = bio,
         publisher.year = year;
         publisher.picture = picture;
+        publisher.pseudonym = pseudonym;
 
         let user;
         if (userId) {
             // update exists
-            user = await User.findById(userId);
+            user = await User.findById(userId._id);
             if (!user) {
                 return res.status(404).json({ error: 'Все пропало шеф' });
             } else {
-                user.userEmail = userEmail;
-                user.firstName = firstName;
-                user.lastName = lastName;
+                user.userEmail = userId.userEmail;
+                user.firstName = userId.firstName;
+                user.lastName = userId.lastName;
                 user.save();
             }
         } else {
@@ -77,11 +79,14 @@ router.put('/', jsonParser, async (req, res) => {
             userId: savedUser._id,
             firstName,
             lastName,
-            userEmail
+            userEmail,
+            pseudonym
         });
     }
-    console.log('publisher: ', publisher)
-    await saveFile(picture, imageFolder);
+
+    if (picture) {
+        await saveFile(picture, imageFolder);
+    }
     await publisher.save();
     return res.status(200).json({message: 'OK', item: publisher});
 });

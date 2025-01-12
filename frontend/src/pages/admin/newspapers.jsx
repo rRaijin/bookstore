@@ -81,13 +81,27 @@ const AdminNewspapper = (props) => {
                                 maxValue={10000}
                                 initialValue={initialValues ? initialValues.year : ''}
                                 onChangeHandler={updateInitialValues}/>
-                            <Dropdown
+                            {/* <Dropdown
                                 className=""
                                 fieldName='editorInChief'
                                 items={editorInChief}
                                 initialValue={{authorId: { _id: initialValues?.editorInChief || '' }}}
                                 onChangeHandler={(id) => updateInitialValues('editorInChief', id)}
-                            />
+                            /> */}
+
+                            {/* **KOSTIL** */}
+                            <Input
+                                className='text-input admin-author-name'
+                                fieldName='sx1'
+                                initialValue={''}
+                                onChangeHandler={updateInitialValues}/>
+
+                            <Input
+                                className='text-input admin-author-name'
+                                fieldName='sx2'
+                                initialValue={''}
+                                onChangeHandler={updateInitialValues}/>
+
                         </div>
                         <div className='w-50p ml-5'>
                             <TextareaField
@@ -134,9 +148,9 @@ export default adminEditHOC(
     'newspaper',
     (initialValues) =>
         initialValues.newspaperName &&
-        initialValues.description &&
+        // initialValues.description &&
         initialValues.year &&
-        initialValues.publisher,
+        // initialValues.publisher,
     'газет',
     () => <ComponentX>
         <div>ABC</div>

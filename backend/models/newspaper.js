@@ -7,14 +7,20 @@ const newspaperSchema = new Schema({
     description: String,
     year: Number,
     picture: String,
-    publisher: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Publisher'
-    },
-    editorInChief: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'EditorInChief'
-    },
+    editors: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Publisher'
+        }
+    ]
+    // publisher: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Publisher'
+    // },
+    // editorInChief: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'EditorInChief'
+    // },
 }, {
     timestamps: true
 });
