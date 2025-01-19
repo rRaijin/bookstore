@@ -16,6 +16,7 @@ export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = '
         }, []);
 
         const updateInitialValues = (field, val) => {
+            // console.log('DEBUG UPDATE IN HOC: ', field, val);
             setInitialValues((prevData) => ({
                 ...prevData,
                 [field]: val

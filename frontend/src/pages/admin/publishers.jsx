@@ -3,7 +3,8 @@ import Btn from '../../components/elements/buttons/Btn';
 import FileField from '../../components/fields/FileField';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
-import Selector from '../../components/fields/Selector';
+// import Selector from '../../components/fields/Selector';
+import Checkbox from '../../components/fields/Checkbox';
 
 
 
@@ -65,13 +66,30 @@ const AdminPublisher = (props) => {
                                 fieldName='pseudonym'
                                 initialValue={initialValues && initialValues.pseudonym ? initialValues.pseudonym : ''}
                                 onChangeHandler={updateInitialValues}/>
-                            <Selector
+                            {/* <Selector
                                 fieldName="IsEditorInChief"
                                 initialValue={initialValues?.IsEditorInChief} 
                                 items={[{ _id: '1', title: 'Редактор' }, { _id: '0', title: 'Не редактор' }]}
                                 onSelectHandler={updateInitialValues}
                                 isMultiple={false}
-                                />
+                                /> */}
+                            <Checkbox
+                                className=''
+                                childClassName=''
+                                tempX={'1'}
+                                fieldName='isEditorInChief'
+                                isChecked={initialValues && initialValues.isEditorInChief ? initialValues.isEditorInChief : false}
+                                onCheckHandler={updateInitialValues}
+                            />
+
+<Checkbox
+                                className=''
+                                childClassName=''
+                                tempX={'2'}
+                                fieldName='isEditorInChief'
+                                isChecked={initialValues && initialValues.isEditorInChief ? initialValues.isEditorInChief : false}
+                                onCheckHandler={updateInitialValues}
+                            />
 
                         </div>
                         <div className='w-50p'>

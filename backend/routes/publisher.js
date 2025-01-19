@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
-    const {_id, userId, userEmail, firstName, lastName, bio, year, pseudonym, IsEditorInChief, picture, imageFolder } = req.body;
+    const {_id, userId, userEmail, firstName, lastName, bio, year, pseudonym, isEditorInChief, picture, imageFolder } = req.body;
 
     let publisher;
     if (_id) {
@@ -38,7 +38,7 @@ router.put('/', jsonParser, async (req, res) => {
         publisher.year = year;
         publisher.picture = picture;
         publisher.pseudonym = pseudonym;
-        publisher.IsEditorInChief = IsEditorInChief
+        publisher.isEditorInChief = isEditorInChief
 
         let user;
         if (userId) {
@@ -82,7 +82,7 @@ router.put('/', jsonParser, async (req, res) => {
             lastName,
             userEmail,
             pseudonym,
-            IsEditorInChief
+            isEditorInChief
         });
     }
 

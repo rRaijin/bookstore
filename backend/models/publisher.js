@@ -10,7 +10,7 @@ const publisherSchema = new Schema({
     year: Number,
     picture: String,
     pseudonym: String,
-    IsEditorInChief: {
+    isEditorInChief: {
         type: mongoose.Schema.Types.Boolean,
         default: false
     },
