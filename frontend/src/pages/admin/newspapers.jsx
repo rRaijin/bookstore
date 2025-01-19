@@ -12,7 +12,6 @@ const AdminNewspapper = (props) => {
         items, initialValues, updateInitialValues, onStartCreateHandle, 
         formSubmit, keyGenerate, setSelectedItem, displayText
     } = props;
-    const [editorInChief, setEditorInChief] = useState([])
     const [publisher, setPublisher] = useState([])
 
     useEffect(() => {
@@ -27,17 +26,6 @@ const AdminNewspapper = (props) => {
     }, []);
     console.log(publisher);
 
-    useEffect(() => {
-            fetchData('editorInChief', (data) => {
-                const transformeredDataEditorInChief = data.map(editor => ({
-                    id: editor._id,
-                    firstName: editor.userId.firstName,
-                    lastName: editor.userId.lastName
-                }))
-                setEditorInChief(transformeredDataEditorInChief)
-            })
-        }, []);
-        console.log(editorInChief);
 
     return (
         <div className='flex admin-cards'>
@@ -81,13 +69,7 @@ const AdminNewspapper = (props) => {
                                 maxValue={10000}
                                 initialValue={initialValues ? initialValues.year : ''}
                                 onChangeHandler={updateInitialValues}/>
-                            {/* <Dropdown
-                                className=""
-                                fieldName='editorInChief'
-                                items={editorInChief}
-                                initialValue={{authorId: { _id: initialValues?.editorInChief || '' }}}
-                                onChangeHandler={(id) => updateInitialValues('editorInChief', id)}
-                            /> */}
+                            
 
                             {/* **KOSTIL** */}
                             <Input

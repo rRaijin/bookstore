@@ -3,6 +3,8 @@ import Btn from '../../components/elements/buttons/Btn';
 import FileField from '../../components/fields/FileField';
 import Input from '../../components/fields/Input';
 import TextareaField from '../../components/fields/TextareaField';
+import Selector from '../../components/fields/Selector';
+
 
 
 const AdminPublisher = (props) => {
@@ -10,7 +12,7 @@ const AdminPublisher = (props) => {
         items, initialValues, updateInitialValues, setSelectedItem, 
         onStartCreateHandle, formSubmit, keyGenerate,
     } = props;
-
+    
     return (
         <div className='flex admin-cards'>
             <div className='admin-list-wrapper'>
@@ -63,6 +65,14 @@ const AdminPublisher = (props) => {
                                 fieldName='pseudonym'
                                 initialValue={initialValues && initialValues.pseudonym ? initialValues.pseudonym : ''}
                                 onChangeHandler={updateInitialValues}/>
+                            <Selector
+                                fieldName="IsEditorInChief"
+                                initialValue={initialValues?.IsEditorInChief} 
+                                items={[{ _id: '1', title: 'Редактор' }, { _id: '0', title: 'Не редактор' }]}
+                                onSelectHandler={updateInitialValues}
+                                isMultiple={false}
+                                />
+
                         </div>
                         <div className='w-50p'>
                             <TextareaField

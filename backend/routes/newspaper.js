@@ -39,7 +39,7 @@ router.put('/', jsonParser, async (req, res) => {
             newspaper.year = year;
             // newspaper.picture = picture;
             newspaper.publisher = publisher;
-            newspaper.editorInChief = editorInChief;
+            // newspaper.editorInChief = editorInChief;
         } else {
             // error
         }
@@ -50,7 +50,7 @@ router.put('/', jsonParser, async (req, res) => {
             year,
             // picture,
             // publisher,
-            // editorInChief
+            // editorInChief,
             editors: [
                 new ObjectId('678398437d4ab7b553d4dcbb'), new ObjectId('6783a57309d075f816b7278f')
             ]

@@ -22,7 +22,6 @@ import Publishings from './pages/publishings';
 import AdminAuthors from './pages/admin/authors';
 import AdminNewspapper from './pages/admin/newspapers';
 import AdminPublisher from './pages/admin/publishers';
-import AdminEditorInChief from './pages/admin/editorInChief';
 
 
 const App = () => {
@@ -55,7 +54,6 @@ const App = () => {
                         <Route path='admin/authors' element={<AdminAuthors/>}/>
                         <Route path='admin/newspaper' element={<AdminNewspapper/>}/>
                         <Route path='admin/publisher' element={<AdminPublisher/>}/>
-                        <Route path='admin/editorInChief' element={<AdminEditorInChief/>}/>
                         <Route path='publishings' element={<Publishings/>}/>
                     </Route>
                 </Routes>

@@ -17,10 +17,7 @@ const newspaperSchema = new Schema({
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'Publisher'
     // },
-    // editorInChief: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'EditorInChief'
-    // },
+    
 }, {
     timestamps: true
 });
