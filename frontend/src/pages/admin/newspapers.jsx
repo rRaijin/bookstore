@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchData } from '../../utils';
 import Dropdown from '../../components/elements/Dropdown';
 import Btn from '../../components/elements/buttons/Btn';
+import ArrayField from '../../components/fields/ArrayField';
 
 
 const AdminNewspapper = (props) => {
@@ -12,7 +13,7 @@ const AdminNewspapper = (props) => {
         items, initialValues, updateInitialValues, onStartCreateHandle, 
         formSubmit, keyGenerate, setSelectedItem, displayText
     } = props;
-    const [publisher, setPublisher] = useState([])
+    const [publishers, setPublishers] = useState([])
 
     useEffect(() => {
         fetchData('publisher', (data) => {
@@ -21,10 +22,10 @@ const AdminNewspapper = (props) => {
                 firstName: publish.userId.firstName,
                 lastName: publish.userId.lastName
             }))
-            setPublisher(transformeredDataPublisher)
+            setPublishers(transformeredDataPublisher)
         })
     }, []);
-    console.log(publisher);
+    console.log('ppp: ', publishers);
 
 
     return (
@@ -70,9 +71,24 @@ const AdminNewspapper = (props) => {
                                 initialValue={initialValues ? initialValues.year : ''}
                                 onChangeHandler={updateInitialValues}/>
                             
+                            <ArrayField
+                                className=''
+                                fieldName='editors'
+                                initialValue={initialValues ? initialValues.editors : []}
+                                listItems={publishers}
+                                onChangeHandler={updateInitialValues}
+                                mapper={
+                                    (publisher) =>
+                                        <p className=''>
+                                            <span className=''>{publisher.firstName}</span>
+                                            <span className=''>{publisher.lastName}</span>
+                                        </p>
+                                }    
+                                
+                            />
 
                             {/* **KOSTIL** */}
-                            <Input
+                            {/* <Input
                                 className='text-input admin-author-name'
                                 fieldName='sx1'
                                 initialValue={''}
@@ -82,7 +98,7 @@ const AdminNewspapper = (props) => {
                                 className='text-input admin-author-name'
                                 fieldName='sx2'
                                 initialValue={''}
-                                onChangeHandler={updateInitialValues}/>
+                                onChangeHandler={updateInitialValues}/> */}
 
                         </div>
                         <div className='w-50p ml-5'>
@@ -94,7 +110,7 @@ const AdminNewspapper = (props) => {
                                 rows={8}/>
                         </div>
                     </div>
-                    <div className='flex'>
+                    {/* <div className='flex'>
                         <div className='w-50p'>
                             <Dropdown
                                 className=""
@@ -104,7 +120,7 @@ const AdminNewspapper = (props) => {
                                 onChangeHandler={(id) => updateInitialValues('publisher', id)}
                             />
                         </div>
-                    </div>                   
+                    </div>                    */}
                     <div>
                         <Btn
                             className='btn-blue text-lg uppercase font-base w-33p float-r'
