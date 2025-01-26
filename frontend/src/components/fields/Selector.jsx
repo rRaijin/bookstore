@@ -2,64 +2,48 @@ import { useState, useEffect } from 'react';
 
 
 const Selector = (props) => {
-    const { initialValue, className, fieldName, items, onSelectHandler, isMultiple = true  } = props;
+    const { initialValue, className, fieldName, items, onSelectHandler } = props;
     const [selectedList, updateSelectedList] = useState([]);
 
     useEffect(() => {
         if (initialValue) {
-            if (isMultiple) {
-                updateSelectedList(initialValue.reduce((acc, item) => {
-                    acc.push(item._id);
-                    return acc;
-                }, []));
-            } else {
-                updateSelectedList(initialValue ? [initialValue._id] : []);
-            }
+            updateSelectedList(initialValue.reduce((acc, item) => {
+                acc.push(item._id);
+                return acc;
+            }, []));
         } else {
-            updateSelectedList(isMultiple ? [] : []);
+            updateSelectedList([]);
         }
-    }, [initialValue, isMultiple]);
+    }, [initialValue]);
 
     const onCheckHandler = (val) => {
-        if (isMultiple) {
-            const updatedList = selectedList.includes(val) ? 
-                selectedList.filter(k => k !== val) :
-                [...selectedList, val];
-            updateSelectedList(updatedList);
-            onSelectHandler(fieldName, updatedList); 
-        } else {
-            updateSelectedList([val]);
-            onSelectHandler(fieldName, val); 
-        }
+        const updatedList = selectedList.includes(val) ? 
+            selectedList.filter(k => k !== val) :
+            [...selectedList, val];
+        updateSelectedList(updatedList);
+        onSelectHandler(fieldName, updatedList);
     }
 
     return (
         <div className={className}>
+            {/* <div className='select-header'>
+                {fieldName}
+            </div> */}
             <div className='flex flex-wrap'>
                 {
                     items.map((item, index) => (
                         <div key={`${fieldName}-${index}`} className='select-item-1'>
-                            {isMultiple ? (
-                                <input
-                                    type='checkbox'
-                                    checked={selectedList.includes(item._id)}
-                                    onChange={() => onCheckHandler(item._id)}
-                                />
-                            ) : (
-                                <input
-                                    type='radio'
-                                    name={fieldName} 
-                                    checked={selectedList[0] === item._id}
-                                    onChange={() => onCheckHandler(item._id)}
-                                />
-                            )}
-                            <label>{item.title}</label>
+                            <input
+                                type='checkbox'
+                                checked={selectedList.includes(item._id)}
+                                onChange={() => onCheckHandler(item._id)}/>
+                            <label className=''>{item.title}</label>
                         </div>
                     ))
                 }
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default Selector;

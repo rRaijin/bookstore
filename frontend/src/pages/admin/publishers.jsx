@@ -66,13 +66,6 @@ const AdminPublisher = (props) => {
                                 fieldName='pseudonym'
                                 initialValue={initialValues && initialValues.pseudonym ? initialValues.pseudonym : ''}
                                 onChangeHandler={updateInitialValues}/>
-                            {/* <Selector
-                                fieldName="IsEditorInChief"
-                                initialValue={initialValues?.IsEditorInChief} 
-                                items={[{ _id: '1', title: 'Редактор' }, { _id: '0', title: 'Не редактор' }]}
-                                onSelectHandler={updateInitialValues}
-                                isMultiple={false}
-                                /> */}
                             <Checkbox
                                 className=''
                                 childClassName=''
@@ -81,16 +74,6 @@ const AdminPublisher = (props) => {
                                 isChecked={initialValues && initialValues.isEditorInChief ? initialValues.isEditorInChief : false}
                                 onCheckHandler={updateInitialValues}
                             />
-
-<Checkbox
-                                className=''
-                                childClassName=''
-                                tempX={'2'}
-                                fieldName='isEditorInChief'
-                                isChecked={initialValues && initialValues.isEditorInChief ? initialValues.isEditorInChief : false}
-                                onCheckHandler={updateInitialValues}
-                            />
-
                         </div>
                         <div className='w-50p'>
                             <TextareaField
