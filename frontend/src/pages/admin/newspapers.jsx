@@ -6,7 +6,6 @@ import { fetchData } from '../../utils';
 import Dropdown from '../../components/elements/Dropdown';
 import Btn from '../../components/elements/buttons/Btn';
 import ArrayField from '../../components/fields/ArrayField';
-import Dialog from '../../components/dialogs/Dialog';
 
 
 const AdminNewspapper = (props) => {
@@ -14,7 +13,7 @@ const AdminNewspapper = (props) => {
         items, initialValues, updateInitialValues, onStartCreateHandle, 
         formSubmit, keyGenerate, setSelectedItem, displayText
     } = props;
-    const [publishers, setPublishers] = useState([])
+    const [publishers, setPublishers] = useState([]);
 
     useEffect(() => {
         fetchData('publisher', (data) => {
@@ -26,13 +25,10 @@ const AdminNewspapper = (props) => {
             setPublishers(transformeredDataPublisher)
         })
     }, []);
-    console.log('ppp: ', publishers);
 
 
     return (
         <div className='flex admin-cards'>
-            <Dialog
-            />
             <div className='admin-list-wrapper'>
                 <div>
                     <ul className='admin-list'>
@@ -88,20 +84,6 @@ const AdminNewspapper = (props) => {
                                         </p>
                                 }    
                             />
-
-                            {/* **KOSTIL** */}
-                            {/* <Input
-                                className='text-input admin-author-name'
-                                fieldName='sx1'
-                                initialValue={''}
-                                onChangeHandler={updateInitialValues}/>
-
-                            <Input
-                                className='text-input admin-author-name'
-                                fieldName='sx2'
-                                initialValue={''}
-                                onChangeHandler={updateInitialValues}/> */}
-
                         </div>
                         <div className='w-50p ml-5'>
                             <TextareaField
@@ -112,17 +94,6 @@ const AdminNewspapper = (props) => {
                                 rows={8}/>
                         </div>
                     </div>
-                    {/* <div className='flex'>
-                        <div className='w-50p'>
-                            <Dropdown
-                                className=""
-                                fieldName='publisher'
-                                items={publisher}
-                                initialValue={{authorId: { _id: initialValues?.publisher || '' }}}
-                                onChangeHandler={(id) => updateInitialValues('publisher', id)}
-                            />
-                        </div>
-                    </div>                    */}
                     <div>
                         <Btn
                             className='btn-blue text-lg uppercase font-base w-33p float-r'

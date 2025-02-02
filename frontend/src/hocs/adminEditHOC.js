@@ -29,16 +29,22 @@ export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = '
 
         const formSubmit = () => {
             console.log('submit data: ', initialValues);
-            if (validationFn(initialValues)) {
-                saveData(fetchedURLName, initialValues, (response) => {
-                    // Обработка успешного ответа
-                    alert(`${entity}а успешно сохранён!`);
-                }, (error) => {
-                    console.error(`Ошибка при сохранении ${entity}ы:`, error);
-                });
-            } else {
-                alert(`Не возможно создать ${entity}у`);
-            }
+            saveData(fetchedURLName, initialValues, (response) => {
+                // Обработка успешного ответа
+                alert(`${entity}а успешно сохранён!`);
+            }, (error) => {
+                console.error(`Ошибка при сохранении ${entity}ы:`, error);
+            });
+            // if (validationFn(initialValues)) {
+            //     saveData(fetchedURLName, initialValues, (response) => {
+            //         // Обработка успешного ответа
+            //         alert(`${entity}а успешно сохранён!`);
+            //     }, (error) => {
+            //         console.error(`Ошибка при сохранении ${entity}ы:`, error);
+            //     });
+            // } else {
+            //     alert(`Не возможно создать ${entity}у`);
+            // }
         }
 
         const keyGenerate = (item, index) => `custom-key-${item.id || index}`;

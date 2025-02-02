@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);
-    const { newspaperName, description, year, picture, imageFolder, publisher,editorInChief } = req.body;
+    const { newspaperName, description, year, picture, imageFolder, publisher, editors } = req.body;
     // const author = await Author.findById(authorId._id);
     // Определяем нужно создать новую книгу или обновить существующую
     // Для существующей в body прийдет поле "_id"
@@ -39,7 +39,7 @@ router.put('/', jsonParser, async (req, res) => {
             newspaper.year = year;
             // newspaper.picture = picture;
             newspaper.publisher = publisher;
-            // newspaper.editorInChief = editorInChief;
+            newspaper.editors = editors;
         } else {
             // error
         }

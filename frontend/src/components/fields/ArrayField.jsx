@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
+import Dialog from '../dialogs/Dialog';
+
 
 const ArrayField = (props) => {
-    console.log(' arr props: ', props);
-    const { initialValues, listItems, mapper } = props;
+    const { initialValue, listItems, mapper, fieldName, onChangeHandler } = props;
 
     const [items, setItems] = useState([]);
+    const [showDialogStatus, setShowStatus] = useState(false);
 
     useEffect(() => {
-        console.log('use effect')
-        setItems(listItems);
-    }, [listItems]);
-
-    const addNewItem = () => {
-        setItems([...items, {
-            
-        }]);
+        setItems(listItems.filter(k => initialValue.indexOf(k.id) !== -1));
+    }, [initialValue]);
+    
+    const itemsChoosed = (listIds) => {
+        setShowStatus(false);
+        onChangeHandler(fieldName, listIds);
     }
-
-    console.log('render items: ', items)
 
     return (
         <div>
+            <Dialog
+                items={listItems}
+                initialItems={items}
+                showStatus={showDialogStatus}
+                itemsChoosed={itemsChoosed}
+            />
             {
                 items.map((item, i) => {
                     console.log(item)
@@ -31,7 +35,7 @@ const ArrayField = (props) => {
                     )
                 })
             }
-            <button type='button' className='' onClick={addNewItem}>
+            <button type='button' className='' onClick={() => setShowStatus(true)}>
                 +
             </button>
             
