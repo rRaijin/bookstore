@@ -17,7 +17,7 @@ const ArrayField = (props) => {
         }]);
     }
 
-    // console.log('render items: ', items)
+    console.log('render items: ', items)
 
     return (
         <div>
@@ -34,6 +34,7 @@ const ArrayField = (props) => {
             <button type='button' className='' onClick={addNewItem}>
                 +
             </button>
+            
         </div>
     )
 }

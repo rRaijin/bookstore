@@ -6,6 +6,7 @@ import { fetchData } from '../../utils';
 import Dropdown from '../../components/elements/Dropdown';
 import Btn from '../../components/elements/buttons/Btn';
 import ArrayField from '../../components/fields/ArrayField';
+import Dialog from '../../components/dialogs/Dialog';
 
 
 const AdminNewspapper = (props) => {
@@ -30,6 +31,8 @@ const AdminNewspapper = (props) => {
 
     return (
         <div className='flex admin-cards'>
+            <Dialog
+            />
             <div className='admin-list-wrapper'>
                 <div>
                     <ul className='admin-list'>
@@ -84,7 +87,6 @@ const AdminNewspapper = (props) => {
                                             <span className=''>{publisher.lastName}</span>
                                         </p>
                                 }    
-                                
                             />
 
                             {/* **KOSTIL** */}

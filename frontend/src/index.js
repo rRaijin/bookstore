@@ -16,8 +16,9 @@ import './styles/admin.css';
 import './styles/select.css';
 import './styles/slider.css';
 import './tasks.js';
-import './styles/publishings.css'
-import './styles/chat.css'
+import './styles/publishings.css';
+import './styles/chat.css';
+import './styles/dialogs.css';
 
 import App from './App';
 
