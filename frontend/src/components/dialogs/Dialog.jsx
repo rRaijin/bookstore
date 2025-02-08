@@ -30,8 +30,8 @@ const Dialog = (props) => {
         <Fragment>
             {
                 showStatus &&
-                <div className='dialog-wrapper'>
-                    <div className='dialog-body'>
+                <div className='modal'>
+                    <div className='modal-content'>  
                         {
                             items.map((item, i) => {
                                 return (
@@ -49,7 +49,7 @@ const Dialog = (props) => {
                                 )
                             })
                         }
-                        <button className='' type='button' onClick={closeHandler}>
+                        <button className='close-dialog-button' type='button' onClick={closeHandler}>
                             close
                         </button>
                     </div>

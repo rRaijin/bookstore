@@ -18,7 +18,7 @@ const ArrayField = (props) => {
     }
 
     return (
-        <div>
+        <div className='w-full'>
             <Dialog
                 items={listItems}
                 initialItems={items}
@@ -35,9 +35,15 @@ const ArrayField = (props) => {
                     )
                 })
             }
-            <button type='button' className='' onClick={() => setShowStatus(true)}>
-                +
-            </button>
+            <div>
+                <span>
+                    Click to select publishers: 
+                </span>
+                <button type='button' className='choose-publisher-button' onClick={() => setShowStatus(true)}>
+                    +
+                </button>
+            </div>
+            
             
         </div>
     )

@@ -106,24 +106,24 @@ const AdminNewspapper = (props) => {
     )
 }
 
-const ComponentX = () => {
-    return (
-        <div>
-            12345
-        </div>
-    )
-}
+// const ComponentX = () => {
+//     return (
+//         <div>
+//             12345
+//         </div>
+//     )
+// }
 
 export default adminEditHOC(
     AdminNewspapper,
     'newspaper',
     (initialValues) =>
         initialValues.newspaperName &&
-        // initialValues.description &&
+        initialValues.description &&
         initialValues.year &&
-        // initialValues.publisher,
+        initialValues.editors,
     'газет',
-    () => <ComponentX>
-        <div>ABC</div>
-    </ComponentX>
+    // () => <ComponentX>
+    //     <div>ABC</div>
+    // </ComponentX>
 );

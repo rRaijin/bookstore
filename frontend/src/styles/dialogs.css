@@ -12,3 +12,45 @@
     height: 200px;
     position: absolute;
 }
+
+.modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    height: 400px;
+    width: 400px;
+}
+
+.choose-publisher-button {
+    background: #ffe13d;
+    border: 0;
+    width: 30px;
+    height: auto;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.close-dialog-button {
+    background: #ffe13d;
+    border: 0;
+    width: 70px;
+    height: 30px;
+    color: white;
+    font-size: 21px;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+}
