@@ -16,7 +16,7 @@ const AdminNewspapper = (props) => {
     const [publishers, setPublishers] = useState([]);
 
     useEffect(() => {
-        fetchData('publisher', (data) => {
+        fetchData('publisher', 'GET', null, (data) => {
             const transformeredDataPublisher = data.map(publish => ({
                 id: publish._id,
                 firstName: publish.userId.firstName,

@@ -12,8 +12,8 @@ const AdminBooks = (props) => {
     const [selectedBook, setSelectedBook] = useState(null);
 
     useEffect(() => {
-        fetchData('books', (data) => setBooks(data));
-        fetchData('genres', (data) => setGenres(data));
+        fetchData('books', 'GET', null, (data) => setBooks(data));
+        fetchData('genres', 'GET', null, (data) => setGenres(data));
     }, []);
     useEffect(() => {
         if (books.length > 0) {

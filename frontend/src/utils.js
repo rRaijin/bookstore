@@ -38,17 +38,22 @@ export const trimText = (text, maxLength) => {
     return text;
 };
 
-export const fetchData = (url, callback) => {
-    fetch(`${SERVER_URL}/api/${url}`, {
-        method: 'GET',
+export const fetchData = (url, method, data, callback) => {
+    const params = {
+        method,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-    }).then(async (response) => {
-        console.log('resp: ', response)
+    }
+    if (method === 'POST' && data && typeof data === 'object') {
+        params['body'] = JSON.stringify(data);
+    }
+
+    fetch(`${SERVER_URL}/api/${url}`, params).then(async (response) => {
         if (response.ok === true) {
             const results = await response.json();
+            console.log('results: ', results)
             if (callback) {
                 callback(results.items);
             }

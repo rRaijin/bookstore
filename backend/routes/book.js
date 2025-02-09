@@ -1,85 +1,42 @@
 import express from 'express';
-import fs from 'fs';
 
 import { saveFile } from './files.js';
 import Book from '../models/book.js';
 import Author from '../models/author.js';
 
-
-// function express1() {
-//     function json() {
-//         return ''
-//     }
-
-//     class Router {
-
-//     }
-
-//     return 42;
-// }
-
-function y() {
-    const a = 1;
-    const b = 54;
-
-    function g() {
-        const jj = 54;
-        // *****
-        return {
-            pp: jj,
-            fgh: () => {
-                
-            }
-        };
-    }
-    return {
-        x: a * 2,
-        myMethod: g
-    }
-}
-
-const y2 = {
-    a: 1,
-    json: function () {
-        return '43';
-    },
-    Router: class asd {
-        static gg = 43;
-        get() {
-            return gg + 67
-        }
-    }
-}
-
-console.log('y: ', y().myMethod());
-
-
-
-const x = express();
-console.log('x: ', y2.json(), new y2.Router());
-
 const jsonParser = express.json();
 const router = new express.Router();
 
 
-router.get('/test', (req, res) => {
-    console.log('SERVER FETCH!!!!');
-    return res.status(200).json({
-        x: 34,
-        y: 21
-    });
-});
+router.post('/', async (req, res, next) => {
+    const { pageNum, perPage } = req.body;
+    console.log('BODY: ', req.body);
+    // return Book.aggregate([
+    //     {
+    //         $match: {}
+    //     },
+    //     {
 
-router.get('/books', (req, res) => {
-    console.log('req query fro GET 11: ', req.query);
-    const numbers = [1, 2, 3, 4, 5];
-    return res.status(200).json({ numbers });
-});
-
-router.post('/books2', (req, res) => {
-    console.log('req body for POST/PUT/PATCH/DELETE: ', req.body);
-    const numbers = [1, 2, 3, 4, 5];
-    return res.status(200).json({ numbers });
+    //     }
+    // ])
+    let items;
+    const countItems = await Book.estimatedDocumentCount();
+    try {
+        items = await Book.find({}).populate({
+            path: 'authorId',
+            populate: {
+                path: 'userId',
+                model: 'User'
+            }
+        }).populate('genres').skip((pageNum - 1) * perPage).limit(perPage);
+    } catch (error) {
+        console.log('Error: ', error);
+        return res.status(404).json({message: 'ERROR'});
+    }
+    if (!items) {
+        return res.status(404).json({message: 'No items'});
+    }
+    return res.status(200).json({items, countItems});
 });
 
 router.delete('/books', (req, res) => {
@@ -106,26 +63,7 @@ router.get('/authors', async (req, res) => {
     return res.status(200).json({ authors });
 });
 
-router.get('/', async (req, res, next) => {
-    let items;
-    try {
-        // items = await Book.find().populate('authorId').populate('genres');
-        items = await Book.find().populate({
-            path: 'authorId',
-            populate: {
-                path: 'userId',
-                model: 'User'
-            }
-        }).populate('genres');
-    } catch (error) {
-        console.log('Error: ', error);
-        return res.status(404).json({message: 'ERROR'});
-    }
-    if (!items) {
-        return res.status(404).json({message: 'No items'});
-    }
-    return res.status(200).json({items});
-});
+
 
 router.put('/', jsonParser, async (req, res) => {
     console.log('form body: ', req.body);

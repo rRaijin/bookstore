@@ -12,7 +12,7 @@ const AdminAuthors = (props) => {
     const [selectedAuthor, setSelectedAuthor] = useState(null);
 
     useEffect(() => {
-        fetchData('authors', (data) => {
+        fetchData('authors', 'GET', null, (data) => {
             console.log('data: ', data);
             setAuthors(data);
     });

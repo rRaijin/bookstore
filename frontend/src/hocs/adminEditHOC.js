@@ -10,7 +10,7 @@ export const adminEditHOC = (Component, fetchedURLName, validationFn, entity = '
         const [initialValues, setInitialValues] = useState(null);
 
         useEffect(() => {
-            fetchData(fetchedURLName, (data) => {
+            fetchData(fetchedURLName, 'GET', null, (data) => {
                 setItems(data);
             });
         }, []);

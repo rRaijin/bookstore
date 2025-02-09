@@ -37,7 +37,7 @@ const ArrayField = (props) => {
             }
             <div>
                 <span>
-                    Click to select publishers: 
+                    Edit publisher`s list: 
                 </span>
                 <button type='button' className='choose-publisher-button' onClick={() => setShowStatus(true)}>
                     +
