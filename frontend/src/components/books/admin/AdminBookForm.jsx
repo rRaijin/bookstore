@@ -39,17 +39,18 @@ const AdminBookForm = (props) => {
     const formSubmit = () => {
         preparedData['imageFolder'] = 'books';
         console.log('submit data: ', preparedData);
-        // if (
-        //     preparedData.authorId && 
-        //     preparedData.genres && 
-        //     Array.isArray(preparedData.genres) && 
-        //     preparedData.genres.length > 0 &&
-        //     preparedData.picture
-        // ) {
-        //     saveData('books', preparedData, () => alert('OK!!!'));
-        // } else {
-        //     alert('ALERT');
-        // }
+        if (
+            // preparedData.authorId && 
+            // preparedData.genres && 
+            // Array.isArray(preparedData.genres) && 
+            // preparedData.genres.length > 0 &&
+            // preparedData.picture
+            preparedData
+        ) {
+            saveData('books', preparedData, () => alert('OK!!!'));
+        } else {
+            alert('ALERT');
+        }
     }
 
     return (

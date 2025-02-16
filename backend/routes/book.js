@@ -99,7 +99,7 @@ router.put('/', jsonParser, async (req, res) => {
         });
     }
     console.log('BOOK: ', book)
-    await saveFile(picture, imageFolder);
+    // await saveFile(picture, imageFolder);
     await book.save();
     return res.status(200).json({message: 'OK', item: book});
 });

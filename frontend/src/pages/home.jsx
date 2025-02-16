@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import { fetchData } from '../utils';
 import FilteredBooksList from '../components/books/FilteredBooksList';
+import Paginate from '../components/fields/Paginate';
 
 
 const ITEMS_PER_PAGE = 2;
@@ -12,6 +13,7 @@ const ITEMS_PER_PAGE = 2;
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
     const [selectedPage, setSelectedPage] = useState(1);
+    const [currentPerPage, setCurrentPerPage] = useState(2)
 
     useEffect(() => {
         fetchData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE}, updateBooks);
@@ -26,6 +28,15 @@ const HomePage = () => {
         fetchData('books', 'POST', {pageNum: nextPageNum, perPage: ITEMS_PER_PAGE}, updateBooks);
         setSelectedPage(nextPageNum);
     }
+
+    const handleLoadLess = () => {
+        const prevPageNum = selectedPage - 1;
+        fetchData('books', 'POST', {pageNum: prevPageNum, perPage: ITEMS_PER_PAGE}, updateBooks);
+        setSelectedPage(prevPageNum);
+    }
+
+    const lastCountryIndex = selectedPage * currentPerPage
+    const firstCountryIndex = lastCountryIndex - selectedPage
 
     const countItems = 8;
 
@@ -46,20 +57,31 @@ const HomePage = () => {
                     books={books}/>
 
             </div>
-            <div className=''>
+            {/* <div className=''>
                 <h2>
                     Топ
                 </h2>
                 <FilteredBooksList
                     books={books}/>
-
+                
+                {
+                    selectedPage > 1 &&
+                    <button type='button' onClick={handleLoadLess}>
+                        PREV
+                    </button>
+                }
                 {
                     selectedPage * ITEMS_PER_PAGE < countItems &&
                     <button type='button' onClick={handleLoadMore}>
                         NEXT
                     </button>
                 }
-            </div>
+            </div> */}
+            <Paginate 
+                fieldName='Топ'
+                updateData={updateBooks}
+                books={books}
+            />
 
             {/* special block */}
             <div className=''>

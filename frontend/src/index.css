@@ -306,6 +306,10 @@ code {
     margin-top: 1%;
 }
 
+.mt-5 {
+    margin-top: 5px;
+}
+
 /* Captcha */
 .grid {
     display: grid;

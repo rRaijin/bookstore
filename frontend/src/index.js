@@ -19,6 +19,7 @@ import './tasks.js';
 import './styles/publishings.css';
 import './styles/chat.css';
 import './styles/dialogs.css';
+import './styles/paginate.css';
 
 import App from './App';
 
