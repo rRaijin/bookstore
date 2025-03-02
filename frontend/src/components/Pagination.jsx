@@ -1,7 +1,7 @@
-const Pagination = ({ dataPerPage, totalData, paginate, selectedPage }) => {
+const Pagination = ({ itemsPerPage, countItems, onLoadMore, selectedPage }) => {
     const pageNum = [];
 
-    for (let i = 1; i <= Math.ceil(totalData / dataPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(countItems / itemsPerPage); i++) {
         pageNum.push(i);
     }
 
@@ -10,9 +10,9 @@ const Pagination = ({ dataPerPage, totalData, paginate, selectedPage }) => {
             <ul className='flex'>
                 {pageNum.map((num) => (
                     <li className={selectedPage === num ? 'pagination-page-active' : ''} key={num}>
-                        <a className='' href="#" onClick={() => paginate(num)}>
+                        <span className='' onClick={() => onLoadMore(num)}>
                             {num}
-                        </a>
+                        </span>
                     </li>
                 ))}
             </ul>

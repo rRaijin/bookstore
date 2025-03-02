@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 
 import { fetchData } from "../../utils";
-import FilteredBooksList from "../books/FilteredBooksList";
-import Pagination from "./Pagination";
+// import FilteredBooksList from "../books/FilteredBooksList";
+import Pagination from "../Pagination";
 
 
 const ITEMS_PER_PAGE = 2;
@@ -40,8 +40,8 @@ const Paginate = ({fieldName}) => {
                     <h2>
                         {fieldName}
                     </h2>
-                    <FilteredBooksList
-                        books={books}/>
+                    {/* <FilteredBooksList
+                        books={books}/> */}
 
                     <Pagination 
                         dataPerPage={ITEMS_PER_PAGE} 

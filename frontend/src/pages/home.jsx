@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
 import { fetchData } from '../utils';
-import FilteredBooksList from '../components/books/FilteredBooksList';
 import Paginate from '../components/fields/Paginate';
+import TopList from '../components/home/TopList';
+import MostPopular from '../components/home/MostPopular';
 
 
 const ITEMS_PER_PAGE = 2;
@@ -13,7 +14,6 @@ const ITEMS_PER_PAGE = 2;
 const HomePage = () => {
     const [books, updateBooks] = useState([]);
     const [selectedPage, setSelectedPage] = useState(1);
-    const [currentPerPage, setCurrentPerPage] = useState(2)
 
     useEffect(() => {
         fetchData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE}, updateBooks);
@@ -23,23 +23,6 @@ const HomePage = () => {
         return moment().diff(moment(item.createdAt), 'days') <= 3;
     }
 
-    const handleLoadMore = () => {
-        const nextPageNum = selectedPage + 1;
-        fetchData('books', 'POST', {pageNum: nextPageNum, perPage: ITEMS_PER_PAGE}, updateBooks);
-        setSelectedPage(nextPageNum);
-    }
-
-    const handleLoadLess = () => {
-        const prevPageNum = selectedPage - 1;
-        fetchData('books', 'POST', {pageNum: prevPageNum, perPage: ITEMS_PER_PAGE}, updateBooks);
-        setSelectedPage(prevPageNum);
-    }
-
-    const lastCountryIndex = selectedPage * currentPerPage
-    const firstCountryIndex = lastCountryIndex - selectedPage
-
-    const countItems = 8;
-
     return (
         <div className=''>
             <div className=''>
@@ -48,40 +31,25 @@ const HomePage = () => {
                 Минимум информации в блоке
             </div>
 
-            <div className=''>
-                <h2>
-                    Новинки
-                </h2>
-                <FilteredBooksList
-                    condition={getItemsByDate}
-                    books={books}/>
+            <TopList
 
-            </div>
-            {/* <div className=''>
-                <h2>
-                    Топ
-                </h2>
-                <FilteredBooksList
-                    books={books}/>
-                
-                {
-                    selectedPage > 1 &&
-                    <button type='button' onClick={handleLoadLess}>
-                        PREV
-                    </button>
-                }
-                {
-                    selectedPage * ITEMS_PER_PAGE < countItems &&
-                    <button type='button' onClick={handleLoadMore}>
-                        NEXT
-                    </button>
-                }
-            </div> */}
-            <Paginate 
-                fieldName='Топ'
+            />
+
+            {/* <MostPopular
+            
+            /> */}
+
+            {/* <Paginate 
+                fieldName='Топ1'
                 updateData={updateBooks}
                 books={books}
             />
+
+            <Paginate 
+                fieldName='Топ2'
+                updateData={updateBooks}
+                books={books}
+            /> */}
 
             {/* special block */}
             <div className=''>

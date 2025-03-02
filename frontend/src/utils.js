@@ -53,9 +53,34 @@ export const fetchData = (url, method, data, callback) => {
     fetch(`${SERVER_URL}/api/${url}`, params).then(async (response) => {
         if (response.ok === true) {
             const results = await response.json();
-            console.log('results: ', results)
+            // console.log('results: ', results);
             if (callback) {
                 callback(results.items);
+            }
+        }
+    }).catch((e) => {
+        console.log('error: ', e);
+    });
+};
+
+export const fetchPaginatedData = (url, method, data, callback) => {
+    const params = {
+        method,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }
+    if (method === 'POST' && data && typeof data === 'object') {
+        params['body'] = JSON.stringify(data);
+    }
+
+    fetch(`${SERVER_URL}/api/${url}`, params).then(async (response) => {
+        if (response.ok === true) {
+            const results = await response.json();
+            // console.log('paginated results: ', results);
+            if (callback) {
+                callback(results);
             }
         }
     }).catch((e) => {

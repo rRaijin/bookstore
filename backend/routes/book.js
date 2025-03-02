@@ -9,7 +9,7 @@ const router = new express.Router();
 
 
 router.post('/', async (req, res, next) => {
-    const { pageNum, perPage } = req.body;
+    const { pageNum, perPage, countItems } = req.body;
     console.log('BODY: ', req.body);
     // return Book.aggregate([
     //     {
@@ -20,7 +20,11 @@ router.post('/', async (req, res, next) => {
     //     }
     // ])
     let items;
-    const countItems = await Book.estimatedDocumentCount();
+    console.log('est: ', countItems);
+    if (!countItems) {
+        console.log('OK: ', countItems)
+    }
+    const totalDocuments = countItems ? countItems : await Book.estimatedDocumentCount();
     try {
         items = await Book.find({}).populate({
             path: 'authorId',
@@ -36,7 +40,7 @@ router.post('/', async (req, res, next) => {
     if (!items) {
         return res.status(404).json({message: 'No items'});
     }
-    return res.status(200).json({items, countItems});
+    return res.status(200).json({items, countItems: totalDocuments});
 });
 
 router.delete('/books', (req, res) => {

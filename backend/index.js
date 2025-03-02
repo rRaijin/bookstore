@@ -9,6 +9,7 @@ import routerUser from './routes/user.js';
 import routerImages from './routes/files.js';
 import routerNewspaper from './routes/newspaper.js';
 import routerPublisher from './routes/publisher.js';
+import routerTechnical from './routes/technical.js';
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/api/publisher', routerPublisher);
 app.use('/api/genres', routerGenre);
 app.use('/api/users', routerUser);
 app.use('/api/images', routerImages);
+app.use('/api/technical', routerTechnical);
 
 
 const CONNECTION_STRING = 'mongodb://127.0.0.1:27017';
