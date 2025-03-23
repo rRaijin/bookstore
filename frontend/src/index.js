@@ -20,6 +20,7 @@ import './styles/publishings.css';
 import './styles/chat.css';
 import './styles/dialogs.css';
 import './styles/paginate.css';
+import './styles/loader.css';
 
 import App from './App';
 

@@ -9,19 +9,7 @@ import TopList from '../components/home/TopList';
 import MostPopular from '../components/home/MostPopular';
 
 
-const ITEMS_PER_PAGE = 2;
-
 const HomePage = () => {
-    const [books, updateBooks] = useState([]);
-    const [selectedPage, setSelectedPage] = useState(1);
-
-    useEffect(() => {
-        fetchData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE}, updateBooks);
-    }, []);
-
-    const getItemsByDate = (item) => {
-        return moment().diff(moment(item.createdAt), 'days') <= 3;
-    }
 
     return (
         <div className=''>

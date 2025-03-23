@@ -1,6 +1,7 @@
 .pagination-pages {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 .pagination-pages > ul {
