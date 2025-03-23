@@ -16,6 +16,14 @@
     color: blue;
 }
 
+.pagination-pages > ul > li:first-child {
+    width: auto;
+}
+
+.pagination-pages > ul > li:last-child {
+    width: auto;
+}
+
 .pagination-pages > ul > li:hover {
     background-color: #e3e3e3;
     transition: 0.2s ease-in-out;
@@ -52,4 +60,8 @@
 .butt-prev:hover {
     background-color: #00ce00;
     transition: 0.2s ease-in-out;
+}
+
+.w-auto {
+    width: auto;
 }

@@ -6,16 +6,15 @@ const Pagination = ({ itemsPerPage, countItems, onLoadMore, selectedPage, showed
 
     useEffect(() => {
         if (countItems && countItems > 0) {
-            const result = [];
             const pagesCnt = countItems / itemsPerPage;
-            const parsedNumber = pagesCnt >= 5 ? showedNumbers : pagesCnt; 
-            console.log('cnt: ', countItems, parsedNumber)
-            for (let i = 1; i <= Math.ceil(parsedNumber); i++) {
-                result.push(i);
-            }
+            const start = Math.max(1, selectedPage - 2);
+            const end = Math.min(pagesCnt, start + showedNumbers - 1);
+            const result = Array.from({ length: end - start + 1 }, (x, i) => start + i);
             setPageNumbers(result);
         }
+        
     }, [countItems]);
+    
 
     // def - 12345
     // 3 - 12 3 45
@@ -33,9 +32,9 @@ const Pagination = ({ itemsPerPage, countItems, onLoadMore, selectedPage, showed
             //  [1,2,3,4,5] - 4
             const indexOfNum = pageNumbers.indexOf(pageNum);
             
-
-
-            const sx = [pageNumbers[indexOfNum - 2], pageNumbers[indexOfNum - 1], pageNum, pageNumbers[indexOfNum + 1], pageNumbers[indexOfNum + 2]];
+            const start = Math.max(1, pageNum - 2)
+            const end = Math.min(pagesCnt, start + showedNumbers - 1)
+            const sx = Array.from({ length: end - start + 1}, (x, i) => start + i)
             console.log('sx: ', sx)
             setPageNumbers(sx);
             console.log('asd: ', indexOfNum)
@@ -61,8 +60,8 @@ const Pagination = ({ itemsPerPage, countItems, onLoadMore, selectedPage, showed
                     PREV
                 </li>
                 {pageNumbers.map((pageNum) => (
-                    <li className={selectedPage === pageNum ? 'pagination-page-active' : ''} key={`page-${pageNum}`}>
-                        <span className='' onClick={() => onClickLoadMore(pageNum)}>
+                    <li onClick={() => onClickLoadMore(pageNum)} className={selectedPage === pageNum ? 'pagination-page-active' : ''} key={`page-${pageNum}`}>
+                        <span className=''>
                             {pageNum}
                         </span>
                     </li>
