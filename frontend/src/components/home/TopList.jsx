@@ -6,7 +6,7 @@ import Pagination from '../Pagination';
 import Loader from '../Loader';
 
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 2;
 
 
 const TopList = (props) => {
@@ -16,6 +16,7 @@ const TopList = (props) => {
     const [countItems, setCountItems] = useState(0);
     const [books, updateBooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [newBooks, setNewBooks] = useState([])
 
     useEffect(() => {
         fetchPaginatedData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE, countItems}, (data) => {
@@ -49,17 +50,15 @@ const TopList = (props) => {
                     countItems
                 }, (data) => {
                     if (data) {
-                        setIsLoading(false);
-                        const pageObj = {
-                            page: pageNum,
-                            items: data.items
-                        };
-                        updateBooks([...books, pageObj]);
+                        setTimeout(() => {
+                            setIsLoading(false)
+                            updateBooks([{page: pageNum, items: data.items}])
+                        }, 500)
                     } else {
     
                     }
                 });
-            }, 3000);
+            });
         } else {
             console.log('DATA exists, query not need');
         }
@@ -74,17 +73,11 @@ const TopList = (props) => {
                     </h2>
                     
                     <div className='books-page-list'>
-                        {
-                            isLoading ? <Loader/> :
-                                books.length > 0 ?
-                                books.find(b => b.page === selectedPage)?.items.map((book, i) =>
-                                    <BookDetail
-                                        key={`book-${i}`}
-                                        showAuthorName={true}
-                                        item={book}/>
-                                ) :
-                                <p>No data</p>
-                        }
+                        {books.flatMap(b => b.items).map((book, i) => (
+                            <BookDetail key={`book-${i}`} item={book}/>
+                        ))}
+                        {isLoading && <Loader/>}
+                            
                     </div>
 
                     <Pagination 
