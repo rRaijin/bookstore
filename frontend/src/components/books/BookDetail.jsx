@@ -27,7 +27,7 @@ const BookDetail = (props) => {
                         alt={item.bookName}/>
                     <div className='book-preview-genres'>
                         {
-                            item.genres.map((genre, index) => {
+                            item.genres && item.genres.map((genre, index) => {
                                 return (
                                     <div className='card-item' key={`genre_${index}`}>
                                         {genre.title}

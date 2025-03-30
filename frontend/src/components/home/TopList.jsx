@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 
 import { fetchPaginatedData } from '../../utils';
 import BookDetail from '../../components/books/BookDetail';
-import Pagination from '../Pagination';
 import Loader from '../Loader';
+import Mosaic from '../../components/Mosaic';
+import Pagination from '../Pagination';
 
 
 const ITEMS_PER_PAGE = 2;
@@ -14,9 +15,8 @@ const TopList = (props) => {
 
     const [selectedPage, setSelectedPage] = useState(1);
     const [countItems, setCountItems] = useState(0);
-    const [books, updateBooks] = useState([]);
+    const [itemsPage, updateItemsPage] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [newBooks, setNewBooks] = useState([])
 
     useEffect(() => {
         fetchPaginatedData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE, countItems}, (data) => {
@@ -27,9 +27,8 @@ const TopList = (props) => {
                     items: data.items
                 };
                 setCountItems(data.countItems);
-                updateBooks([pageObj]);
+                updateItemsPage([pageObj]);
             } else {
-
             }
         });
     }, []);
@@ -37,13 +36,12 @@ const TopList = (props) => {
     const handleLoadMore = (pageNum) => {
         setSelectedPage(pageNum); // вот тут пропадает список
         setIsLoading(true);
-        const existsNums = books.reduce((acc, b) => {
+        const existsNums = itemsPage.reduce((acc, b) => {
             acc.push(b.page);
             return acc;
         }, []);
         if (existsNums.indexOf(pageNum) === -1) {
             setTimeout(() => {
-
                 fetchPaginatedData('books', 'POST', {
                     pageNum, 
                     perPage: ITEMS_PER_PAGE,
@@ -52,7 +50,7 @@ const TopList = (props) => {
                     if (data) {
                         setTimeout(() => {
                             setIsLoading(false)
-                            updateBooks([{page: pageNum, items: data.items}])
+                            updateItemsPage([{page: pageNum, items: data.items}])
                         }, 500)
                     } else {
     
@@ -64,6 +62,19 @@ const TopList = (props) => {
         }
     }
 
+    // const renderWithLoad = () => {
+    //     const stateSelected = isLoading ? selectedPage - 1 : selectedPage;
+    //     const currentPageObj = itemsPage.find(pageItem => pageItem.page === stateSelected);
+    //     const renderItems = currentPageObj ? currentPageObj.items : [];
+
+    //     return (
+    //         renderItems.map((book, i) => {
+    //                 return <BookDetail key={`book-${i}`} item={book}/>
+    //             }
+    //         )
+    //     )
+    // }
+
     return (
         <div>
             <div>
@@ -71,20 +82,28 @@ const TopList = (props) => {
                     <h2>
                         asdasdasd
                     </h2>
+
+                    <Mosaic
+                        className='books-page-list'
+                        isLoading={isLoading}
+                        selectedPage={selectedPage}
+                        itemsPage={itemsPage}
+                        countItems={countItems}
+                        itemsPerPage={ITEMS_PER_PAGE}
+                        handleLoadMore={handleLoadMore}
+                        childrenFn={(book, i) => <BookDetail key={`book-${i}`} item={book}/>}
+                    />
                     
-                    <div className='books-page-list'>
-                        {books.flatMap(b => b.items).map((book, i) => (
-                            <BookDetail key={`book-${i}`} item={book}/>
-                        ))}
-                        {isLoading && <Loader/>}
-                            
+                    {/* <div className='books-page-list'>
+                        {renderWithLoad()}
+                        {isLoading && <Loader/>}  
                     </div>
 
                     <Pagination 
                         countItems={countItems}
                         itemsPerPage={ITEMS_PER_PAGE} 
                         selectedPage={selectedPage}
-                        onLoadMore={handleLoadMore}/>
+                        onLoadMore={handleLoadMore}/> */}
                 </div>
             </div>
         </div>
