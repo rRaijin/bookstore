@@ -23,6 +23,37 @@ router.get('/', async (req, res, next) => {
     return res.status(200).json({items});
 });
 
+router.post('/', async (req, res, next) => {
+    const { pageNum, perPage, countItems } = req.body;
+    console.log('BODY: ', req.body);
+    // return Book.aggregate([
+    //     {
+    //         $match: {}
+    //     },
+    //     {
+
+    //     }
+    // ])
+    let items;
+    console.log('est: ', countItems);
+    if (!countItems) {
+        console.log('OK: ', countItems)
+    }
+    const totalDocuments = countItems ? countItems : await Author.estimatedDocumentCount();
+    try {
+        items = await Author.find({}).populate({path: 'userId',model: 'User'
+        }).skip((pageNum - 1) * perPage).limit(perPage);
+    } catch (error) {
+        console.log('Error: ', error);
+        return res.status(404).json({message: 'ERROR'});
+    }
+    if (!items) {
+        return res.status(404).json({message: 'No items'});
+    }
+    return res.status(200).json({items, countItems: totalDocuments});
+});
+
+
 router.put('/', jsonParser, async (req, res) => {
     try {
         console.log('form body: ', req.body);

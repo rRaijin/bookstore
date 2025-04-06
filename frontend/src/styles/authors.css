@@ -7,3 +7,21 @@
 .w-29p {
     width: 29%;
 }
+
+.authors-page-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.authors-page-card {
+    width: 280px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

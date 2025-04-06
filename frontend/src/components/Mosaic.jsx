@@ -8,11 +8,12 @@ const Mosaic = (props) => {
 
     const renderWithLoad = () => {
         const stateSelected = isLoading ? selectedPage - 1 : selectedPage;
-        const currentPageObj = itemsPage.find(pageItem => pageItem.page === stateSelected);
+        const currentPageObj = itemsPage?.find(pageItem => pageItem.page === stateSelected);
         const renderItems = currentPageObj ? currentPageObj.items : [];
 
         return (
-            renderItems.map((book, i) => childrenFn(book, i))
+            renderItems.map((book, i) => childrenFn(book, i)),
+            renderItems.map((author, i) => childrenFn(author, i))
         )
     }
 

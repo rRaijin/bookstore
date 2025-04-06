@@ -7,6 +7,7 @@ import { fetchData } from '../utils';
 import Paginate from '../components/fields/Paginate';
 import TopList from '../components/home/TopList';
 import MostPopular from '../components/home/MostPopular';
+import TopListAuthors from '../components/home/TopListAuthors';
 
 
 const HomePage = () => {
@@ -22,6 +23,7 @@ const HomePage = () => {
             <TopList
 
             />
+            <TopListAuthors/>
 
             {/* <MostPopular
             
