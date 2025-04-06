@@ -9,8 +9,12 @@ const router = new express.Router();
 
 
 router.post('/', async (req, res, next) => {
-    const { pageNum, perPage, countItems } = req.body;
+    const { pageNum, perPage, countItems, filter } = req.body;
     console.log('BODY: ', req.body);
+    let query = {};
+    if (filter) {
+        query = {bookName: filter};
+    }
     // return Book.aggregate([
     //     {
     //         $match: {}
@@ -20,13 +24,15 @@ router.post('/', async (req, res, next) => {
     //     }
     // ])
     let items;
-    console.log('est: ', countItems);
-    if (!countItems) {
-        console.log('OK: ', countItems)
-    }
-    const totalDocuments = countItems ? countItems : await Book.estimatedDocumentCount();
+    // console.log('est: ', countItems);
+    // if (!countItems) {
+    //     console.log('OK: ', countItems)
+    // }
+    // const totalDocuments = countItems ? countItems : await Book.estimatedDocumentCount();
+    const totalDocuments = countItems && countItems !== 0 ? countItems : await Book.countDocuments(query);
+    console.log('total: ', totalDocuments)
     try {
-        items = await Book.find({}).populate({
+        items = await Book.find(query).populate({
             path: 'authorId',
             populate: {
                 path: 'userId',

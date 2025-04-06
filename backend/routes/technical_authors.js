@@ -7,7 +7,7 @@ const jsonParser = express.json();
 const router = new express.Router();
 
 router.get('/', jsonParser, async (req, res) => {
-    console.log('FETCH');
+    console.log('FETCH 12312312');
     let i = 0;
     while (i < 300) {
         let firstName = 'first name # ' + (i + 1);
