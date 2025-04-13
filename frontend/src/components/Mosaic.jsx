@@ -19,7 +19,7 @@ const Mosaic = (props) => {
 
     return (
         <Fragment>
-            <div className={className + ' '}>
+            <div className={`${className} mosaic-wrapper`}>
                 {renderWithLoad()}
                 {isLoading && <Loader/>}  
             </div>

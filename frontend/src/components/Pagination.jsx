@@ -40,7 +40,7 @@ const Pagination = ({ itemsPerPage, countItems, onLoadMore, selectedPage, showed
 
     return (
         <div className='pagination-pages'>
-            <ul className='flex'>
+            <ul className='flex mt-5 mb-5'>
                 <li className='' onClick={() => onClickLoadMore(selectedPage - 1, 'less')}>
                     PREV
                 </li>
