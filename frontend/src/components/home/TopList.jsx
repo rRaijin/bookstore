@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { fetchPaginatedData } from '../../utils';
 import BookDetail from '../../components/books/BookDetail';
@@ -17,7 +17,10 @@ const TopList = (props) => {
     const [countItems, setCountItems] = useState(0);
     const [itemsPage, updateItemsPage] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [filter, updateFilter] = useState(null);
+    const [filter, updateFilter] = useState({
+        desc: '',
+        price: null
+    });
 
     useEffect(() => {
         fetchPaginatedData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE, countItems}, (data) => {
@@ -34,6 +37,11 @@ const TopList = (props) => {
         });
     }, []);
 
+    const updateFilters = (fieldName, value) => {
+        filter[fieldName] = value;
+        updateFilter({...filter});
+    }
+
     const handleLoadMore = (pageNum, force = false) => {
         setSelectedPage(pageNum); // вот тут пропадает список
         setIsLoading(true);
@@ -49,7 +57,6 @@ const TopList = (props) => {
                 filter
             }, (data) => {
                 if (data) {
-                    console.log('dt: ', data)
                     setTimeout(() => {
                         setIsLoading(false)
                         updateItemsPage([{page: pageNum, items: data.items}]);
@@ -86,6 +93,12 @@ const TopList = (props) => {
                 console.log('DATA exists, query not need');
             }
         }
+
+        // Validation example
+        // if (filter.desc !== '') {
+        // } else {
+        //     console.log('Need filter');
+        // }
     }
 
     return (
@@ -98,8 +111,12 @@ const TopList = (props) => {
 
                     <input
                         className=''
-                        value={filter}
-                        onChange={e => updateFilter(e.target.value)}/>
+                        value={filter.desc}
+                        onChange={e => updateFilters('desc', e.target.value)}/>
+                    <input
+                        className=''
+                        value={filter.price}
+                        onChange={e =>  updateFilters('price', e.target.value)}/>
                     <button onClick={() => handleLoadMore(1, true)}>
                         OK
                     </button>

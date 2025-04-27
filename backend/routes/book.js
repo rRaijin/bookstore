@@ -1,4 +1,5 @@
 import express from 'express';
+import moment from 'moment';
 
 import { saveFile } from './files.js';
 import Book from '../models/book.js';
@@ -12,9 +13,24 @@ router.post('/', async (req, res, next) => {
     const { pageNum, perPage, countItems, filter } = req.body;
     console.log('BODY: ', req.body);
     let query = {};
-    if (filter) {
-        query = {bookName: filter};
+    // const novinki = moment().subtract(3, 'months').format('X') * 1000;
+    // console.log('novinki: ', novinki);
+    // let query = {createdAt: {'$gt': novinki}};
+    // let query = {createdAt: {$gte: 1744538009000}};
+    
+    // console.log('current: ', moment().format()); // 1736765770000
+
+    if (filter && filter.hasOwnProperty('desc') && filter.desc !== '') {
+        query['$or'] = [
+            {bookName: {'$regex' : filter.desc, '$options' : 'i'}},
+            {description: {'$regex' : filter.desc, '$options' : 'i'}}
+        ];
     }
+    if (filter && filter.hasOwnProperty('price') && filter.price !== null && filter.price >= 0) {
+        query['price'] = filter.price;
+    }
+
+
     // return Book.aggregate([
     //     {
     //         $match: {}
@@ -31,6 +47,8 @@ router.post('/', async (req, res, next) => {
     // const totalDocuments = countItems ? countItems : await Book.estimatedDocumentCount();
     const totalDocuments = countItems && countItems !== 0 ? countItems : await Book.countDocuments(query);
     console.log('total: ', totalDocuments)
+    console.log('QUERY: ', query);
+
     try {
         items = await Book.find(query).populate({
             path: 'authorId',
