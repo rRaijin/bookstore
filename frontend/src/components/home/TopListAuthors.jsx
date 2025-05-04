@@ -10,6 +10,9 @@ const TopListAuthors = () => {
     const [itemsPage, updateItemsPage] = useState([]);
     const [items, updateItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true); 
+    const [filter, updateFilter] = useState({
+        desc: ''
+    });
 
     useEffect(() => {
         fetchPaginatedData('authors', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE, countItems}, (data) => {
@@ -28,6 +31,11 @@ const TopListAuthors = () => {
         });
     }, [])
 
+    const updateFilters = (fieldName, value) => {
+        filter[fieldName] = value;
+        updateFilter({...filter});
+    }
+
     const handleLoadMore = (pageNum) => {
             setSelectedPage(pageNum); // вот тут пропадает список
             setIsLoading(true);
@@ -41,7 +49,8 @@ const TopListAuthors = () => {
                     fetchPaginatedData('authors', 'POST', {
                         pageNum, 
                         perPage: ITEMS_PER_PAGE,
-                        countItems
+                        countItems, 
+                        filter
                     }, (data) => {
                         if (data) {
                             setTimeout(() => {
@@ -60,6 +69,14 @@ const TopListAuthors = () => {
 
     return (
         <div>
+
+            <input
+                className=''
+                value={filter.desc}
+                onChange={e => updateFilters('desc', e.target.value)}/>
+            <button onClick={() => handleLoadMore(1, true)}>
+                OK
+            </button>
             <Mosaic
                 className="authors-page-list"
                 isLoading={isLoading}

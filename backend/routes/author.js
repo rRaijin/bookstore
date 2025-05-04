@@ -8,6 +8,38 @@ import User from '../models/user.js';
 const jsonParser = express.json();
 const router = new express.Router();
 
+router.post('/', async (req, res) =>  {
+    const { pageNum, perPage, countItems, filter } = req.body;
+    console.log('Author Body', req.body);
+    let query = {};
+    if (filter && filter.hasOwnProperty('desc') && filter.desc !== '') {
+        query['$or'] = [
+            {bio: {'$regex' : filter.desc, '$options' : 'i'}},
+            {lastName : {'$regex' : filter.desc, '$options' : 'i'}}
+        ]
+    } else {
+        
+    }
+    let items;
+
+    const totalDocuments = countItems && countItems !== 0 ? countItems : await Author.countDocuments(query);
+        console.log('total: ', totalDocuments)
+        console.log('QUERY: ', query);
+    
+        try {
+            items = await Author.find(query).populate({
+                path: 'userId',
+            }).skip((pageNum - 1) * perPage).limit(perPage);
+        } catch (error) {
+            console.log('Error: ', error);
+            return res.status(404).json({message: 'ERROR'});
+        }
+        if (!items) {
+            return res.status(404).json({message: 'No items'});
+        }
+        return res.status(200).json({items, countItems: totalDocuments});
+});
+
 router.get('/', async (req, res, next) => {
     let items;
     try {
