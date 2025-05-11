@@ -10,12 +10,12 @@ const router = new express.Router();
 
 router.post('/', async (req, res) =>  {
     const { pageNum, perPage, countItems, filter } = req.body;
-    console.log('Author Body', req.body);
+    // console.log('Author Body', req.body);
     let query = {};
     if (filter && filter.hasOwnProperty('desc') && filter.desc !== '') {
         query['$or'] = [
             {bio: {'$regex' : filter.desc, '$options' : 'i'}},
-            {lastName : {'$regex' : filter.desc, '$options' : 'i'}}
+            {'userId.lastName' : {'$regex' : filter ? filter.desc : '', '$options' : 'i'}}
         ]
     } else {
         
@@ -23,21 +23,53 @@ router.post('/', async (req, res) =>  {
     let items;
 
     const totalDocuments = countItems && countItems !== 0 ? countItems : await Author.countDocuments(query);
-        console.log('total: ', totalDocuments)
-        console.log('QUERY: ', query);
-    
-        try {
-            items = await Author.find(query).populate({
-                path: 'userId',
-            }).skip((pageNum - 1) * perPage).limit(perPage);
-        } catch (error) {
-            console.log('Error: ', error);
-            return res.status(404).json({message: 'ERROR'});
-        }
-        if (!items) {
-            return res.status(404).json({message: 'No items'});
-        }
-        return res.status(200).json({items, countItems: totalDocuments});
+    // console.log('total: ', totalDocuments)
+    console.log('QUERY: ', query);
+
+    try {
+        items = await Author.aggregate([
+            {
+                $match: {} // объект параметров запроса
+            },
+            {
+                $lookup: { // выполняем 'join', оператор присоединения
+                    from: 'users', // находим в таблице 'users' 
+                    localField: 'userId', // по полю 'userId'
+                    foreignField: '_id', // юзера c соотв. идентификатором
+                    as: 'userId' // полученный результат (массив, из одного объекта) сохраняем в переменную 'userObj' (массив)
+                }
+            },
+            {
+                $unwind: {path: '$userId'} // распечатівает массив
+            },
+            {
+                $match: query // в объект 'query' мы передаем ранее сформированный фильтр
+            },
+            {
+                $project: {
+                    _id: 1, 
+                    picture: 1, 
+                    bio: 1, 
+                    'userId.firstName': 1, 
+                    'userId.lastName': 1
+                }
+            },
+            {
+                $skip: (pageNum - 1) * perPage
+            },
+            {
+                $limit: perPage
+            }
+        ]);
+    } catch (error) {
+        console.log('Error: ', error);
+        return res.status(404).json({message: 'ERROR'});
+    }
+    if (!items) {
+        return res.status(404).json({message: 'No items'});
+    }
+    console.log('items: ', items);
+    return res.status(200).json({items, countItems: totalDocuments});
 });
 
 router.get('/', async (req, res, next) => {
