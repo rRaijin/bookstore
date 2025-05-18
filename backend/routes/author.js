@@ -55,6 +55,15 @@ router.post('/', async (req, res) =>  {
                 }
             },
             {
+                $sort: {'userId.firstName': -1}
+            },
+            {
+                $addFields: {
+                    cats: 20,
+                    // bookCategoriesCnt: {$size: '$genres'}
+                }
+            },
+            {
                 $skip: (pageNum - 1) * perPage
             },
             {

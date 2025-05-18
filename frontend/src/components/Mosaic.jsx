@@ -11,8 +11,14 @@ const Mosaic = (props) => {
         const currentPageObj = itemsPage?.find(pageItem => pageItem.page === stateSelected);
         const renderItems = currentPageObj ? currentPageObj.items : itemsPage[0] ? itemsPage[0].items : [];
 
+        console.log('arr1: ', renderItems)
+        const orderedRenderItems = renderItems.sort((a, b) => (a.bookName > b.bookName) ? -1 : 1);
+        // 1. В случае сортировки по числовому полю достаточно разницы -> a.price - b.price
+        // 2. Для сравнения по текстовому полю более широкая запись -> (a.bookName > b.bookName) ? -1 : 1
+        console.log('arr2: ', orderedRenderItems)
+
         return (
-            renderItems.map((book, i) => childrenFn(book, i)),
+            orderedRenderItems.map((book, i) => childrenFn(book, i)),
             renderItems.map((author, i) => childrenFn(author, i))
         )
     }

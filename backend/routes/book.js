@@ -56,7 +56,9 @@ router.post('/', async (req, res, next) => {
                 path: 'userId',
                 model: 'User'
             }
-        }).populate('genres').skip((pageNum - 1) * perPage).limit(perPage);
+        }).populate('genres')
+        // .sort({bookName: -1})
+        .skip((pageNum - 1) * perPage).limit(perPage);
     } catch (error) {
         console.log('Error: ', error);
         return res.status(404).json({message: 'ERROR'});
