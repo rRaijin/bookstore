@@ -15,6 +15,7 @@ import AuthorsList from './pages/authors/list';
 import AuthorDetail from './pages/authors/item';
 import BooksList from './pages/books/list';
 import BookDetail from './pages/books/item';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import HomePage from './pages/home';
 import Layout from './components/Layout';
@@ -57,7 +58,7 @@ const App = () => {
                         <Route path='publishings' element={<Publishings/>}/>
                     </Route>
                 </Routes>
-                {/* <Footer/> */}
+                <Footer/>
             </MyContext.Provider>
         </div>
     );

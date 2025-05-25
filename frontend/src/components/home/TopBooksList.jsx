@@ -1,16 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import { fetchPaginatedData } from '../../utils';
-import BookDetail from '../../components/books/BookDetail';
-import Loader from '../Loader';
-import Mosaic from '../../components/Mosaic';
-import Pagination from '../Pagination';
+import { HOME_TOP_BOOK_LIST_ITEMS_PER_PAGE } from '../../constants';
+import BookDetail from '../books/BookDetail';
+import Mosaic from '../Mosaic';
 
 
-const ITEMS_PER_PAGE = 4;
-
-
-const TopList = (props) => {
+const TopBooksList = (props) => {
     const {  } = props;
 
     const [selectedPage, setSelectedPage] = useState(1);
@@ -23,7 +19,7 @@ const TopList = (props) => {
     });
 
     useEffect(() => {
-        fetchPaginatedData('books', 'POST', {pageNum: selectedPage, perPage: ITEMS_PER_PAGE, countItems}, (data) => {
+        fetchPaginatedData('books', 'POST', {pageNum: selectedPage, perPage: HOME_TOP_BOOK_LIST_ITEMS_PER_PAGE, countItems}, (data) => {
             if (data) {
                 setIsLoading(false);
                 const pageObj = {
@@ -52,7 +48,7 @@ const TopList = (props) => {
             setCountItems(newCountValue);
             fetchPaginatedData('books', 'POST', {
                 pageNum, 
-                perPage: ITEMS_PER_PAGE,
+                perPage: HOME_TOP_BOOK_LIST_ITEMS_PER_PAGE,
                 countItems: newCountValue,
                 filter
             }, (data) => {
@@ -75,7 +71,7 @@ const TopList = (props) => {
                 setTimeout(() => {
                     fetchPaginatedData('books', 'POST', {
                         pageNum, 
-                        perPage: ITEMS_PER_PAGE,
+                        perPage: HOME_TOP_BOOK_LIST_ITEMS_PER_PAGE,
                         countItems,
                         filter
                     }, (data) => {
@@ -127,7 +123,7 @@ const TopList = (props) => {
                         selectedPage={selectedPage}
                         itemsPage={itemsPage}
                         countItems={countItems}
-                        itemsPerPage={ITEMS_PER_PAGE}
+                        itemsPerPage={HOME_TOP_BOOK_LIST_ITEMS_PER_PAGE}
                         handleLoadMore={handleLoadMore}
                         childrenFn={(book, i) => <BookDetail key={`book-${i}`} item={book}/>}
                     />
@@ -137,4 +133,4 @@ const TopList = (props) => {
     )
 }
 
-export default TopList;
+export default TopBooksList;

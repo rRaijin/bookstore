@@ -1,12 +1,4 @@
-import { faInstagram, faSquareYoutube, faFacebookF, faTelegram, faTiktok } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState, useEffect } from 'react';
-import moment from 'moment';
-
-import { fetchData } from '../utils';
-import Paginate from '../components/fields/Paginate';
-import TopList from '../components/home/TopList';
-import MostPopular from '../components/home/MostPopular';
+import TopBookList from '../components/home/TopBooksList';
 import TopListAuthors from '../components/home/TopListAuthors';
 
 
@@ -15,33 +7,15 @@ const HomePage = () => {
     return (
         <div className=''>
             <div className=''>
-                <h1 className=''></h1>
-                Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
-                Минимум информации в блоке
+                <h1 className=''>
+                    Ставим яркий заголовок - у нас всегда новинки, программы лояльности и тд, картинку, контакты
+                    Минимум информации в блоке
+                </h1>
             </div>
 
-            <TopList
-
-            />
+            <TopBookList/>
             <TopListAuthors/>
 
-            {/* <MostPopular
-            
-            /> */}
-
-            {/* <Paginate 
-                fieldName='Топ1'
-                updateData={updateBooks}
-                books={books}
-            />
-
-            <Paginate 
-                fieldName='Топ2'
-                updateData={updateBooks}
-                books={books}
-            /> */}
-
-            {/* special block */}
             <div className=''>
                 <h2>
                     Біографії
@@ -53,13 +27,13 @@ const HomePage = () => {
                     Ексклюзив
                 </h2>
             </div>
+
             <div className=''>
                 <h2>
                     Шкільна література
                 </h2>
             </div>
 
-            {/* special block */}
             <div className=''>
                 <h2>
                     Книжковий клуб
@@ -71,94 +45,6 @@ const HomePage = () => {
                     Психологія
                 </h2>
             </div>
-
-            <footer className='home-footer'>
-                <div>
-                    <ul>
-                        <li>
-                            <a href="">Про Нас</a>
-                        </li>
-                        <li>
-                            <a href="">Новинки</a>
-                        </li>
-                        <li>
-                            <a href="">Наша Политика</a>
-                        </li>
-                        <li>
-                            <a href="">Доставка</a>
-                        </li>
-                        <li>
-                            <a href="">Безопасность клиента</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                <ul>
-                    <li>
-                        <a href="">Контакты</a>
-                    </li>
-                    <li>
-                        <a href="">Адреса</a>
-                    </li>
-                    <li>
-                        <a href="">Способы оплаты</a>
-                    </li>
-                    <li>
-                        <a href="">Клуб</a>
-                    </li>
-                    <li>
-                        <a href="">Партнеры</a>
-                    </li>
-                    </ul>
-                </div>
-                <div>
-                    <div>
-                        <p>
-                            Наши соц.сети
-                        </p>
-                    </div>
-                    <div className='flex'>
-                        <div>
-                            <FontAwesomeIcon
-                                className='icons-social-networks back-grey cursor'
-                                icon={faSquareYoutube} 
-                                size={'xl'}
-                                style={{color: "#000000",}}
-                            />
-                        </div>
-                        <div className='padd-l-10px'>
-                            <FontAwesomeIcon 
-                                className='facebook back-grey cursor'
-                                icon={faFacebookF} 
-                                size={'xl'}
-                                style={{color: "#000000",}}/>
-                        </div>
-                            <div className='padd-l-10px'>
-                                <FontAwesomeIcon 
-                                    className='icons-social-networks back-grey cursor'
-                                    icon={faTelegram} 
-                                    size={'xl'}
-                                    style={{color: "#000000",}}/>
-                            </div>
-                        <div className='padd-l-10px'>
-                            <FontAwesomeIcon 
-                                className='icons-social-networks back-grey cursor'
-                                icon={faInstagram} 
-                                size={'xl'}
-                                style={{color: "#000000",}}
-                            />
-                        </div>
-                        <div className='padd-l-10px'>
-                            <FontAwesomeIcon 
-                                className='icons-social-networks back-grey cursor'
-                                icon={faTiktok} 
-                                size={'xl'}
-                                style={{color: "#000000",}}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 };
