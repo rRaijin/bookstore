@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { useSelector } from "react-redux";
+import { useState, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { MyAnotherContext } from "../../MyContext";
 import authors from "../../mock/authors.json";
@@ -7,6 +7,11 @@ import books from "../../mock/books.json";
 import genres from "../../mock/genres.json";
 import BookPreview from "../../components/books/BookPreview";
 import BooksPagePreText from "../../components/books/BooksPagePreText";
+import {
+  getAllBooks,
+  increment,
+  decrement,
+} from "../../redux/slices/bookSlice";
 
 const BookPage = () => {
   const [myInputName, setMyInputName] = useState("");
@@ -14,8 +19,16 @@ const BookPage = () => {
   const [localCtxCount, changeLocalCtxCount] = useState(localContext);
   const myChangeHandlerName = (e) => setMyInputName(e.target.value);
 
-  const { success, error, data } = useSelector((state) => state.entities);
-  console.log("REDUX: ", sx);
+  // const { success, error, data } = useSelector((state) => state.entities.books);
+  const booksInState = useSelector((state) => state.entities.books);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllBooks());
+  }, []);
+
+  console.log("REDUX: ", booksInState);
 
   // В квадратных скобках указывается 2 элемента -> 1й - это единица состояния, а 2я - установщик(изменяет)
   const [myInputPriceMin, setMyInputPriceMin] = useState(0);
@@ -45,8 +58,17 @@ const BookPage = () => {
 
   console.log("localContext: ", localCtxCount);
 
+  const up = () => dispatch(increment());
+
+  const down = () => dispatch(decrement());
+
   return (
     <div className="books-page-main">
+      <div>
+        <button onClick={up}>+</button>
+        <button onClick={down}>-</button>
+        <p>{booksInState.x}</p>
+      </div>
       <BooksPagePreText />
       <div className="books-page-filters">
         <label>Я шукаю:</label>

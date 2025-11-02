@@ -8,8 +8,12 @@ import {
   faTelegram,
   faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
+import { useSelector } from "react-redux";
 
 const Publishings = () => {
+  const booksInState = useSelector((state) => state.entities.books);
+  console.log("booksssssss: ", booksInState);
+
   // HW
   // 1. copy page https://book-ye.com.ua/contacts/ без навигации
   const [isPanelVisible, setIsPanelVisible] = useState(false);
